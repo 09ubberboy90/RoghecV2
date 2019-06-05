@@ -22,6 +22,7 @@ please contact mla_licensing@microchip.com
 
 #include "app_device_cdc_basic.h"
 #include "app_led_usb_status.h"
+#include <stdio.h>
 
 #include "usb.h"
 #include "usb_device.h"
@@ -49,11 +50,12 @@ MAIN_RETURN main(void)
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
-    
+    ADC_SelectChannel(14);
+
     while(1)
     {
         SYSTEM_Tasks();
-
+        
         #if defined(USB_POLLING)
             // Interrupt or polling method.  If using polling, must call
             // this function periodically.  This function will take care
@@ -72,6 +74,12 @@ MAIN_RETURN main(void)
 
         //Application specific tasks
         APP_DeviceCDCBasicDemoTasks();
+        volatile uint16_t value = 0;
+        char tmp[8];
+        value = ADC_GetConversion(14);
+        sprintf(tmp,"%d\r\n",value);
+        putrsUSBUSART(tmp);
+        CDCTxService();
 
     }//end while
 }//end main
