@@ -135,7 +135,7 @@ void APP_DeviceCDCBasicDemoTasks()
         uint8_t numBytesRead = 0;
 
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        char test[] = "The message you just printed was : \r\n";
+        char test[] = "The message you just printed was : ";
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         
         /* For every byte that was read... */
@@ -172,8 +172,11 @@ void APP_DeviceCDCBasicDemoTasks()
             /* After processing all of the received data, we need to send out
              * the "echo" data now.
              */
-            //putrsUSBUSART(test);
+            
             putUSBUSART(writeBuffer,sizeof(writeBuffer));
+            CDCTxService();
+            putrsUSBUSART("\r\n");    
+
         }
     }
 

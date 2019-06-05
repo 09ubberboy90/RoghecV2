@@ -55,11 +55,16 @@
 /**
   Section: ADC Module APIs
 */
+#define input_TRIS                 TRISDbits.TRISD0
+#define input_LAT                  LATDbits.LATD0
+#define input_PORT                 PORTDbits.RD0
+#define input_ANS                  ANSELDbits.ANSD0
 
 void ADC_Initialize(void)
 {
     // set the ADC to the options selected in the User Interface
-    
+    input_TRIS = 1;
+    input_ANS = 1;
     // GO_nDONE stop; ADON enabled; CHS AN0; 
     ADCON0 = 0x01;
     
