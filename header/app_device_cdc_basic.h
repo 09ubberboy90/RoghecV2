@@ -37,7 +37,7 @@ please contact mla_licensing@microchip.com
 * Output: None
 *
 ********************************************************************/
-void APP_DeviceCDCBasicDemoInitialize();
+void APP_DeviceCDCBasicDemoInitialize(void);
 
 /*********************************************************************
 * Function: void APP_DeviceCDCBasicDemoTasks(void);
@@ -53,7 +53,24 @@ void APP_DeviceCDCBasicDemoInitialize();
 * Output: None
 *
 ********************************************************************/
-void APP_DeviceCDCBasicDemoTasks();
+void APP_DeviceCDCBasicDemoTasks(void);
 
-
+/** 
+* Function: void Adc_Read_Send(void);
+*
+* Overview: Read the value from the adc and send it to serial.
+*
+* PreCondition: The adc should have been initialized and started
+*
+* Input: None
+*
+* Output: None
+ */
+void Adc_Read_Send(void);
+/*
+ */
+void Led_Control(void);
+/*
+ */
+void Pwm_Control(void);
 #endif

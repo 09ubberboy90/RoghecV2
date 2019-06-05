@@ -21,16 +21,17 @@ please contact mla_licensing@microchip.com
 #include "system.h"
 
 #include <stdint.h>
+#include <stdio.h>
 #include <string.h>
 #include <stddef.h>
 
 #include "usb.h"
-
+#include "adc.h"
 #include "app_led_usb_status.h"
 #include "app_device_cdc_basic.h"
 #include "usb_config.h"
 #include "leds.h"
-
+#include "pwm.h"
 /** VARIABLES ******************************************************/
 
 static bool buttonPressed;
@@ -131,54 +132,118 @@ void APP_DeviceCDCBasicDemoTasks()
      */
     if( USBUSARTIsTxTrfReady() == true)
     {
-        uint8_t i = 0;
         uint8_t numBytesRead = 0;
 
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        char test[] = "The message you just printed was : ";
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        
+
         /* For every byte that was read... */
-        for(i=0; i<numBytesRead; i++)
+        if (numBytesRead != 0)
         {
-            switch(readBuffer[i])
+            switch(readBuffer[0])
             {
-                /* If we receive new line or line feed commands, just echo
-                 * them direct.
-                 */
-            case 0x30:
-                LED_Toggle(LED_D1);
+            case 0x6C:
+            case 0x4C: //L
+                Led_Control();
                 break;
-            case 0x31:
-                LED_Toggle(LED_D2);
+            case 0x50:
+            case 0x70: //P
+                Adc_Read_Send();
                 break;
-            case 0x32:
-                LED_Toggle(LED_D4);
-                break;
-                
-            /* If we receive something else, then echo it plus one
-             * so that if we receive 'a', we echo 'b' so that the
-             * user knows that it isn't the echo enabled on their
-             * terminal program.
-             */
+            case 0x57:
+            case 0x77: //P
+                Pwm_Control();
+                break;  
             default:
+                putrsUSBUSART("ERROR main\n\r");
                 break;
             }
-            writeBuffer[i] = readBuffer[i];
-        }
-        
-        if(numBytesRead > 0)
-        {
-            /* After processing all of the received data, we need to send out
-             * the "echo" data now.
-             */
-            
-            putUSBUSART(writeBuffer,sizeof(writeBuffer));
-            CDCTxService();
-            putrsUSBUSART("\r\n");    
-
         }
     }
 
     CDCTxService();
+}
+void Adc_Read_Send()
+{
+    uint16_t value = 0;
+    char tmp[50];
+    value = ADC_GetConversion(14);
+    sprintf(tmp,"The potentiometer has a value of : %d\r\n",value);
+    putrsUSBUSART(tmp);
+}
+
+void Led_Control()
+{   
+    bool errorFlag = false;
+    bool state = false;
+    uint8_t numBytesRead = 0;
+    do {
+        numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+    }
+    while(numBytesRead == 0);
+
+
+    switch(readBuffer[0])
+    {
+    case 0x30: //0
+        LED_Toggle(LED_D1);
+        state = LED_Get(LED_D1);
+        break;
+    case 0x31: //1
+        LED_Toggle(LED_D2);
+        state = LED_Get(LED_D2);
+        break;
+    case 0x32: //2
+        LED_Toggle(LED_D4);
+        state = LED_Get(LED_D3);
+        break;
+    default:
+        errorFlag = true;
+        putrsUSBUSART("ERROR LED\n\r");
+        break;        
+    }
+    if (!errorFlag)
+    {   
+        char mess[50];
+        sprintf(mess,"You turned %s LED : %c\r\n",(state)?"on":"off",(char)readBuffer[0]);
+        putrsUSBUSART(mess);
+    }
+
+    
+}
+
+void Pwm_Control(){
+    uint8_t numBytesRead = 0;
+    uint16_t out = 0;
+    char tmp[50];
+    uint8_t input[10];
+    uint8_t result;
+    for (int i = 0; i < 3; i++)
+    {
+        do {
+            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+        }
+        while(numBytesRead==0);
+        input[i] = readBuffer[0];
+
+    }
+    switch(input[0])
+    {
+    case 0x46://F
+    case 0x66: //f
+        result = (char)input[1]*10+(char)input[2];
+        out = Forward_Dir(result);    
+        break;
+    case 0x52://R
+    case 0x72://r
+        result = input[1]*10+input[2];
+        out = Reverse_Dir(result);    
+        break;
+    default:
+        putrsUSBUSART("ERROR PWM\n\r");
+        break;        
+    }
+    sprintf(tmp,"Pwm is set @ :%hhu,%c \n\r",out,out);
+    putrsUSBUSART(tmp);
+
 }
