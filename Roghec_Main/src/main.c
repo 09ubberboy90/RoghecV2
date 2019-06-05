@@ -28,6 +28,7 @@ please contact mla_licensing@microchip.com
 #include "usb_device.h"
 #include "usb_device_cdc.h"
 #include "adc.h"
+#include "pwm.h"
 /********************************************************************
  * Function:        void main(void)
  *
@@ -47,10 +48,10 @@ MAIN_RETURN main(void)
 {
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     ADC_Initialize();
+    PWMinit();
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
-    ADC_SelectChannel(14);
 
     while(1)
     {
@@ -74,13 +75,7 @@ MAIN_RETURN main(void)
 
         //Application specific tasks
         APP_DeviceCDCBasicDemoTasks();
-        volatile uint16_t value = 0;
-        char tmp[8];
-        value = ADC_GetConversion(14);
-        sprintf(tmp,"%d\r\n",value);
-        putrsUSBUSART(tmp);
-        CDCTxService();
-
+        
     }//end while
 }//end main
 

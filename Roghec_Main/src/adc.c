@@ -79,7 +79,7 @@ void ADC_Initialize(void)
     
     // ADRESH 0; 
     ADRESH = 0x00;
-    
+
 }
 
 void ADC_SelectChannel(adc_channel_t channel)
