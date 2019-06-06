@@ -59,10 +59,10 @@ void APP_DeviceCDCBasicDemoInitialize()
     line_coding.dwDTERate = 9600;
 
     buttonPressed = false;
-    LED_Enable(LED_D1);
-    LED_Enable(LED_D2);
-    LED_Enable(LED_D3);
-    LED_Enable(LED_D4);
+    Motor_Enable(LED_D1);
+    Motor_Enable(LED_D2);
+    Motor_Enable(MOTOR_A);
+    Motor_Enable(MOTOR_B);
 
 
 }
@@ -142,16 +142,16 @@ void APP_DeviceCDCBasicDemoTasks()
         {
             switch(readBuffer[0])
             {
-            case 0x6C:
-            case 0x4C: //L
-                Led_Control();
+            case 0x6D:
+            case 0x4E: //M
+                Motor_Control();
                 break;
             case 0x50:
             case 0x70: //P
                 Adc_Read_Send();
                 break;
             case 0x57:
-            case 0x77: //P
+            case 0x77: //W
                 Pwm_Control();
                 break;  
             default:
@@ -172,44 +172,92 @@ void Adc_Read_Send()
     putrsUSBUSART(tmp);
 }
 
-void Led_Control()
+void Motor_Control()
 {   
     bool errorFlag = false;
-    bool state = false;
+    int8_t state = -1;
     uint8_t numBytesRead = 0;
-    do {
-        numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-    }
-    while(numBytesRead == 0);
-
-
-    switch(readBuffer[0])
+    uint8_t input[10];
+    for (int i = 0; i < 2; i++)
     {
-    case 0x30: //0
-        LED_Toggle(LED_D1);
-        state = LED_Get(LED_D1);
-        break;
-    case 0x31: //1
-        LED_Toggle(LED_D2);
-        state = LED_Get(LED_D2);
-        break;
-    case 0x32: //2
-        LED_Toggle(LED_D4);
-        state = LED_Get(LED_D3);
-        break;
+        do {
+            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+        }
+        while(numBytesRead==0);
+        input[i] = readBuffer[0];
+
+    }
+
+
+    switch(input[0])
+    {
+    case 0x41://A
+    case 0x61://a
+        state = Direction_Control(input[1]);
+        if (state == 1)
+        {
+            Motor_Toggle(MOTOR_A_F);
+        }
+        else if (state == 0)
+        {
+            Motor_Toggle(MOTOR_A_R);
+        }
+        else{
+            errorFlag = true;
+        }
+    case 0x42://B
+    case 0x62://b
+        state = Direction_Control(input[1]);
+        if (state == 1)
+        {
+            Motor_Toggle(MOTOR_B_F);
+        }
+        else if (state == 0)
+        {
+            Motor_Toggle(MOTOR_B_R);
+        }
+        else{
+            errorFlag = true;
+        }
+
     default:
         errorFlag = true;
-        putrsUSBUSART("ERROR LED\n\r");
         break;        
     }
     if (!errorFlag)
     {   
         char mess[50];
-        sprintf(mess,"You turned %s LED : %c\r\n",(state)?"on":"off",(char)readBuffer[0]);
+        sprintf(mess,"MOTOR %c is in direction : %s\r\n",(char)input[0],(state)?"on":"off");
         putrsUSBUSART(mess);
+    }
+    else{
+        char mess[50];
+
+        sprintf(mess,"Erreur MOTOR %i \r\n",state);
+        putrsUSBUSART(mess);
+
+        putrsUSBUSART("ERROR MOTOR \n\r");
     }
 
     
+}
+int8_t Direction_Control(uint8_t input){
+    int8_t state = -1;
+    switch(input)
+    {
+    case 0x46://F
+    case 0x66: //f
+        state = 1;
+        break;
+    case 0x52://R
+    case 0x72://r
+        state = 0;
+        break;
+    default:
+        putrsUSBUSART("ERROR MOTOR DIRECTION\n\r");
+        break;        
+    } 
+    return state;
 }
 
 void Pwm_Control(){
@@ -229,15 +277,15 @@ void Pwm_Control(){
     }
     switch(input[0])
     {
-    case 0x46://F
-    case 0x66: //f
+    case 0x41://A
+    case 0x61://b
         result = (input[1]*10+input[2])-16;
-        out = Right_Motor(result);    
+        out = Motor_A(result);    
         break;
-    case 0x52://R
-    case 0x72://r
+    case 0x42://A
+    case 0x62://b
         result = (input[1]*10+input[2])-16;
-        out = Left_Motor(result);    
+        out = MotorB(result);    
         break;
     default:
         putrsUSBUSART("ERROR PWM\n\r");

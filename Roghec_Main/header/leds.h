@@ -31,11 +31,15 @@ typedef enum
     LED_NONE,
     LED_D1,
     LED_D2,
-    LED_D3,
-    LED_D4,
+    MOTOR_A,
+    MOTOR_B,
+    MOTOR_A_F,
+    MOTOR_A_R,
+    MOTOR_B_F,
+    MOTOR_B_R,
 //      D7 = Bus powered - hard wired to power supply
 //      D8 = Self powered - hard wired to power supply
-} LED;
+} MOTOR;
 
 #define LED_COUNT 4
 
@@ -55,7 +59,7 @@ typedef enum
 * Output: none
 *
 ********************************************************************/
-void LED_On(LED led);
+void Motor_On(MOTOR motor);
 
 /*********************************************************************
 * Function: void LED_Off(LED led);
@@ -73,7 +77,7 @@ void LED_On(LED led);
 * Output: none
 *
 ********************************************************************/
-void LED_Off(LED led);
+void Motor_Off(MOTOR motor);
 
 /*********************************************************************
 * Function: void LED_Toggle(LED led);
@@ -91,7 +95,7 @@ void LED_Off(LED led);
 * Output: none
 *
 ********************************************************************/
-void LED_Toggle(LED led);
+void Motor_Toggle(MOTOR motor);
 
 /*********************************************************************
 * Function: bool LED_Get(LED led);
@@ -109,7 +113,7 @@ void LED_Toggle(LED led);
 * Output: true if on, false if off
 *
 ********************************************************************/
-bool LED_Get(LED led);
+bool Motor_Get(MOTOR motor);
 
 /*********************************************************************
 * Function: bool LED_Enable(LED led);
@@ -126,6 +130,6 @@ bool LED_Get(LED led);
 * Output: none
 *
 ********************************************************************/
-void LED_Enable(LED led);
+void Motor_Enable(MOTOR motor);
 
 #endif //LEDS_H

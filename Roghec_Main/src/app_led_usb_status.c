@@ -53,7 +53,7 @@ void APP_LEDUpdateUSBStatus(void)
 
     if(USBIsDeviceSuspended() == true)
     {
-        LED_Off(LED_USB_DEVICE_STATE);
+        Motor_Off(LED_USB_DEVICE_STATE);
         return;
     }
 
@@ -64,11 +64,11 @@ void APP_LEDUpdateUSBStatus(void)
              * On for 75ms, off for 75ms, then reset/repeat. */
             if(ledCount == 1)
             {
-                LED_On(LED_USB_DEVICE_STATE);
+                Motor_On(LED_USB_DEVICE_STATE);
             }
             else if(ledCount == 75)
             {
-                LED_Off(LED_USB_DEVICE_STATE);
+                Motor_Off(LED_USB_DEVICE_STATE);
             }
             else if(ledCount > 150)
             {
@@ -81,11 +81,11 @@ void APP_LEDUpdateUSBStatus(void)
              * a slow pulse. On for 50ms, then off for 950ms, then reset/repeat. */
             if(ledCount == 1)
             {
-                LED_On(LED_USB_DEVICE_STATE);
+                Motor_On(LED_USB_DEVICE_STATE);
             }
             else if(ledCount == 50)
             {
-                LED_Off(LED_USB_DEVICE_STATE);
+                Motor_Off(LED_USB_DEVICE_STATE);
             }
             else if(ledCount > 950)
             {
