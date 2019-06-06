@@ -18,7 +18,7 @@ void PWMinit(unsigned char period,uint8_t channel);
 
 void PWM1_setDC(unsigned int dutycycle,uint8_t channel);
 
-void PWM_Start(unsigned char period,unsigned int dutycycle,uint8_t channel);
+void PWM_Start(uint8_t period,unsigned int dutycycle,uint8_t channel);
 
 uint16_t Right_Motor(uint8_t value);
 
