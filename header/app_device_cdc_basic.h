@@ -69,8 +69,13 @@ void APP_DeviceCDCBasicDemoTasks(void);
 void Adc_Read_Send(void);
 /*
  */
-void Led_Control(void);
+void Motor_Control(void);
 /*
  */
 void Pwm_Control(void);
+/*
+ */
+
+int8_t Direction_Control(uint8_t input);
+
 #endif

@@ -34,18 +34,11 @@ void PWM1_setDC(unsigned int dutycycle,uint8_t channel){
     if(channel == 1){
         CCP1CON = 0x0C;	/* Set PWM mode and no decimal for PWM */    
         CCPR1L = dutycycle;
-
-//        CCPR1L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
-//        CCP1CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
-//        CCP1CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
     }
     if(channel == 2){
         CCP2CON = 0x0C;	/* Set PWM mode and no decimal for PWM */    
         CCPR2L = dutycycle;
 
-//        CCPR2L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
-//        CCP2CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
-//        CCP2CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
     }
 }
 
@@ -57,13 +50,13 @@ void PWM_Start(uint8_t frequency,unsigned int dutycycle,uint8_t channel)
     PWM1_setDC(dutycycle,channel);
  }
 
-uint16_t Right_Motor(uint8_t value)
+uint16_t Motor_A(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,1);
 }
 
-uint16_t Left_Motor(uint8_t value)
+uint16_t MotorB(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,2);

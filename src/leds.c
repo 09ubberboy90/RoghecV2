@@ -24,23 +24,40 @@
 #include <stdbool.h>
 #include <xc.h>
 
+
+//MOTORA and MOTORB are useless since they are enable by pwm
 #define LED_D1_LAT LATDbits.LATD0
 #define LED_D2_LAT LATDbits.LATD1
-#define LED_D3_LAT LATDbits.LATD2
-#define LED_D4_LAT LATDbits.LATD3
+#define MotorA_LAT LATDbits.LATD2
+#define MotorB_LAT LATDbits.LATD3
 
 #define LED_D1_TRIS TRISDbits.TRISD0
 #define LED_D2_TRIS TRISDbits.TRISD1
-#define LED_D3_TRIS TRISDbits.TRISD2
-#define LED_D4_TRIS TRISDbits.TRISD3
+#define MotorA_TRIS TRISDbits.TRISD2
+#define MotorB_TRIS TRISDbits.TRISD3
 
 #define LED_D1_ANSEL ANSELDbits.ANSD0
 #define LED_D2_ANSEL ANSELDbits.ANSD1
-#define LED_D3_ANSEL ANSELDbits.ANSD2
-#define LED_D4_ANSEL ANSELDbits.ANSD3
+#define MotorA_ANSEL ANSELDbits.ANSD2
+#define MotorB_ANSEL ANSELDbits.ANSD3
 
-#define LED_ON  1
-#define LED_OFF 0
+#define MotorAF_LAT LATDbits.LATD4
+#define MotorAR_LAT LATDbits.LATD5
+#define MotorBF_LAT LATDbits.LATD6
+#define MotorBR_LAT LATDbits.LATD7
+
+#define MotorAF_TRIS TRISDbits.TRISD4
+#define MotorAR_TRIS TRISDbits.TRISD5
+#define MotorBF_TRIS TRISDbits.TRISD6
+#define MotorBR_TRIS TRISDbits.TRISD7
+
+#define MotorAF_ANSEL ANSELDbits.ANSD4
+#define MotorAR_ANSEL ANSELDbits.ANSD5
+#define MotorBF_ANSEL ANSELDbits.ANSD6
+#define MotorBR_ANSEL ANSELDbits.ANSD7
+
+#define ON  1
+#define OFF 0
 
 #define PIN_INPUT           1
 #define PIN_OUTPUT          0
@@ -64,24 +81,36 @@
 * Output: none
 *
 ********************************************************************/
-void LED_On(LED led)
+void Motor_On(MOTOR led)
 {
     switch(led)
     {
         case LED_D1:
-            LED_D1_LAT = LED_ON;
+            LED_D1_LAT = ON;
             break;
 
         case LED_D2:
-            LED_D2_LAT = LED_ON;
+            LED_D2_LAT = ON;
             break;
 			
-        case LED_D3:
-            LED_D3_LAT = LED_ON;
+        case MOTOR_A:
+            MotorA_LAT = ON;
             break;
 			
-        case LED_D4:
-            LED_D4_LAT = LED_ON;
+        case MOTOR_B:
+            MotorB_LAT = ON;
+            break;
+        case MOTOR_A_F:
+            MotorAF_LAT = ON;
+            break;
+        case MOTOR_A_R:
+            MotorAR_LAT = ON;
+            break;
+        case MOTOR_B_F:
+            MotorBF_LAT = ON;
+            break;
+        case MOTOR_B_R:
+            MotorBR_LAT = ON;
             break;
 
         case LED_NONE:
@@ -105,26 +134,42 @@ void LED_On(LED led)
 * Output: none
 *
 ********************************************************************/
-void LED_Off(LED led)
+void Motor_Off(MOTOR led)
 {
     switch(led)
     {
         case LED_D1:
-            LED_D1_LAT = LED_OFF;
+            LED_D1_LAT = OFF;
             break;
 
         case LED_D2:
-            LED_D2_LAT = LED_OFF;
+            LED_D2_LAT = OFF;
             break;
 			
-        case LED_D3:
-            LED_D3_LAT = LED_OFF;
+        case MOTOR_A:
+            MotorA_LAT = OFF;
             break;
 			
-        case LED_D4:
-            LED_D4_LAT = LED_OFF;
+        case MOTOR_B:
+            MotorB_LAT = OFF;
             break;
-
+            
+        case MOTOR_A_F:
+            MotorAF_LAT = OFF;
+            break;
+            
+        case MOTOR_A_R:
+            MotorAR_LAT = OFF;
+            break;
+            
+        case MOTOR_B_F:
+            MotorBF_LAT = OFF;
+            break;
+            
+        case MOTOR_B_R:
+            MotorBR_LAT = OFF;
+            break;
+            
         case LED_NONE:
             break;
     }
@@ -146,7 +191,7 @@ void LED_Off(LED led)
 * Output: none
 *
 ********************************************************************/
-void LED_Toggle(LED led)
+void Motor_Toggle(MOTOR led)
 {
     switch(led)
     {
@@ -158,14 +203,28 @@ void LED_Toggle(LED led)
             LED_D2_LAT ^= 1;
             break;
 			
-        case LED_D3:
-            LED_D3_LAT ^= 1;
+        case MOTOR_A:
+            MotorA_LAT ^= 1;
             break;
 			
-        case LED_D4:
-            LED_D4_LAT ^= 1;
+        case MOTOR_B:
+            MotorB_LAT ^= 1;
             break;
-
+        case MOTOR_A_F:
+            MotorAF_LAT ^= 1;
+            break;
+            
+        case MOTOR_A_R:
+            MotorAR_LAT ^= 1;
+            break;
+            
+        case MOTOR_B_F:
+            MotorBF_LAT ^= 1;
+            break;
+            
+        case MOTOR_B_R:
+            MotorBR_LAT ^= 1;
+            break;
         case LED_NONE:
             break;
     }
@@ -187,22 +246,34 @@ void LED_Toggle(LED led)
 * Output: true if on, false if off
 *
 ********************************************************************/
-bool LED_Get(LED led)
+bool Motor_Get(MOTOR led)
 {
     switch(led)
     {
         case LED_D1:
-            return ( (LED_D1_LAT == LED_ON) ? true : false );
+            return ( (LED_D1_LAT == ON) ? true : false );
 
         case LED_D2:
-            return ( (LED_D2_LAT == LED_ON) ? true : false );
+            return ( (LED_D2_LAT == ON) ? true : false );
 			
-        case LED_D3:
-            return ( (LED_D3_LAT == LED_ON) ? true : false );
+        case MOTOR_A:
+            return ( (MotorA_LAT == ON) ? true : false );
 			
-        case LED_D4:
-            return ( (LED_D4_LAT == LED_ON) ? true : false );
+        case MOTOR_B:
+            return ( (MotorB_LAT == ON) ? true : false );
 
+        case MOTOR_A_F:
+            return ( (MotorAF_LAT == ON) ? true : false );
+            
+        case MOTOR_A_R:
+            return ( (MotorAR_LAT == ON) ? true : false );
+            
+        case MOTOR_B_F:
+            return ( (MotorBF_LAT == ON) ? true : false );  
+            
+        case MOTOR_B_R:
+            return ( (MotorBR_LAT == ON) ? true : false );
+            
         case LED_NONE:
             return false;
     }
@@ -225,7 +296,7 @@ bool LED_Get(LED led)
 * Output: none
 *
 ********************************************************************/
-void LED_Enable(LED led)
+void Motor_Enable(MOTOR led)
 {
     switch(led)
     {
@@ -239,16 +310,35 @@ void LED_Enable(LED led)
             LED_D1_ANSEL = PIN_DIGITAL;
             break;
 			
-        case LED_D3:
-            LED_D3_TRIS = PIN_OUTPUT;
-            LED_D1_ANSEL = PIN_DIGITAL;
+        case MOTOR_A:
+            MotorA_TRIS = PIN_OUTPUT;
+            MotorA_ANSEL= PIN_DIGITAL;
             break;
 			
-        case LED_D4:
-            LED_D4_TRIS = PIN_OUTPUT;
-            LED_D1_ANSEL = PIN_DIGITAL;
+        case MOTOR_B:
+            MotorB_TRIS = PIN_OUTPUT;
+            MotorB_ANSEL= PIN_DIGITAL;
             break;
-
+        
+        case MOTOR_A_F:
+            MotorAF_TRIS = PIN_OUTPUT;
+            MotorAF_ANSEL= PIN_DIGITAL;
+            break;
+            
+        case MOTOR_A_R:
+            MotorAR_TRIS = PIN_OUTPUT;
+            MotorAR_ANSEL= PIN_DIGITAL;
+            
+        case MOTOR_B_F:
+            MotorBF_TRIS = PIN_OUTPUT;
+            MotorBF_ANSEL= PIN_DIGITAL;
+            break;
+            
+        case MOTOR_B_R:
+            MotorBR_TRIS = PIN_OUTPUT;
+            MotorBR_ANSEL= PIN_DIGITAL;
+            break;
+            
         case LED_NONE:
             break;
     }

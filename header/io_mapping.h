@@ -19,6 +19,6 @@ please contact mla_licensing@microchip.com
 #include "leds.h"
 #include "buttons.h"
 
-#define LED_USB_DEVICE_STATE                    LED_D3
+#define LED_USB_DEVICE_STATE                    MOTOR_A
 
 #define BUTTON_DEVICE_CDC_BASIC_DEMO             BUTTON_S3
