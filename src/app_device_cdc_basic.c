@@ -167,7 +167,7 @@ void Adc_Read_Send()
 {
     uint16_t value = 0;
     char tmp[50];
-    value = ADC_GetConversion(14);
+    value = ADC_GetConversion(0);
     sprintf(tmp,"The potentiometer has a value of : %d\r\n",value);
     putrsUSBUSART(tmp);
 }
@@ -243,7 +243,7 @@ void Pwm_Control(){
         putrsUSBUSART("ERROR PWM\n\r");
         break;        
     }
-    sprintf(tmp,"Pwm is set @ :%hhu,%c \n\r",out,out);
+    sprintf(tmp,"Pwm is set @ :%c%c \n\r",(char)input[1],(char)input[2]);
     putrsUSBUSART(tmp);
 
 }

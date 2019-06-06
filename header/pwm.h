@@ -14,9 +14,16 @@ extern "C" {
 #include <xc.h>
 #include <stdint.h>
 
-void PWMinit(void);
-uint16_t Forward_Dir(uint8_t value);
-uint16_t Reverse_Dir(uint8_t value);
+void PWMinit(unsigned char period,uint8_t channel);
+
+void PWM1_setDC(unsigned int dutycycle,uint8_t channel);
+
+void PWM_Start(unsigned char period,unsigned int dutycycle,uint8_t channel);
+
+uint16_t Right_Motor(uint8_t value);
+
+uint16_t Left_Motor(uint8_t value);
+
 uint16_t hex2int(char *hex);
 
 
