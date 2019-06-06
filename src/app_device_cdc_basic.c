@@ -217,7 +217,7 @@ void Pwm_Control(){
     uint16_t out = 0;
     char tmp[50];
     uint8_t input[10];
-    uint8_t result;
+    char result;
     for (int i = 0; i < 3; i++)
     {
         do {
@@ -231,19 +231,19 @@ void Pwm_Control(){
     {
     case 0x46://F
     case 0x66: //f
-        result = (char)input[1]*10+(char)input[2];
-        out = Forward_Dir(result);    
+        result = (input[1]*10+input[2])-16;
+        out = Right_Motor(result);    
         break;
     case 0x52://R
     case 0x72://r
-        result = input[1]*10+input[2];
-        out = Reverse_Dir(result);    
+        result = (input[1]*10+input[2])-16;
+        out = Left_Motor(result);    
         break;
     default:
         putrsUSBUSART("ERROR PWM\n\r");
         break;        
     }
-    sprintf(tmp,"Pwm is set @ :%c%c \n\r",(char)input[1],(char)input[2]);
+    sprintf(tmp,"Pwm is set @ :%u \n\r",result);
     putrsUSBUSART(tmp);
 
 }

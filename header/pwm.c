@@ -9,6 +9,7 @@
 #include "pwm.h"
 
 void PWMinit(unsigned char frequency,uint8_t channel){
+    //frequency control need to be implemented
     if(channel == 1){
         TRISC2 = 0;
         CCP1M3 = 1;
@@ -22,7 +23,7 @@ void PWMinit(unsigned char frequency,uint8_t channel){
     /* Timer2 configuration */
     while (TMR2ON !=1)
     {
-        PR2 = 48000000/(4*frequency*16)-1           //  configure timer2 period
+        PR2 = frequency;           //  configure timer2 period
         T2CON = 0x02;           //  Set prescalar 16   
         TMR2ON = 1;             //  timer2 on
     }
@@ -30,25 +31,27 @@ void PWMinit(unsigned char frequency,uint8_t channel){
 
 void PWM1_setDC(unsigned int dutycycle,uint8_t channel){
     
-    CCPR1L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
-    CCP1CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
-    CCP1CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
     if(channel == 1){
-        CCPR1L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
-        CCP1CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
-        CCP1CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
+        CCP1CON = 0x0C;	/* Set PWM mode and no decimal for PWM */    
+        CCPR1L = dutycycle;
+
+//        CCPR1L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
+//        CCP1CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
+//        CCP1CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
     }
     if(channel == 2){
-        CCPR2L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
-        CCP2CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
-        CCP2CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
+        CCP2CON = 0x0C;	/* Set PWM mode and no decimal for PWM */    
+        CCPR2L = dutycycle;
+
+//        CCPR2L = dutycycle>>2;  //  PWM duty cycle - first 8-bits (MSb)
+//        CCP2CON &= 0xCF;        //  5,4 bits zeroed (DC1B1:DC1B0 = 00)
+//        CCP2CON |= ((dutycycle<<4)&0x30);  //  PWM duty cycle - last 2-bits (LSb) in CCP1CON 5,4 bits    
     }
 }
 
-void PWM_Start(unsigned char frequency,unsigned int dutycycle,uint8_t channel)
+void PWM_Start(uint8_t frequency,unsigned int dutycycle,uint8_t channel)
  {
-    /*open PWM at 2KHz*/ 
-    PWM1_Init(frequency,channel);
+    PWMinit(frequency,channel);
     
     /*set duty cycle 0 - 1023 range */
     PWM1_setDC(dutycycle,channel);
@@ -56,12 +59,14 @@ void PWM_Start(unsigned char frequency,unsigned int dutycycle,uint8_t channel)
 
 uint16_t Right_Motor(uint8_t value)
 {
-    PWM_Start(0x4E20,(value*1024)/100,1);
+    uint8_t frequency = 255; //2.9kHz
+    PWM_Start(frequency,(value*frequency)/100,1);
 }
 
 uint16_t Left_Motor(uint8_t value)
 {
-    PWM_Start(0x4E20,(value*1024)/100,1);
+    uint8_t frequency = 255; //2.9kHz
+    PWM_Start(frequency,(value*frequency)/100,2);
 }
 
 uint16_t hex2int(char *hex) {
