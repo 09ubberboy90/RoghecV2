@@ -10,34 +10,41 @@
 #include <xc.h>
 #include <stdint.h>
 
-#define _XTAL_FREQ 48000000
 
-void I2C_Init(const uint32_t clock)
+
+void I2C_Init()
 {
-    TRISB0 = 1; /* Set up I2C lines by setting as input */
-    TRISB1 = 1;
-    SSPSTAT = 0x80; /* Slew rate disabled, other bits are cleared */
-    SSPCON1 = 0x28; /* Enable SSP port for I2C Master mode,
-			clock = FOSC / (4 * (SSPADD+1))*/
-    SSPCON2 = 0;
-    SSPADD = (_XTAL_FREQ / (4 * clock)) - 1;
-    ; /* Clock is whatever input in Hz */
-    SSPIE = 1; /* Enable SSPIF interrupt */
+    TRISB0 = 1;                     /* Set up I2C lines by setting as input */
+	TRISB1 = 1;
+	SSPSTAT = 80;                   /* Slew rate disabled, other bits are cleared */
+    SSPCON1 = 0x28;					/* Enable SSP port for I2C Master mode, clock = FOSC / (4 * (SSPADD+1))*/ 
+	SSPCON2 = 0;
+    SSPADD = BITRATE;               /* Set clock frequency */  
+    SSPIE = 1;                      /* Enable SSPIF interrupt */
     SSPIF = 0;
 }
 
-uint8_t I2C_Start()
-{
-    SSPCON2bits.SEN = 1; /* Send start pulse */
-    while (SSPCON2bits.SEN); /* Wait for completion of start pulse */
-    return I2C_Start_Helper();
+char I2C_Start(char slave_write_address)
+{   
+    SSPCON2bits.SEN = 1;            /* Send START condition */
+    while(SSPCON2bits.SEN);         /* Wait for completion of START */
+    SSPIF=0;
+    if(!SSPSTATbits.S)              /* Return 0 if START is failed */
+    return 0;
+    return (I2C_Write(slave_write_address)); /* Write slave device address with write to communicate */
 }
 
-void I2C_Start_Wait()
+void I2C_Start_Wait(char slave_write_address)
 {
   while(1)
   {   
-    if(I2C_Start())                    
+    SSPCON2bits.SEN = 1;            /* Send START condition */
+    while(SSPCON2bits.SEN);         /* Wait for completion of START */
+    SSPIF = 0;
+    if(!SSPSTATbits.S)              /* Continue if START is failed */
+        continue;
+    I2C_Write(slave_write_address); /* Write slave device address with write to communicate */
+    if(ACKSTAT)                     /* Check whether Acknowledgment received or not */
     {
         I2C_Stop();                 /* If not then initiate STOP and continue */
         continue;
@@ -46,71 +53,70 @@ void I2C_Start_Wait()
   }
 }
 
-uint8_t I2C_Repeated_Start()
+char I2C_Repeated_Start(char slave_read_address)
 {
-    SSPCON2bits.RSEN = 1; /* Send start pulse */
-    while (SSPCON2bits.RSEN); /* Wait for completion of start pulse */
-    return I2C_Start_Helper();
-
-}
-
-uint8_t I2C_Start_Helper()
-{
+    RSEN = 1;                       /* Send REPEATED START condition */
+    while(SSPCON2bits.RSEN);        /* Wait for completion of REPEATED START condition */
     SSPIF = 0;
-    if (!SSPSTATbits.S) return 0; /* Return 0 to if start bit was detected last */
-    //return (I2C_Write(slave_write_address)); /* Write slave device address
-						//with write to communicate */
-
-}
-void I2C_Ready()
-{
-    while (BCLIF); /* Wait if bit collision interrupt flag is set*/
-
-    /* Wait for Buffer full and read write flag*/
-    while (SSPSTATbits.BF || (SSPSTATbits.R_W));
-    SSPIF = 0; /* Clear SSPIF interrupt flag*/
-}
-
-uint8_t I2C_Write(uint8_t data)
-{
-    SSPBUF = data; /* Write data to SSPBUF*/
-    I2C_Ready();
-    if (ACKSTAT) /* Check for acknowledge bit*/
-        return 1;
+    if(!SSPSTATbits.S)              /* Return 0 if REPEATED START is failed */
+    return 0;
+    I2C_Write(slave_read_address);  /* Write slave device address with read to communicate */
+    if (ACKSTAT)                    /* Return 2 if acknowledgment received else 1 */
+     return 1;
     else
+     return 2;
+}
+
+char I2C_Write(unsigned char data)
+{
+      SSPBUF = data;                /* Write data to SSPBUF */
+      I2C_Ready();
+      if (ACKSTAT)                  /* Return 2 if acknowledgment received else 1 */
+        return 1;
+      else
         return 2;
 }
 
-uint8_t I2C_Stop()
+void I2C_Ack()
 {
+    ACKDT = 0;  					/* Acknowledge data 1:NACK,0:ACK */
+	ACKEN = 1;        				/* Enable ACK to send */
+    while(ACKEN);
+}
+
+void I2C_Nack()
+{
+    ACKDT = 1;          			/* Not Acknowledge data 1:NACK,0:ACK */
+	ACKEN = 1;              		/* Enable ACK to send */	          
+    while(ACKEN);
+}
+char I2C_Read(char flag)            /* Read data from slave devices with 0=Ack & 1=Nack */
+{
+    char buffer;
+    RCEN = 1;                       /* Enable receive */
+    while(!SSPSTATbits.BF);         /* Wait for buffer full flag which set after complete byte receive */
+    buffer = SSPBUF;                /* Copy SSPBUF to buffer */
+    if(flag==0)
+        I2C_Ack();                  /* Send acknowledgment */
+    else
+        I2C_Nack();                 /* Send negative acknowledgment */
     I2C_Ready();
-    PEN = 1; /* Stop communication*/
-    while (PEN); /* Wait for end of stop pulse*/
-    SSPIF = 0;
-    if (!SSPSTATbits.P) return 0; /* If not STOP detected last return 0 to indicate start failed*/
+    return(buffer);
 }
 
-/* Read data from location and send ack or nack depending upon parameter*/
-
-uint8_t I2C_Read()
+char I2C_Stop()
 {
-    int buffer = 0;
-    RCEN = 1; /* Enable receive */
-
-    /* Wait for buffer full flag which when complete byte received */
-    while (!SSPSTATbits.BF);
-    buffer = SSPBUF; /* Copy SSPBUF to buffer */
-
-    /* Send acknowledgment or negative acknowledgment after read to 
-    continue or stop reading */
-    I2C_Ack(0);
-    I2C_Ready();
-    return (buffer);
+    PEN = 1;                        /* Initiate STOP condition */
+    while(PEN);                     /* Wait for end of STOP condition */
+    if(!SSPSTATbits.P);             /* Return 0 if STOP failed */
+    return 0;
 }
 
-void I2C_Ack(uint8_t ack)
+void I2C_Ready()
 {
-    ACKDT = ack; /* Acknowledge data 1:NACK,0:ACK */
-    ACKEN = 1; /* Enable ACK to send */
-    while (ACKEN);
+    while(!SSPIF);                  /* Wait for operation complete */
+    SSPIF=0;                        /*clear SSPIF interrupt flag*/
 }
+
+
+

@@ -55,7 +55,7 @@ MAIN_RETURN main(void)
     APP_DeviceCDCBasicDemoInitialize();
     I2C_Init(400000); // 400khz
     
-    HMC5883L_init();    
+    Magneto_init();    
     while(1)
     {
         SYSTEM_Tasks();
