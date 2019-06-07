@@ -134,7 +134,7 @@ typedef enum
     convertedValue = ADC_GetConversionResult();
     </code>
 */
-void ADC_Initialize(void);
+void ADC_Init(void);
 
 /**
   @Summary

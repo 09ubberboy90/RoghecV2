@@ -29,6 +29,8 @@ please contact mla_licensing@microchip.com
 #include "usb_device_cdc.h"
 #include "adc.h"
 #include "pwm.h"
+#include "i2c.h"
+#include "magnetometer.h"
 /********************************************************************
  * Function:        void main(void)
  *
@@ -47,11 +49,13 @@ please contact mla_licensing@microchip.com
 MAIN_RETURN main(void)
 {
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
-    ADC_Initialize();
+    ADC_Init();
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
-
+    I2C_Init(400000); // 400khz
+    
+    HMC5883L_init();    
     while(1)
     {
         SYSTEM_Tasks();
