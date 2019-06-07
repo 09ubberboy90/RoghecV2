@@ -41,6 +41,8 @@
 #define MotorA_ANSEL ANSELDbits.ANSD2
 #define MotorB_ANSEL ANSELDbits.ANSD3
 
+
+
 #define MotorAF_LAT LATDbits.LATD4
 #define MotorAR_LAT LATDbits.LATD5
 #define MotorBF_LAT LATDbits.LATD6
