@@ -10,102 +10,32 @@
 #include "i2c.h"
 #include "magnetometer.h"
 
-signed long X_axis = 0; 
-signed long Y_axis = 0;                                  
-signed long Z_axis = 0; 
-float m_scale = 1.0;     
+void Magneto_init()										/* Magneto initialize function */
+{
+	I2C_Start(0x3C);									/* Start and write SLA+W */
+	I2C_Write(0x00);									/* Write memory location address */
+	I2C_Write(0x70);									/* Configure register A as 8-average, 15 Hz default, normal measurement */
+	I2C_Write(0xA0);									/* Configure register B for gain */
+	I2C_Write(0x00);									/* Configure continuous measurement mode in mode register */
+	I2C_Stop();											/* Stop I2C */
+}
 
-
-void HMC5883L_init() 
-{                                        
-   HMC5883L_write(Config_Reg_A, 0x70); 
-   HMC5883L_write(Config_Reg_B, 0xA0); 
-   HMC5883L_write(Mode_Reg, 0x00);  
-} 
-                                    
-
-unsigned char HMC5883L_read(unsigned char reg) 
-{                                          
-   unsigned char val = 0; 
-    
-   I2C_Start(); 
-   I2C_Write(HMC5883L_WRITE_ADDR); 
-   I2C_Write(reg); 
-   I2C_Start(); 
-   I2C_Write(HMC5883L_READ_ADDR); 
-   val = I2C_Read();                        
-   I2C_Stop(); 
-   return(val);    
-} 
-
-                                  
-void HMC5883L_write(unsigned char reg_address, unsigned char value) 
-{ 
-   I2C_Start(); 
-   I2C_Write(HMC5883L_WRITE_ADDR); 
-   I2C_Write(reg_address); 
-   I2C_Write(value); 
-   I2C_Stop(); 
-}                                            
-      
-void HMC5883L_read_data() 
-{                          
-   unsigned char lsb = 0; 
-   unsigned char msb = 0; 
-    
-   I2C_Start(); 
-   I2C_Write(HMC5883L_WRITE_ADDR); 
-   I2C_Write(X_MSB_Reg);            
-   I2C_Start(); 
-   I2C_Write(HMC5883L_READ_ADDR); 
-    
-   msb = I2C_Read(); 
-   lsb = I2C_Read(); 
-   X_axis = make_word(msb, lsb); 
-                           
-   msb = I2C_Read(); 
-   lsb = I2C_Read(); 
-   Z_axis = make_word(msb, lsb); 
-                   
-   msb = I2C_Read(); 
-   lsb = I2C_Read(); 
-   Y_axis = make_word(msb, lsb);            
-                       
-   I2C_Stop();    
-} 
-
-
-
-                                
-float HMC5883L_heading()          
-{ 
-   register float heading = 0.0; 
-    
-   HMC5883L_read_data(); 
-   heading = atan2(Y_axis, X_axis); 
-    heading += Declination;    
-                  
-    if(heading < 0.0) 
-    { 
-      heading += (2.0 * PI); 
-    } 
-    
-    if(heading > (2.0 * PI))                
-    {                            
-      heading -= (2.0 * PI); 
-    }                    
-                    
-   heading *= (180.0 / PI); 
-                   
-   return heading; 
-}              
-
-unsigned long make_word(unsigned char HB, unsigned char LB) 
-{                                      
-   register unsigned long val = 0; 
-                               
-   val = HB; 
-   val <<= 8;                          
-   val |= LB;          
-   return val; 
-} 
+int Magneto_GetHeading()
+{
+	int x, y, z;
+	double Heading;
+	I2C_Start_Wait(0x3C);								/* Start and wait for acknowledgment */
+	I2C_Write(0x03);									/* Write memory location address */
+	I2C_Repeated_Start(0x3D);							/* Generate repeat start condition with SLA+R */
+	/* Read 16 bit x,y,z value (2?s complement form) */
+	x = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
+	z = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
+	y = (((int)I2C_Read(0)<<8) | (int)I2C_Read(1));
+	I2C_Stop();											/* Stop I2C */
+	Heading = atan2((double)y,(double)x) + Declination;
+	if (Heading>2*PI)									/* Due to declination check for >360 degree */
+		Heading = Heading - 2*PI;
+	if (Heading<0)										/* Check for sign */
+		Heading = Heading + 2*PI;
+	return ((int)(Heading* 180 / PI));					/* Convert into angle and return */
+}

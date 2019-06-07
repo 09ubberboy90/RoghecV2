@@ -130,7 +130,7 @@ void APP_DeviceCDCBasicDemoTasks()
                 break;  
             case 0x41:
             case 0x61: //A
-                sprintf(tmp,"Heading = %f%c    ",HMC5883L_heading(),0xDF);
+                sprintf(tmp,"Heading = %d%c\r\n",Magneto_GetHeading(),0xDF);
                 putrsUSBUSART(tmp);
 
                 break;  
