@@ -32,6 +32,9 @@ please contact mla_licensing@microchip.com
 #include "usb_config.h"
 #include "leds.h"
 #include "pwm.h"
+#include "i2c.h"
+#include "magnetometer.h"
+
 /** VARIABLES ******************************************************/
 
 static bool buttonPressed;
@@ -100,42 +103,13 @@ void APP_DeviceCDCBasicDemoTasks()
         return;
     }
         
-    /* If the user has pressed the button associated with this demo, then we
-     * are going to send a "Button Pressed" message to the terminal.
-     */
-    if(BUTTON_IsPressed(BUTTON_DEVICE_CDC_BASIC_DEMO) == true)
-    {
-        /* Make sure that we only send the message once per button press and
-         * not continuously as the button is held.
-         */
-        if(buttonPressed == false)
-        {
-            /* Make sure that the CDC driver is ready for a transmission.
-             */
-            if(mUSBUSARTIsTxTrfReady() == true)
-            {
-                putrsUSBUSART(buttonMessage);
-                buttonPressed = true;
-            }
-        }
-    }
-    else
-    {
-        /* If the button is released, we can then allow a new message to be
-         * sent the next time the button is pressed.
-         */
-        buttonPressed = false;
-    }
-
-    /* Check to see if there is a transmission in progress, if there isn't, then
-     * we can see about performing an echo response to data received.
-     */
     if( USBUSARTIsTxTrfReady() == true)
     {
         uint8_t numBytesRead = 0;
 
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+        char tmp[50];
 
         /* For every byte that was read... */
         if (numBytesRead != 0)
@@ -154,6 +128,13 @@ void APP_DeviceCDCBasicDemoTasks()
             case 0x77: //W
                 Pwm_Control();
                 break;  
+            case 0x41:
+            case 0x61: //A
+                sprintf(tmp,"Heading = %f%c    ",HMC5883L_heading(),0xDF);
+                putrsUSBUSART(tmp);
+
+                break;  
+            
             default:
                 putrsUSBUSART("ERROR main\n\r");
                 break;
@@ -284,12 +265,12 @@ void Pwm_Control(){
     case 0x41://A
     case 0x61://b
         result = (input[1]*10+input[2])-16;
-        out = Motor_A(result);    
+        Motor_A(result);    
         break;
     case 0x42://A
     case 0x62://b
         result = (input[1]*10+input[2])-16;
-        out = MotorB(result);    
+        MotorB(result);    
         break;
     default:
         putrsUSBUSART("ERROR PWM\n\r");

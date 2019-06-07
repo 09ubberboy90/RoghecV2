@@ -60,7 +60,7 @@
 #define input_PORT                 PORTDbits.RD0
 #define input_ANS                  ANSELDbits.ANSD0
 
-void ADC_Initialize(void)
+void ADC_Init(void)
 {
     // set the ADC to the options selected in the User Interface
     input_TRIS = 1;

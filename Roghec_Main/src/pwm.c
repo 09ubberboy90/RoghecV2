@@ -8,7 +8,7 @@
 
 #include "pwm.h"
 
-void PWMinit(unsigned char frequency,uint8_t channel){
+void PWM_Init(unsigned char frequency,uint8_t channel){
     //frequency control need to be implemented
     if(channel == 1){
         TRISC2 = 0;
@@ -44,19 +44,19 @@ void PWM1_setDC(unsigned int dutycycle,uint8_t channel){
 
 void PWM_Start(uint8_t frequency,unsigned int dutycycle,uint8_t channel)
  {
-    PWMinit(frequency,channel);
+    PWM_Init(frequency,channel);
     
     /*set duty cycle 0 - 1023 range */
     PWM1_setDC(dutycycle,channel);
  }
 
-uint16_t Motor_A(uint8_t value)
+void Motor_A(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,1);
 }
 
-uint16_t MotorB(uint8_t value)
+void MotorB(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,2);
