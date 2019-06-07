@@ -59,10 +59,10 @@ void APP_DeviceCDCBasicDemoInitialize()
     line_coding.dwDTERate = 9600;
 
     buttonPressed = false;
-    Motor_Enable(LED_D1);
-    Motor_Enable(LED_D2);
-    Motor_Enable(MOTOR_A);
-    Motor_Enable(MOTOR_B);
+    Motor_Enable(MOTOR_A_F);
+    Motor_Enable(MOTOR_A_R);
+    Motor_Enable(MOTOR_B_F);
+    Motor_Enable(MOTOR_B_R);
 
 
 }
@@ -178,6 +178,8 @@ void Motor_Control()
     int8_t state = -1;
     uint8_t numBytesRead = 0;
     uint8_t input[10];
+    char mess[50];
+
     for (int i = 0; i < 2; i++)
     {
         do {
@@ -196,47 +198,49 @@ void Motor_Control()
         state = Direction_Control(input[1]);
         if (state == 1)
         {
-            Motor_Toggle(MOTOR_A_F);
+            Motor_On(MOTOR_A_F);
+            Motor_Off(MOTOR_A_R);
+
         }
         else if (state == 0)
         {
-            Motor_Toggle(MOTOR_A_R);
+            Motor_On(MOTOR_A_R);
+            Motor_Off(MOTOR_A_F);
+
         }
         else{
             errorFlag = true;
         }
+        break;
     case 0x42://B
     case 0x62://b
         state = Direction_Control(input[1]);
         if (state == 1)
         {
-            Motor_Toggle(MOTOR_B_F);
+            Motor_On(MOTOR_B_F);
+            Motor_Off(MOTOR_B_R);
         }
         else if (state == 0)
         {
-            Motor_Toggle(MOTOR_B_R);
+            Motor_On(MOTOR_B_R);
+            Motor_Off(MOTOR_B_F);
         }
         else{
             errorFlag = true;
         }
-
+        break;
     default:
         errorFlag = true;
         break;        
     }
     if (!errorFlag)
     {   
-        char mess[50];
-        sprintf(mess,"MOTOR %c is in direction : %s\r\n",(char)input[0],(state)?"on":"off");
+        sprintf(mess,"MOTOR %c is in direction : %s\r\n",(char)input[0],(state)?"Forward":"Backward");
         putrsUSBUSART(mess);
     }
     else{
-        char mess[50];
-
         sprintf(mess,"Erreur MOTOR %i \r\n",state);
         putrsUSBUSART(mess);
-
-        putrsUSBUSART("ERROR MOTOR \n\r");
     }
 
     
