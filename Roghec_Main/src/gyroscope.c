@@ -5,15 +5,15 @@
  * Created on 11 juin 2019, 13:18
  */
 
-
+#include <math.h>		
 #include <xc.h>
 #include "i2c.h"
+#include "gyroscope.h"
 
- #define _XTAL_FREQ 480000000
-
-void MPU6050_Init()		/* Gyro initialization function */
+#define _XTAL_FREQ 48000000
+void MPU_Init()		/* Gyro initialization function */
 {
-	__delay_ms(150)		/* Power up time >100ms */
+	__delay_ms(150);		/* Power up time >100ms */
 	I2C_Start_Wait(0xD0);	/* Start with device write address */
 	I2C_Write(SMPLRT_DIV);	/* Write to sample rate register */
 	I2C_Write(0x07);	/* 1KHz sample rate */
@@ -34,16 +34,17 @@ void MPU6050_Init()		/* Gyro initialization function */
 	I2C_Write(0x18);	/* Full scale range +/- 2000 degree/C */
 	I2C_Stop();
 
-	I2C_Start_Wait(0xD0);
-	I2C_Write(INT_ENABLE);	/* Write to interrupt enable register */
-	I2C_Write(0x01);
+        I2C_Start_Wait(0xD0);
+	I2C_Write(USER_CTRL);	
+	I2C_Write(0x80);	
 	I2C_Stop();
+
 }
 
-float[] MPU_GetData()
+int MPU_GetData(int offset)
 {
-    float data[6];
     int Ax,Ay,Az,T,Gx,Gy,Gz;
+    float Xa,Ya,Za,t,Xg,Yg,Zg;
 
     I2C_Start_Wait(0xD0);	/* I2C start with device write address */
     I2C_Write(ACCEL_XOUT_H);/* Write start location address to read */ 
@@ -59,12 +60,17 @@ float[] MPU_GetData()
     I2C_Stop();
 
 
-    data[0] = (float)Ax/16384.0;							/* Divide raw value by sensitivity scale factor to get real values */
-    data[1] = (float)Ay/16384.0;
-    data[2] = (float)Az/16384.0;
-    data[3] = (float)Gx/131.0;
-    data[4] = (float)Gy/131.0;
-    data[5] = (float)Gz/131.0;
+    Xa = (float)Ax/16384.0;	
+    Ya = (float)Ay/16384.0;
+    Za = (float)Az/16384.0;
+    Xg = (float)Gx/131.0;
+    Yg = (float)Gy/131.0;
+    Zg = (float)Gz/131.0;
     
-    return data;
+    return ((int)(atan2((double)Ya,(double)Za)*180/PI)-offset)%(int)360;
+}
+
+int MPU_Getoffset()
+{
+    return MPU_GetData(0);
 }

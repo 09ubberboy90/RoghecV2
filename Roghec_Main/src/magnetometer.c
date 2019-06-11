@@ -20,7 +20,7 @@ void Magneto_init()								/* Magneto initialize function */
 	I2C_Stop();								/* Stop I2C */
 }
 
-uint16_t Magneto_GetHeading(uint16_t offset)                                    //Input an offset in degree
+int Magneto_GetHeading(int offset)                                    //Input an offset in degree
 {
 	int x, y, z;
 	double Heading;
@@ -37,9 +37,9 @@ uint16_t Magneto_GetHeading(uint16_t offset)                                    
 		Heading = Heading - 2*PI;
 	if (Heading<0)								/* Check for sign */
 		Heading = Heading + 2*PI;
-	return ((uint16_t)(Heading* 180 / PI));					/* Convert into angle and return */
+        return ((int)(Heading*180/PI)-offset)%360;
 }
-uint16_t Magneto_GetOffset()
+int Magneto_GetOffset()
 {
     // No offset
     return Magneto_GetHeading(0);

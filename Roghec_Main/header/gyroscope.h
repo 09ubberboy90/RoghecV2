@@ -17,9 +17,14 @@ extern "C" {
 #define PWR_MGMT_1 0x6B
 #define SMPLRT_DIV 0x19
 #define ACCEL_XOUT_H 0x3B
+#define USER_CTRL 0x6A
 
-void MPU6050_Init(void);		/* Gyro initialization function */
-float[] MPU_GetData(void);
+    
+#define PI	3.14159265359	/* Define Pi value */
+
+void MPU_Init(void);		/* Gyro initialization function */
+int MPU_GetData(int offset);
+int MPU_Getoffset(void);
 
 
 

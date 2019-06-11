@@ -32,6 +32,7 @@ please contact mla_licensing@microchip.com
 #include "i2c.h"
 #include "magnetometer.h"
 #include "motor.h"
+#include "gyroscope.h"
 /********************************************************************
  * Function:        void main(void)
  *
@@ -56,7 +57,8 @@ MAIN_RETURN main(void)
     APP_DeviceCDCBasicDemoInitialize();
     I2C_Init(); // 400khz
     Motor_Init();
-    Magneto_init();    
+    //Magneto_init(); 
+    MPU_Init();
     while(1)
     {
         SYSTEM_Tasks();

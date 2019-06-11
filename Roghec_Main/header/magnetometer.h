@@ -16,9 +16,9 @@ extern "C" {
 
 void Magneto_init(void);										/* Magneto initialize function */
 
-uint16_t Magneto_GetHeading(uint16_t offset);
+int Magneto_GetHeading(int offset);
 
-uint16_t Magneto_GetOffset();
+int Magneto_GetOffset();
 
 
 
