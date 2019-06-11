@@ -108,7 +108,7 @@ char I2C_Stop()
 {
     PEN = 1;                        /* Initiate STOP condition */
     while(PEN);                     /* Wait for end of STOP condition */
-    if(!SSPSTATbits.P);             /* Return 0 if STOP failed */
+    if(!SSPSTATbits.P)             /* Return 0 if STOP failed */
     return 0;
 }
 

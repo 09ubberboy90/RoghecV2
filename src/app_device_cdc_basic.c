@@ -30,10 +30,11 @@ please contact mla_licensing@microchip.com
 #include "app_led_usb_status.h"
 #include "app_device_cdc_basic.h"
 #include "usb_config.h"
-#include "leds.h"
+#include "io.h"
 #include "pwm.h"
 #include "i2c.h"
 #include "magnetometer.h"
+#include "motor.h"
 
 /** VARIABLES ******************************************************/
 
@@ -62,10 +63,6 @@ void APP_DeviceCDCBasicDemoInitialize()
     line_coding.dwDTERate = 9600;
 
     buttonPressed = false;
-    Motor_Enable(MOTOR_A_F);
-    Motor_Enable(MOTOR_A_R);
-    Motor_Enable(MOTOR_B_F);
-    Motor_Enable(MOTOR_B_R);
 
 
 }
@@ -116,25 +113,33 @@ void APP_DeviceCDCBasicDemoTasks()
         {
             switch(readBuffer[0])
             {
+            // Decrepit only use for testing purposes
             case 0x6D:
             case 0x4E: //M
-                Motor_Control();
+                Old_Motor_Control();
                 break;
+            // Decrepit only use for testing purposes
             case 0x50:
             case 0x70: //P
                 Adc_Read_Send();
                 break;
+            // Decrepit only use for testing purposes
             case 0x57:
             case 0x77: //W
                 Pwm_Control();
-                break;  
+                break;
+                
             case 0x41:
             case 0x61: //A
                 sprintf(tmp,"Heading = %d%c\r\n",Magneto_GetHeading(),0xDF);
                 putrsUSBUSART(tmp);
-
-                break;  
             
+                break;  
+            case 0x44: //D 
+            case 0x64: //D
+                Motor_Control();
+                break;
+
             default:
                 putrsUSBUSART("ERROR main\n\r");
                 break;
@@ -144,6 +149,7 @@ void APP_DeviceCDCBasicDemoTasks()
 
     CDCTxService();
 }
+// Decrepit only use for testing purposes
 void Adc_Read_Send()
 {
     uint16_t value = 0;
@@ -153,7 +159,9 @@ void Adc_Read_Send()
     putrsUSBUSART(tmp);
 }
 
-void Motor_Control()
+
+//Decrepit Only use for testing purposes
+void Old_Motor_Control()
 {   
     bool errorFlag = false;
     int8_t state = -1;
@@ -226,6 +234,9 @@ void Motor_Control()
 
     
 }
+
+// Decrepit only use for testing purposes
+
 int8_t Direction_Control(uint8_t input){
     int8_t state = -1;
     switch(input)
@@ -244,10 +255,10 @@ int8_t Direction_Control(uint8_t input){
     } 
     return state;
 }
+// Decrepit only use for testing purposes
 
 void Pwm_Control(){
     uint8_t numBytesRead = 0;
-    uint16_t out = 0;
     char tmp[50];
     uint8_t input[10];
     char result;
@@ -265,12 +276,12 @@ void Pwm_Control(){
     case 0x41://A
     case 0x61://b
         result = (input[1]*10+input[2])-16;
-        Motor_A(result);    
+        Motor_A_Speed(result);    
         break;
     case 0x42://A
     case 0x62://b
         result = (input[1]*10+input[2])-16;
-        MotorB(result);    
+        Motor_B_Speed(result);    
         break;
     default:
         putrsUSBUSART("ERROR PWM\n\r");
