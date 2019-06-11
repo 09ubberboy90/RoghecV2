@@ -54,7 +54,7 @@ MAIN_RETURN main(void)
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
-    I2C_Init(400000); // 400khz
+    I2C_Init(); // 400khz
     Motor_Init();
     Magneto_init();    
     while(1)

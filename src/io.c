@@ -20,7 +20,7 @@
  CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
  *******************************************************************/
 
-#include <leds.h>
+#include <io.h>
 #include <stdbool.h>
 #include <xc.h>
 
@@ -44,17 +44,17 @@
 
 
 #define MotorAF_LAT LATDbits.LATD4
-#define MotorAR_LAT LATDbits.LATD5
+#define MotorAR_LAT LATCbits.LATC7
 #define MotorBF_LAT LATDbits.LATD6
 #define MotorBR_LAT LATDbits.LATD7
 
 #define MotorAF_TRIS TRISDbits.TRISD4
-#define MotorAR_TRIS TRISDbits.TRISD5
+#define MotorAR_TRIS TRISCbits.TRISC7
 #define MotorBF_TRIS TRISDbits.TRISD6
 #define MotorBR_TRIS TRISDbits.TRISD7
 
 #define MotorAF_ANSEL ANSELDbits.ANSD4
-#define MotorAR_ANSEL ANSELDbits.ANSD5
+#define MotorAR_ANSEL ANSELCbits.ANSC7
 #define MotorBF_ANSEL ANSELDbits.ANSD6
 #define MotorBR_ANSEL ANSELDbits.ANSD7
 
