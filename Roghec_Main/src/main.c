@@ -31,6 +31,7 @@ please contact mla_licensing@microchip.com
 #include "pwm.h"
 #include "i2c.h"
 #include "magnetometer.h"
+#include "motor.h"
 /********************************************************************
  * Function:        void main(void)
  *
@@ -54,7 +55,7 @@ MAIN_RETURN main(void)
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
     I2C_Init(400000); // 400khz
-    
+    Motor_Init();
     Magneto_init();    
     while(1)
     {
