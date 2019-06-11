@@ -14,9 +14,11 @@ extern "C" {
 #define PI	3.14159265359	/* Define Pi value */
 #define Declination	0.02007/* Define declination of location from where measurement going to be done. */
 
-void Magneto_init();										/* Magneto initialize function */
+void Magneto_init(void);										/* Magneto initialize function */
 
-int Magneto_GetHeading();
+uint16_t Magneto_GetHeading(uint16_t offset);
+
+uint16_t Magneto_GetOffset();
 
 
 
