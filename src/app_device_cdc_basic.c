@@ -39,7 +39,7 @@ please contact mla_licensing@microchip.com
 static uint8_t readBuffer[CDC_DATA_OUT_EP_SIZE];
 uint16_t offset_Mag = 0;
 uint16_t offset_MPU = 0;
-
+bool autoMode = false;
 
 /*********************************************************************
 * Function: void APP_DeviceCDCBasicDemoInitialize(void);
@@ -109,12 +109,27 @@ void APP_DeviceCDCBasicDemoTasks()
         {
             switch(readBuffer[0])
             {
-//            case 0x41: //A
-//            case 0x61: //a
-//                sprintf(tmp,"Heading = %d,%d,%d\r\n",Magneto_GetHeading(offset_Mag));
-//                putrsUSBUSART(tmp);
-//                break;  
-                
+            case 0x59: //Y
+            case 0x79: //y
+                sprintf(tmp,"Heading = %d\r\n",Magneto_GetHeading(offset_Mag));
+                putrsUSBUSART(tmp);
+                break;  
+
+            case 0x4D: //M
+            case 0x6D: //m
+                T0CONbits.TMR0ON = 0; //stop the timer;
+                sprintf(tmp,"Switched to manual Mode\r\n");
+                putrsUSBUSART(tmp);
+
+                break;
+            case 0x41: //A
+            case 0x61: //a
+                T0CONbits.TMR0ON = 1; //start the timer;
+
+                sprintf(tmp,"Switched to Auto Mode\r\n");
+                putrsUSBUSART(tmp);
+
+                break;
             case 0x44: //D 
             case 0x64: //d
                 Motor_Control();
@@ -123,18 +138,18 @@ void APP_DeviceCDCBasicDemoTasks()
             // Base the offset on the current angle
             case 0x43: //c 
             case 0x63: //c
-                //offset_Mag = Magneto_GetOffset();
-                offset_MPU = MPU_Getoffset();
+                offset_Mag = Magneto_GetOffset();
+                //offset_MPU = MPU_Getoffset();
                 sprintf(tmp,"Offset of Magnetometer set : %d\r\n Offset of MPU set : %d\r\n ",offset_Mag,offset_MPU);
                 putrsUSBUSART(tmp);
 
                 break;
                 
-            case 0x47: //G 
-            case 0x67: //g
-                sprintf(tmp,"Value are : %d\r\n", MPU_GetData(offset_MPU));
-                putrsUSBUSART(tmp);
-                break;
+//            case 0x47: //G 
+//            case 0x67: //g
+//                sprintf(tmp,"Value are : %d\r\n", MPU_GetData(offset_MPU));
+//                putrsUSBUSART(tmp);
+//                break;
 
             default:
                 putrsUSBUSART("ERROR main\n\r");

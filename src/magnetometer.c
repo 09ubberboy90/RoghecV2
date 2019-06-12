@@ -9,6 +9,13 @@
 #include <math.h>		
 #include "i2c.h"
 #include "magnetometer.h"
+#include "usb.h"
+#include "usb_device_cdc.h"
+#include "usb_config.h"
+#include <stdio.h>
+
+uint8_t once = 0;
+int offset;
 
 void Magneto_init()								/* Magneto initialize function */
 {
@@ -37,10 +44,54 @@ int Magneto_GetHeading(int offset)                                    //Input an
 		Heading = Heading - 2*PI;
 	if (Heading<0)								/* Check for sign */
 		Heading = Heading + 2*PI;
-        return ((int)(Heading*180/PI)-offset)%360;
+        return modulo(((int)(Heading*180/PI))-offset,360);
 }
 int Magneto_GetOffset()
 {
     // No offset
     return Magneto_GetHeading(0);
+}
+
+int Magneto_Print_Value()
+{
+    int heading =0;
+    if (once == 0)
+    {
+        offset = Magneto_GetOffset();
+        once++;
+    }
+
+    char tmp[150];
+    /* If the USB device isn't configured yet, we can't really do anything
+     * else since we don't have a host to talk to.  So jump back to the
+     * top of the while loop. */
+    if( USBGetDeviceState() < CONFIGURED_STATE )
+    {
+        return -1;
+    }
+
+    /* If we are currently suspended, then we need to see if we need to
+     * issue a remote wakeup.  In either case, we shouldn't process any
+     * keyboard commands since we aren't currently communicating to the host
+     * thus just continue back to the start of the while loop. */
+    if(USBIsDeviceSuspended()== true )
+    {
+        return -1;
+    }
+    
+    if(mUSBUSARTIsTxTrfReady() == true)
+    {
+        heading = Magneto_GetHeading(offset);
+
+        sprintf(tmp,"Heading = %d,%d\r\n",heading,offset);
+        putrsUSBUSART(tmp);
+    }
+
+    CDCTxService();
+
+    return heading;
+}
+
+int modulo(int a, int b){
+    return (a%b+b)%b;
 }

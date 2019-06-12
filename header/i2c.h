@@ -14,8 +14,8 @@ extern "C" {
 #include <xc.h>
 #include <stdint.h>
 
-#define F_OSC 8000000                   /* Define F_OSC, here it's 8 MHz */
-#define I2C_CLOCK 100000                /* I2C clock frequency is 100 kHz*/
+#define F_OSC 48000000                   /* Define F_OSC, here it's 8 MHz */
+#define I2C_CLOCK 400000                /* I2C clock frequency is 100 kHz*/
 #define BITRATE ((F_OSC/(4*I2C_CLOCK))-1) /* find bit rate to assign this value to SSPADD register*/
 
 void I2C_Ready(void);                       /* Check weather I2C is ready/idle or not */

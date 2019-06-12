@@ -18,10 +18,11 @@ void Magneto_init(void);										/* Magneto initialize function */
 
 int Magneto_GetHeading(int offset);
 
-int Magneto_GetOffset();
+int Magneto_GetOffset(void);
 
+int Magneto_Print_Value(void);
 
-
+int modulo(int a, int b);
 #ifdef	__cplusplus
 }
 #endif

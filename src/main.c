@@ -33,6 +33,8 @@ please contact mla_licensing@microchip.com
 #include "magnetometer.h"
 #include "motor.h"
 #include "gyroscope.h"
+#include "interupts.h"
+
 /********************************************************************
  * Function:        void main(void)
  *
@@ -50,15 +52,18 @@ please contact mla_licensing@microchip.com
  *******************************************************************/
 MAIN_RETURN main(void)
 {
+    Motor_Enable(LED_D1);
+    Motor_Enable(LED_D2);
+    I2C_Init(); 
+    Motor_Init();
+    Magneto_init(); 
+    Timer1_Init();
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     ADC_Init();
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
-    I2C_Init(); // 400khz
-    Motor_Init();
-    //Magneto_init(); 
-    MPU_Init();
+    //MPU_Init();
     while(1)
     {
         SYSTEM_Tasks();
