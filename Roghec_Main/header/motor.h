@@ -26,6 +26,8 @@ void Motor_Turn_Right(void);
 
 void Motor_Turn_Left(void);
 
+void Speed_Control(char speed);
+
 
 #ifdef	__cplusplus
 }

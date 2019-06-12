@@ -74,8 +74,7 @@ void Motor_Control()
     {   
         result = (input[1]*10+input[2])-16;
 
-        Motor_A_Speed(result);    
-        Motor_B_Speed(result);    
+        Speed_Control(result);   
 
         sprintf(mess,"Car is Moving : %u\r\n",result);
         putrsUSBUSART(mess);
@@ -107,6 +106,7 @@ void Motor_Backward(void)
     Motor_Off(MOTOR_B_F);
     Motor_On(MOTOR_B_R);
 
+
 }
 
 void Motor_Turn_Left(void)
@@ -128,6 +128,12 @@ void Motor_Turn_Right(void)
     //Motor b forward
     Motor_On(MOTOR_B_F);
     Motor_Off(MOTOR_B_R);
+
+}
+void Speed_Control(char speed)
+{
+    Motor_A_Speed(speed);    
+    Motor_B_Speed(speed);    
 
 }
 

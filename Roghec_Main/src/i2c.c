@@ -18,9 +18,9 @@ void I2C_Init()
 	TRISB1 = 1;
 	SSPSTAT = 80;                   /* Slew rate disabled, other bits are cleared */
     SSPCON1 = 0x28;					/* Enable SSP port for I2C Master mode, clock = FOSC / (4 * (SSPADD+1))*/ 
-	SSPCON2 = 0;
+    SSPCON2 = 0;
     SSPADD = BITRATE;               /* Set clock frequency */  
-    SSPIE = 1;                      /* Enable SSPIF interrupt */
+    SSPIE = 0;                      /* Disable SSPIF interrupt */
     SSPIF = 0;
 }
 
