@@ -56,9 +56,9 @@ MAIN_RETURN main(void)
     Motor_Enable(LED_D2);
     I2C_Init(); 
     Motor_Init();
-    MPU_Init();
+    //MPU_Init();
     //Magneto_init(); 
-    Timer0_Init();
+    Interupt_Init();
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     //ADC_Init();
     USBDeviceInit();
