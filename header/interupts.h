@@ -11,10 +11,12 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-    
 
+void Interupt_Init(void);
 void Timer0_Init(void);
-void __interrupt() HeadingControl(void);    //Low priority interrupt
+void Timer1_Init(void);
+void Timer3_Init(void);
+void __interrupt() ISR_Control(void);    //Low priority interrupt
 
 void Go_Straight(int heading);
 
