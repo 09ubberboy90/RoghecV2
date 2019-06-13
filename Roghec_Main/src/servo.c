@@ -12,15 +12,12 @@
 #include "usb.h"
 #include "usb_device_cdc.h"
 #include <stdio.h>
-#include <stddef.h>
-#include <stdbool.h>
 
 extern int TimerTime;
 
 void Servo_Control()
 {
     uint8_t readBuffer[50];
-    bool errorFlag = false;
     uint8_t numBytesRead = 0;
     uint8_t input[10];
     char mess[50];
@@ -36,7 +33,7 @@ void Servo_Control()
 
     }
     result = (input[0]*10+input[1])-16;
-    TimerTime = ((result*0.02)/100)/0.000000667;
+    TimerTime = ((result*0.02)/100)/0.000000667; // Set the ration based on a 20ms period and a 48mhz clock with a 32 prescaler
 
 
     sprintf(mess,"Rotor Set : %u,%d\r\n",result,TimerTime);

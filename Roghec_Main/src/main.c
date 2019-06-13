@@ -53,7 +53,6 @@ please contact mla_licensing@microchip.com
 MAIN_RETURN main(void)
 {
     Motor_Enable(LED_D1);
-    Motor_Enable(LED_D2);
     I2C_Init(); 
     Motor_Init();
     //MPU_Init();
