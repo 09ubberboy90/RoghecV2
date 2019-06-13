@@ -25,7 +25,7 @@ extern "C" {
 void MPU_Init(void);		/* Gyro initialization function */
 int MPU_GetData(int offset);
 int MPU_Getoffset(void);
-
+int MPU_Print_Value(void);
 
 
 

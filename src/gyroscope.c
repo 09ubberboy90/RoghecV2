@@ -9,11 +9,18 @@
 #include <xc.h>
 #include "i2c.h"
 #include "gyroscope.h"
+#include "usb.h"
+#include "usb_device_cdc.h"
+#include "usb_config.h"
+#include <stdio.h>
 
+uint8_t once = 0;
+int offset;
+static int OFFSET = 112;
 #define _XTAL_FREQ 48000000
 void MPU_Init()		/* Gyro initialization function */
 {
-	__delay_ms(150);		/* Power up time >100ms */
+	//__delay_ms(150);		/* Power up time >100ms */
 	I2C_Start_Wait(0xD0);	/* Start with device write address */
 	I2C_Write(SMPLRT_DIV);	/* Write to sample rate register */
 	I2C_Write(0x07);	/* 1KHz sample rate */
@@ -67,10 +74,49 @@ int MPU_GetData(int offset)
     Yg = (float)Gy/131.0;
     Zg = (float)Gz/131.0;
     
-    return ((int)(atan2((double)Ya,(double)Za)*180/PI)-offset)%(int)360;
+    return ((int)(atan2((double)Ya,(double)Za)*180/PI)-OFFSET)%180;
 }
 
 int MPU_Getoffset()
 {
     return MPU_GetData(0);
+}
+int MPU_Print_Value()
+{
+    int heading =0;
+    if (once == 0)
+    {
+        offset = MPU_Getoffset();
+        once++;
+    }
+
+    char tmp[150];
+    /* If the USB device isn't configured yet, we can't really do anything
+     * else since we don't have a host to talk to.  So jump back to the
+     * top of the while loop. */
+    if( USBGetDeviceState() < CONFIGURED_STATE )
+    {
+        return -1;
+    }
+
+    /* If we are currently suspended, then we need to see if we need to
+     * issue a remote wakeup.  In either case, we shouldn't process any
+     * keyboard commands since we aren't currently communicating to the host
+     * thus just continue back to the start of the while loop. */
+    if(USBIsDeviceSuspended()== true )
+    {
+        return -1;
+    }
+    
+    if(mUSBUSARTIsTxTrfReady() == true)
+    {
+        heading = MPU_GetData(offset);
+
+        sprintf(tmp,"Heading = %d,%d\r\n",heading,offset);
+        putrsUSBUSART(tmp);
+    }
+
+    CDCTxService();
+
+    return heading;
 }
