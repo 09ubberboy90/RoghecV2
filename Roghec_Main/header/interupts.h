@@ -13,7 +13,7 @@ extern "C" {
 #endif
     
 
-void Timer1_Init(void);
+void Timer0_Init(void);
 void __interrupt() HeadingControl(void);    //Low priority interrupt
 
 void Go_Straight(int heading);

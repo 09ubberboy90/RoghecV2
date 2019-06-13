@@ -9,7 +9,7 @@
 #include <xc.h>
 #include "io.h"
 #include "interupts.h"
-#include "magnetometer.h"
+#include "gyroscope.h"
 #include "motor.h"
 
 #include "usb.h"
@@ -17,7 +17,7 @@
 #include "usb_config.h"
 #include <stdio.h>
 
-void Timer1_Init()
+void Timer0_Init()
 {
     T0CONbits.TMR0ON = 0; // stop the timer
     T0CONbits.T08BIT = 0; // timer configured as 16-bit
@@ -31,46 +31,44 @@ void Timer1_Init()
     RCONbits.IPEN = 1; // use priorities
     INTCONbits.PEIE = 1; // enable peripheral interrupts
     INTCONbits.GIE = 1; // enable interrupts globally
+    //T0CONbits.TMR0ON = 1;
 }
 
 void __interrupt(low_priority) HeadingControl()    //Low priority interrupt
 {
-    int array[2] = {0};
     if (INTCONbits.T0IF == 1) {
         int heading = 0;
         TMR0= -9523;	
-//        int i = 0;
-        heading = Magneto_Print_Value();
-//        array[i%2] = heading;
-//        i++;
-//        int j;
-//        int total=0;
-//        for (j = 0; j < 20; j++)
-//        {
-//            total += array[j];
-//        }
+        heading = MPU_Print_Value();
         Go_Straight(heading);
         INTCONbits.T0IF = 0;
     }
+//    if (PIR1bits.TMR1IF == 1) {
+//        int heading = 0;
+//        TMR0= -251;	
+//        heading = MPU_Print_Value();
+//        Go_Straight(heading);
+//        PIR1bits.TMR1IF = 0;
+//    }
+
 
 }
 
 void Go_Straight(int heading)
 {
-    if (heading < 355 && heading >= 180)
+    if (heading < 0)
     {
-        Motor_Turn_Left();
-        Speed_Control(60);   
+        Motor_Backward();
+        Speed_Control(75);   
     }
-    else if (heading < 180 && heading > 5)
-    {
-        Motor_Turn_Right();
-        Speed_Control(60);   
-    }
-    else
+    else if (heading > 0)
     {
         Motor_Forward();
-        Speed_Control(70);   
+        Speed_Control(75);   
+    }
+    else{
+        Speed_Control(00);   
+
     }
 
 }
