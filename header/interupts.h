@@ -11,12 +11,24 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+/*
+ * Initialize all the timer and enable interupts
+ */
 
 void Interupt_Init(void);
 void Timer0_Init(void);
 void Timer1_Init(void);
 void Timer3_Init(void);
+/*
+ * Main interupt routine
+ * Curently handle 3 timer;
+ */
 void __interrupt() ISR_Control(void);    //Low priority interrupt
+
+/**
+ * Deprecated function for testing robot standing upward and or going straight
+ * @param heading
+ */
 
 void Go_Straight(int heading);
 

@@ -35,7 +35,7 @@ void Timer0_Init()
     T0CONbits.T0CS = 0; // use system clock
     T0CONbits.PSA = 0; // use prescaler
     T0CONbits.T0PS = 0b111;
-    // prescaler 1:256 (?0b? is a prefix for binary)
+    // prescaler 1:64
     TMR0 = -9523; // setup initial timer value
     INTCONbits.TMR0IF = 0; // reset timer interrupt flag
     INTCONbits.TMR0IE = 1; // enable timer interrupts
@@ -50,7 +50,7 @@ void Timer1_Init()
     T1CONbits.RD16 = 1; // timer configured as 16-bit
     T1CONbits.TMR1CS = 0; // use system clock
     T1CONbits.T1CKPS = 0b11;
-    // prescaler 1:256 (?0b? is a prefix for binary)
+    // prescaler 1:32
     TMR1 = -30000; // setup initial timer value
     PIR1bits.TMR1IF = 0; // reset timer interrupt flag
     PIE1bits.TMR1IE = 1; // enable timer interrupts
@@ -62,7 +62,7 @@ void Timer3_Init()
     T3CONbits.RD16 = 1; // timer configured as 16-bit
     T3CONbits.TMR3CS = 0; // use system clock
     T3CONbits.T3CKPS = 0b11;
-    // prescaler 1:256 (?0b? is a prefix for binary)
+    // prescaler 1:32
     TMR3 = -3000; // setup initial timer value
     PIR2bits.TMR3IF = 0; // reset timer interrupt flag
     PIE2bits.TMR3IE = 1; // enable timer interrupts
@@ -74,26 +74,25 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
         int heading = 0;
-        TMR0= -9523;	
+        TMR0= -9523;	// set a 63 ms interupt for 
         heading = MPU_Print_Value();
         Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
     if (PIR1bits.TMR1IF == 1) {
-        TMR1= -30000;	
-        TMR3 = -TimerTime;
-        T3CONbits.TMR3ON = 1; //Enable Second Timer;
+        TMR1= -30000;	// Set a 20ms interupt for total time of the interupt 
+        TMR3 = -TimerTime;  // set a variable time of on time for timer3
+        T3CONbits.TMR3ON = 1; //Enable third Timer;
         Motor_On(LED_D1);
         PIR1bits.TMR1IF = 0;
     }
     if (PIR2bits.TMR3IF == 1) {
         Motor_Off(LED_D1);
-        T3CONbits.TMR3ON = 0; //Enable Second Timer;
+        T3CONbits.TMR3ON = 0; //Disable third Timer;
         PIR2bits.TMR3IF = 0;
     }
 
 }
-
 void Go_Straight(int heading)
 {
     if (heading < 0)
