@@ -26,7 +26,6 @@ please contact mla_licensing@microchip.com
 #include <stddef.h>
 
 #include "usb.h"
-#include "adc.h"
 #include "app_device_cdc_basic.h"
 #include "usb_config.h"
 #include "io.h"
@@ -101,7 +100,6 @@ void APP_DeviceCDCBasicDemoTasks()
     if( USBUSARTIsTxTrfReady() == true)
     {
         uint8_t numBytesRead = 0;
-        
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         char tmp[150];
@@ -116,21 +114,21 @@ void APP_DeviceCDCBasicDemoTasks()
 //                putrsUSBUSART(tmp);
 //                break;  
 
-//            case 0x4D: //M
-//            case 0x6D: //m
-//                T0CONbits.TMR0ON = 0; //stop the timer;
-//                sprintf(tmp,"Switched to manual Mode\r\n");
-//                putrsUSBUSART(tmp);
-//
-//                break;
-//            case 0x41: //A
-//            case 0x61: //a
-//                T0CONbits.TMR0ON = 1; //start the timer;
-//
-//                sprintf(tmp,"Switched to Auto Mode\r\n");
-//                putrsUSBUSART(tmp);
-//
-//                break;
+            case 0x4D: //M
+            case 0x6D: //m
+                T0CONbits.TMR0ON = 0; //stop the timer;
+                sprintf(tmp,"Switched to manual Mode\r\n");
+                putrsUSBUSART(tmp);
+
+                break;
+            case 0x41: //A
+            case 0x61: //a
+                T0CONbits.TMR0ON = 1; //start the timer;
+
+                sprintf(tmp,"Switched to Auto Mode\r\n");
+                putrsUSBUSART(tmp);
+
+                break;
             case 0x44: //D 
             case 0x64: //d
                 Motor_Control();
@@ -142,20 +140,19 @@ void APP_DeviceCDCBasicDemoTasks()
                 break;
 
             // Base the offset on the current angle
-//            case 0x43: //c 
-//            case 0x63: //c
-//                //offset_Mag = Magneto_GetOffset();
-//                offset_MPU = MPU_Getoffset();
-//                sprintf(tmp,"Offset of Magnetometer set : %d\r\n Offset of MPU set : %d\r\n ",offset_Mag,offset_MPU);
-//                putrsUSBUSART(tmp);
-//
-//                break;
+            case 0x43: //c 
+            case 0x63: //c
+                //offset_Mag = Magneto_GetOffset();
+                MPU_Setoffset();
+                sprintf(tmp,"Offset of MPU set ");
+                putrsUSBUSART(tmp);
+
+                break;
                 
-//            case 0x47: //G 
-//            case 0x67: //g
-//                sprintf(tmp,"Value are : %d\r\n", MPU_GetData(offset_MPU));
-//                putrsUSBUSART(tmp);
-//                break;
+            case 0x47: //G 
+            case 0x67: //g
+                MPU_Print_Raw_Value();
+                break;
 
             default:
                 putrsUSBUSART("ERROR main\n\r");

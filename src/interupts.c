@@ -54,7 +54,7 @@ void Timer1_Init()
     TMR1 = -30000; // setup initial timer value
     PIR1bits.TMR1IF = 0; // reset timer interrupt flag
     PIE1bits.TMR1IE = 1; // enable timer interrupts
-    T1CONbits.TMR1ON = 1;
+    //T1CONbits.TMR1ON = 1;
 }
 void Timer3_Init()
 {
@@ -75,8 +75,8 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
     if (INTCONbits.TMR0IF == 1) {
         int heading = 0;
         TMR0= -9523;	// set a 63 ms interupt for 
-        heading = MPU_Print_Value();
-        Go_Straight(heading);
+        //heading = MPU_Print_Raw_Value().Roll; //Only interested in roll
+        //Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
     if (PIR1bits.TMR1IF == 1) {

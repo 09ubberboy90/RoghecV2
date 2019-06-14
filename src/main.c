@@ -27,7 +27,6 @@ please contact mla_licensing@microchip.com
 #include "usb.h"
 #include "usb_device.h"
 #include "usb_device_cdc.h"
-#include "adc.h"
 #include "pwm.h"
 #include "i2c.h"
 #include "magnetometer.h"
@@ -55,11 +54,10 @@ MAIN_RETURN main(void)
     Motor_Enable(LED_D1);
     I2C_Init(); 
     Motor_Init();
-    //MPU_Init();
+    MPU_Init();
     //Magneto_init(); 
     Interupt_Init();
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
-    //ADC_Init();
     USBDeviceInit();
     USBDeviceAttach();
     APP_DeviceCDCBasicDemoInitialize();
