@@ -3,20 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/gyroscope.h</file>
+            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/i2c.c</file>
+            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/app_device_cdc_basic.c</file>
+            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/motor.h</file>
+            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/interupts.c</file>
+            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/app_device_cdc_basic.h</file>
             <file>file:/D:/Personal/FinalTest/Final_Test.X/src/main.c</file>
             <file>file:/D:/Personal/FinalTest/Final_Test.X/src/gyroscope.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/usb/usb_events.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/io_mapping.h</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/servo.h</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/servo.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/app_device_cdc_basic.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/io.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/usb/usb_device.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/app_led_usb_status.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/usb/usb_device_cdc.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/src/interupts.c</file>
-            <file>file:/D:/Personal/FinalTest/Final_Test.X/header/usb/usb_config.h</file>
         </group>
     </open-files>
 </project-private>

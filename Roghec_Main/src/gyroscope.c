@@ -12,11 +12,13 @@
 #include "usb.h"
 #include "usb_device_cdc.h"
 #include "usb_config.h"
+#include "io.h"
 #include <stdio.h>
 
 uint8_t once = 0;
-int offset;
-static int OFFSET = 112;
+//static int OFFSET = 112;
+char tmp[150];
+
 #define _XTAL_FREQ 48000000
 void MPU_Init()		/* Gyro initialization function */
 {
@@ -48,10 +50,10 @@ void MPU_Init()		/* Gyro initialization function */
 
 }
 
-int MPU_GetData(int offset)
+ gyro_data MPU_GetData()
 {
     int Ax,Ay,Az,T,Gx,Gy,Gz;
-    float Xa,Ya,Za,t,Xg,Yg,Zg;
+    gyro_data data = {0};
 
     I2C_Start_Wait(0xD0);	/* I2C start with device write address */
     I2C_Write(ACCEL_XOUT_H);/* Write start location address to read */ 
@@ -66,37 +68,62 @@ int MPU_GetData(int offset)
     Gz = (((int)I2C_Read(0)<<8) | (int)I2C_Read(1));
     I2C_Stop();
 
-
-    Xa = (float)Ax/16384.0;	
-    Ya = (float)Ay/16384.0;
-    Za = (float)Az/16384.0;
-    Xg = (float)Gx/131.0;
-    Yg = (float)Gy/131.0;
-    Zg = (float)Gz/131.0;
     
-    return ((int)(atan2((double)Ya,(double)Za)*180/PI)-OFFSET)%180;
+    data.Xa = ((float)Ax/16384.0)*100;	
+    data.Ya = ((float)Ay/16384.0)*100;
+    data.Za = ((float)Az/16384.0)*100;
+    data.Xg = ((float)Gx/131.0)*100;
+    data.Yg = ((float)Gy/131.0)*100;
+    data.Zg = ((float)Gz/131.0)*100;
+    data.Pitch = ((int)(atan2((double)data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI)-data.Pitch_offset)%180;
+    data.Roll = ((int)(atan2((double)data.Ya,(double)data.Za)*180/PI)-data.Roll_offset)%180;
+    return data;
+
 }
 
-int MPU_Getoffset()
+void MPU_Setoffset()
 {
-    return MPU_GetData(0);
+    gyro_data data = MPU_GetData();
+    data.Pitch_offset =  data.Pitch;
+    data.Roll_offset = data.Roll;
+    data.Yaw_offset = data.Yaw;
 }
-int MPU_Print_Value()
+
+
+gyro_data MPU_Print_Raw_Value()
 {
-    int heading =0;
     if (once == 0)
     {
-        offset = MPU_Getoffset();
+        // Auto offsfet the first time its called
+        MPU_Setoffset();
         once++;
     }
+    gyro_data data = MPU_GetData();
+    sprintf(tmp,"WIP");
+    sprintf(tmp,"Gyroscope data : \r\n"
+            "Xa: %d,"
+            "Ya: %d,"
+            "Za: %d,"
+            "Xg: %d,"
+            "Yg: %d,"
+            "Zg: %d,"
+            "Roll: %d,"
+            "Pitch: %d,"
+            "Yaw: %d,"
+            "Offset-Roll: %d,"
+            "Offset-Pitch: %d,"
+            "Offset-Yaw: %d\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
+            data.Roll,data.Pitch,data.Yaw,data.Roll_offset,data.Pitch_offset,data.Yaw_offset);
+    UsbReady(tmp);
+    
+    return data;
+}
 
-    char tmp[150];
-    /* If the USB device isn't configured yet, we can't really do anything
-     * else since we don't have a host to talk to.  So jump back to the
-     * top of the while loop. */
+void UsbReady(char message[])
+{
     if( USBGetDeviceState() < CONFIGURED_STATE )
     {
-        return -1;
+        return;
     }
 
     /* If we are currently suspended, then we need to see if we need to
@@ -105,18 +132,15 @@ int MPU_Print_Value()
      * thus just continue back to the start of the while loop. */
     if(USBIsDeviceSuspended()== true )
     {
-        return -1;
+        return;
     }
     
     if(mUSBUSARTIsTxTrfReady() == true)
     {
-        heading = MPU_GetData(offset);
-
-        sprintf(tmp,"Heading = %d,%d\r\n",heading,offset);
-        putrsUSBUSART(tmp);
+        Motor_On(LED_D1); //timing
+        putrsUSBUSART(message);
     }
-
     CDCTxService();
+    Motor_Off(LED_D1);
 
-    return heading;
 }
