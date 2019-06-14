@@ -105,7 +105,8 @@ void Go_Straight(int heading)
         Motor_Forward();
         Speed_Control(75);   
     }
-    else{
+    else
+    {
         Speed_Control(00);   
 
     }
