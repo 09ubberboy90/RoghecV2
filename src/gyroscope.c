@@ -13,7 +13,6 @@
 #include "usb_device_cdc.h"
 #include "usb_config.h"
 #include "io.h"
-#include "kalman.h"
 #include <stdio.h>
 
 uint8_t once = 0;
@@ -94,7 +93,7 @@ void MPU_Setoffset()
         zeroValue[1] += data.Za;
         zeroValue[2] += data.Xg;
         uint8_t i;
-        volatile uint16_t waste;
+        volatile uint16_t waste = 0;
         for (i = 0; i < 100; i++)
         {
             waste++;
@@ -104,7 +103,6 @@ void MPU_Setoffset()
     zeroValue[0] /= 100;
     zeroValue[1] /= 100;
     zeroValue[2] /= 100;
-    setAngle(110);
 
 }
 
@@ -116,7 +114,6 @@ gyro_data MPU_Print_Raw_Value()
     // Whole Function takes 17ms
     Motor_On(LED_D1);
     //Getting the data takes 4 ms
-    data.Yaw = getAngle(data.Roll,data.Xg,0.017);
     sprintf(tmp,"Gyroscope data : \r\n"
             "Xa: %d,"
             "Ya: %d,"
@@ -125,10 +122,8 @@ gyro_data MPU_Print_Raw_Value()
             "Yg: %d,"
             "Zg: %d,"
             "Roll: %d,"
-            "Kalman Roll: %d,"
-            "Complementary Roll: %f,"
-            "Rate: %f\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
-            data.Roll,data.Yaw,(0.93 * ((data.Roll) + (data.Xg/100) * 0.017) + 0.07 * (data.Roll)),getRate());
+            "Complementary Roll: %d\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
+            data.Roll,(int)(0.93 * ((data.Roll) + (data.Xg/100) * 0.017) + 0.07 * (data.Roll))*100);
     UsbReady(tmp);
     Motor_Off(LED_D1);
     return data;
