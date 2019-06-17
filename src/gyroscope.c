@@ -13,13 +13,16 @@
 #include "usb_device_cdc.h"
 #include "usb_config.h"
 #include "io.h"
+#include "kalman.h"
 #include <stdio.h>
 
 uint8_t once = 0;
 //static int OFFSET = 112;
 char tmp[150];
-
+gyro_data_offset data_offset;
 #define _XTAL_FREQ 48000000
+double zeroValue[3];
+
 void MPU_Init()		/* Gyro initialization function */
 {
 	//__delay_ms(150);		/* Power up time >100ms */
@@ -47,10 +50,9 @@ void MPU_Init()		/* Gyro initialization function */
 	I2C_Write(USER_CTRL);	
 	I2C_Write(0x80);	
 	I2C_Stop();
-
 }
 
- gyro_data MPU_GetData()
+gyro_data MPU_GetData()
 {
     int Ax,Ay,Az,T,Gx,Gy,Gz;
     gyro_data data = {0};
@@ -69,37 +71,52 @@ void MPU_Init()		/* Gyro initialization function */
     I2C_Stop();
 
     
-    data.Xa = ((float)Ax/16384.0)*100;	
+    data.Xa = ((float)Ax/16384.0)*100-zeroValue[0];	
     data.Ya = ((float)Ay/16384.0)*100;
-    data.Za = ((float)Az/16384.0)*100;
-    data.Xg = ((float)Gx/131.0)*100;
+    data.Za = ((float)Az/16384.0)*100-zeroValue[1];
+    data.Xg = ((float)Gx/131.0)*100-zeroValue[2];
     data.Yg = ((float)Gy/131.0)*100;
     data.Zg = ((float)Gz/131.0)*100;
-    data.Pitch = ((int)(atan2((double)data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI)-data.Pitch_offset)%180;
-    data.Roll = ((int)(atan2((double)data.Ya,(double)data.Za)*180/PI)-data.Roll_offset)%180;
+    //data.Pitch = (int)(atan(-data.Xa/sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
+    data.Pitch = 0;
+    data.Roll = (int)(atan2((double)data.Ya,(double)data.Za)*180/PI);
     return data;
 
 }
 
 void MPU_Setoffset()
 {
-    gyro_data data = MPU_GetData();
-    data.Pitch_offset =  data.Pitch;
-    data.Roll_offset = data.Roll;
-    data.Yaw_offset = data.Yaw;
+    gyro_data data = {0};
+
+    for (uint8_t i = 0; i < 100; i++) { // Take the average of 100 readings
+        data = MPU_GetData();
+        zeroValue[0] += data.Xa;
+        zeroValue[1] += data.Za;
+        zeroValue[2] += data.Xg;
+        uint8_t i;
+        volatile uint16_t waste;
+        for (i = 0; i < 100; i++)
+        {
+            waste++;
+        }
+
+    }  
+    zeroValue[0] /= 100;
+    zeroValue[1] /= 100;
+    zeroValue[2] /= 100;
+    setAngle(110);
+
 }
 
 
 gyro_data MPU_Print_Raw_Value()
 {
-    if (once == 0)
-    {
-        // Auto offsfet the first time its called
-        MPU_Setoffset();
-        once++;
-    }
     gyro_data data = MPU_GetData();
-    sprintf(tmp,"WIP");
+
+    // Whole Function takes 17ms
+    Motor_On(LED_D1);
+    //Getting the data takes 4 ms
+    data.Yaw = getAngle(data.Roll,data.Xg,0.017);
     sprintf(tmp,"Gyroscope data : \r\n"
             "Xa: %d,"
             "Ya: %d,"
@@ -108,14 +125,12 @@ gyro_data MPU_Print_Raw_Value()
             "Yg: %d,"
             "Zg: %d,"
             "Roll: %d,"
-            "Pitch: %d,"
-            "Yaw: %d,"
-            "Offset-Roll: %d,"
-            "Offset-Pitch: %d,"
-            "Offset-Yaw: %d\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
-            data.Roll,data.Pitch,data.Yaw,data.Roll_offset,data.Pitch_offset,data.Yaw_offset);
+            "Kalman Roll: %d,"
+            "Complementary Roll: %f,"
+            "Rate: %f\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
+            data.Roll,data.Yaw,(0.93 * ((data.Roll) + (data.Xg/100) * 0.017) + 0.07 * (data.Roll)),getRate());
     UsbReady(tmp);
-    
+    Motor_Off(LED_D1);
     return data;
 }
 
@@ -137,10 +152,9 @@ void UsbReady(char message[])
     
     if(mUSBUSARTIsTxTrfReady() == true)
     {
-        Motor_On(LED_D1); //timing
+        //Sending takes 660us
         putrsUSBUSART(message);
     }
     CDCTxService();
-    Motor_Off(LED_D1);
 
 }

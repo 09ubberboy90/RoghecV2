@@ -34,10 +34,13 @@ typedef struct gyro_data{
     int16_t Roll;
     int16_t Pitch;
     int16_t Yaw;
+} gyro_data;
+
+typedef struct gyro_data_offset{
     int8_t Roll_offset;
     int8_t Pitch_offset;
     int8_t Yaw_offset;
-} gyro_data;
+} gyro_data_offset;
 
 void MPU_Init(void);		/* Gyro initialization function */
 
