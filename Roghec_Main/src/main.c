@@ -29,7 +29,7 @@ please contact mla_licensing@microchip.com
 #include "usb_device_cdc.h"
 #include "pwm.h"
 #include "i2c.h"
-#include "magnetometer.h"
+//#include "magnetometer.h"
 #include "motor.h"
 #include "gyroscope.h"
 #include "interupts.h"

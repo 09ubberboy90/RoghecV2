@@ -16,9 +16,9 @@
 #include "usb_device_cdc.h"
 #include "usb_config.h"
 #include <stdio.h>
-
+#include <math.h>
 int TimerTime = 3000;
-
+extern uint16_t Pitch;
 void Interupt_Init()
 {
     INTCONbits.PEIE = 1; // enable peripheral interrupts
@@ -73,10 +73,10 @@ void Timer3_Init()
 void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
-        int heading = 0;
+        gyro_data data;
         TMR0= -9523;	// set a 63 ms interupt for 
-        //heading = MPU_Print_Raw_Value().Roll; //Only interested in roll
-        //Go_Straight(heading);
+        data = MPU_GetData(); //Only interested in roll
+        Go_Straight(data);
         INTCONbits.TMR0IF = 0;
     }
     if (PIR1bits.TMR1IF == 1) {
@@ -93,17 +93,20 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
     }
 
 }
-void Go_Straight(int heading)
+void Go_Straight(gyro_data data)
 {
-    if (heading < 0)
-    {
-        Motor_Backward();
-        Speed_Control(75);   
-    }
-    else if (heading > 0)
+    data.Pitch = (int)(atan2(data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
+    data.ComplPitch = (int)((0.93 * (data.Pitch - (data.Xg/100) * 0.012) + 0.07 * (data.Pitch))*100);
+    
+    if (data.Pitch < -1)
     {
         Motor_Forward();
-        Speed_Control(75);   
+        Speed_Control(60);   
+    }
+    else if (data.Pitch > 1)
+    {
+        Motor_Backward();
+        Speed_Control(60);   
     }
     else
     {

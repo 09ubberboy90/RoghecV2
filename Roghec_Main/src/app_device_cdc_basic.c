@@ -29,7 +29,7 @@ please contact mla_licensing@microchip.com
 #include "app_device_cdc_basic.h"
 #include "usb_config.h"
 #include "io.h"
-#include "magnetometer.h"
+//#include "magnetometer.h"
 #include "motor.h"
 #include "gyroscope.h"
 #include "servo.h"
