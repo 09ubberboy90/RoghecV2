@@ -33,7 +33,6 @@ please contact mla_licensing@microchip.com
 #include "motor.h"
 #include "gyroscope.h"
 #include "interupts.h"
-#include "kalman.h"
 /********************************************************************
  * Function:        void main(void)
  *
@@ -60,7 +59,6 @@ MAIN_RETURN main(void)
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     USBDeviceInit();
     USBDeviceAttach();
-    Kalman_Init();
     APP_DeviceCDCBasicDemoInitialize();
     while(1)
     {
