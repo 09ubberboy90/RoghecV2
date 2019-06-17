@@ -73,9 +73,8 @@ void Timer3_Init()
 void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
-        gyro_data data;
         TMR0= -9523;	// set a 63 ms interupt for 
-        data = MPU_GetData(); //Only interested in roll
+        gyro_data *data = MPU_GetData(); //Only interested in roll
         Go_Straight(data);
         INTCONbits.TMR0IF = 0;
     }
@@ -93,25 +92,25 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
     }
 
 }
-void Go_Straight(gyro_data data)
+void Go_Straight(gyro_data *data)
 {
-    data.Pitch = (int)(atan2(data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
-    data.ComplPitch = (int)((0.93 * (data.Pitch - (data.Xg/100) * 0.012) + 0.07 * (data.Pitch))*100);
+    data->Pitch = (int)(atan2(data->Xa,sqrt(data->Ya*data->Ya+data->Za*data->Za))*180/PI);
+    data->ComplPitch = (int)((0.98 * (data->Pitch - (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
     
-    if (data.Pitch < -1)
+    if (data->ComplPitch < -5.0)
     {
         Motor_Forward();
-        Speed_Control(60);   
+        Speed_Control(75);   
     }
-    else if (data.Pitch > 1)
+    else if (data->ComplPitch > 5.0)
     {
         Motor_Backward();
-        Speed_Control(60);   
+        Speed_Control(75);   
     }
     else
     {
-        Speed_Control(00);   
-
+        Motor_Forward();
+        Speed_Control(0);   
     }
 
 }

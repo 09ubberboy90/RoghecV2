@@ -22,6 +22,7 @@ gyro_data_offset data_offset;
 #define _XTAL_FREQ 48000000
 double zeroValue[3];
 
+
 void MPU_Init()		/* Gyro initialization function */
 {
 	//__delay_ms(150);		/* Power up time >100ms */
@@ -51,10 +52,11 @@ void MPU_Init()		/* Gyro initialization function */
 	I2C_Stop();
 }
 
-gyro_data MPU_GetData()
+gyro_data * MPU_GetData()
 {
+    static gyro_data data = {0};
+
     int Ax,Ay,Az,T,Gx,Gy,Gz;
-    gyro_data data = {0};
 
     I2C_Start_Wait(0xD0);	/* I2C start with device write address */
     I2C_Write(ACCEL_XOUT_H);/* Write start location address to read */ 
@@ -81,19 +83,19 @@ gyro_data MPU_GetData()
     //data.Roll = (int)(atan2((double)data.Ya,(double)data.Za)*180/PI);
     //data.ComplPitch = (int)((0.93 * (data.Pitch - (data.Xg/100) * 0.012) + 0.07 * (data.Pitch))*100);
     //Pitch = data.Pitch;
-    return data;
+    return &data;
 
 }
 
 void MPU_Setoffset()
 {
-    gyro_data data = {0};
+    gyro_data *data = {0};
 
     for (uint8_t i = 0; i < 100; i++) { // Take the average of 100 readings
         data = MPU_GetData();
-        zeroValue[0] += data.Xa;
-        zeroValue[1] += data.Za;
-        zeroValue[2] += data.Xg;
+        zeroValue[0] += data->Xa;
+        zeroValue[1] += data->Za;
+        zeroValue[2] += data->Xg;
         uint8_t i;
         volatile uint16_t waste = 0;
         for (i = 0; i < 100; i++)
@@ -109,9 +111,9 @@ void MPU_Setoffset()
 }
 
 
-gyro_data MPU_Print_Raw_Value()
+void MPU_Print_Raw_Value()
 {
-    gyro_data data = MPU_GetData();
+    gyro_data *data = MPU_GetData();
 
     // Whole Function takes 17ms
     Motor_On(LED_D1);
@@ -125,11 +127,10 @@ gyro_data MPU_Print_Raw_Value()
             "Zg: %d,"
             "Roll: %d,"
             "Pitch: %d"
-            "Complementary Roll: %d\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
-            data.Roll,data.Pitch,data.ComplPitch);
+            "Complementary Roll: %d\r\n",data->Xa,data->Ya,data->Za,data->Xg,data->Yg,data->Zg,
+            data->Roll,data->Pitch,data->ComplPitch);
     UsbReady(tmp);
     Motor_Off(LED_D1);
-    return data;
 }
 
 void UsbReady(char message[])
