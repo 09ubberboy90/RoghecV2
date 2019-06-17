@@ -30,7 +30,7 @@ void __interrupt() ISR_Control(void);    //Low priority interrupt
  * @param heading
  */
 
-void Go_Straight(gyro_data data);
+void Go_Straight(gyro_data *data);
 
 
 

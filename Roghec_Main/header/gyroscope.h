@@ -50,7 +50,7 @@ void MPU_Init(void);		/* Gyro initialization function */
  * @param value Which value we are interested in based on the enum
  * @return struct
  */
-gyro_data MPU_GetData(void);
+gyro_data * MPU_GetData(void);
 /**
  * Set the offset of the sensor based on which value is asked
  * @return 
@@ -61,7 +61,7 @@ void MPU_Setoffset(void);
  * Could be switch to a struct too
  * @return struct
  */
-gyro_data MPU_Print_Raw_Value(void);
+void MPU_Print_Raw_Value(void);
 
 void UsbReady(char message[]);
 
