@@ -23,7 +23,7 @@ extern "C" {
 
     
 #define PI	3.14159265359	/* Define Pi value */
-
+    
 typedef struct gyro_data{
     int16_t Xa;
     int16_t Ya;
@@ -33,7 +33,7 @@ typedef struct gyro_data{
     int16_t Zg;
     int16_t Roll;
     int16_t Pitch;
-    int16_t Yaw;
+    int16_t ComplPitch;
 } gyro_data;
 
 typedef struct gyro_data_offset{

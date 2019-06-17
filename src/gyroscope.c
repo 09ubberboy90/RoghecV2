@@ -5,7 +5,7 @@
  * Created on 11 juin 2019, 13:18
  */
 
-#include <math.h>		
+//#include <math.h>		
 #include <xc.h>
 #include "i2c.h"
 #include "gyroscope.h"
@@ -70,15 +70,17 @@ gyro_data MPU_GetData()
     I2C_Stop();
 
     
-    data.Xa = ((float)Ax/16384.0)*100-zeroValue[0];	
+    data.Xa = ((float)Ax/16384.0)*100-zeroValue[0]*100;	
     data.Ya = ((float)Ay/16384.0)*100;
-    data.Za = ((float)Az/16384.0)*100-zeroValue[1];
-    data.Xg = ((float)Gx/131.0)*100-zeroValue[2];
+    data.Za = ((float)Az/16384.0)*100-zeroValue[1]*100;
+    data.Xg = ((float)Gx/131.0)*100-zeroValue[2]*100;
     data.Yg = ((float)Gy/131.0)*100;
     data.Zg = ((float)Gz/131.0)*100;
-    //data.Pitch = (int)(atan(-data.Xa/sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
-    data.Pitch = 0;
-    data.Roll = (int)(atan2((double)data.Ya,(double)data.Za)*180/PI);
+    //data.Pitch = (int)(atan2(data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
+    //data.Pitch = 0;
+    //data.Roll = (int)(atan2((double)data.Ya,(double)data.Za)*180/PI);
+    //data.ComplPitch = (int)((0.93 * (data.Pitch - (data.Xg/100) * 0.012) + 0.07 * (data.Pitch))*100);
+    //Pitch = data.Pitch;
     return data;
 
 }
@@ -122,8 +124,9 @@ gyro_data MPU_Print_Raw_Value()
             "Yg: %d,"
             "Zg: %d,"
             "Roll: %d,"
+            "Pitch: %d"
             "Complementary Roll: %d\r\n",data.Xa,data.Ya,data.Za,data.Xg,data.Yg,data.Zg,
-            data.Roll,(int)(0.93 * ((data.Roll) + (data.Xg/100) * 0.017) + 0.07 * (data.Roll))*100);
+            data.Roll,data.Pitch,data.ComplPitch);
     UsbReady(tmp);
     Motor_Off(LED_D1);
     return data;

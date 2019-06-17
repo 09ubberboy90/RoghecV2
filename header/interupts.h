@@ -14,7 +14,7 @@ extern "C" {
 /*
  * Initialize all the timer and enable interupts
  */
-
+#include "gyroscope.h"
 void Interupt_Init(void);
 void Timer0_Init(void);
 void Timer1_Init(void);
@@ -30,7 +30,7 @@ void __interrupt() ISR_Control(void);    //Low priority interrupt
  * @param heading
  */
 
-void Go_Straight(int heading);
+void Go_Straight(gyro_data data);
 
 
 
