@@ -27,7 +27,7 @@ void Motor_Init(void)
 
 }
 
-void Motor_Control()
+void Motor_Control(void)
 {   
     uint8_t readBuffer[50];
     bool errorFlag = false;

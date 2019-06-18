@@ -26,8 +26,10 @@ typedef struct
     int16_t P_factor;
     int16_t I_factor;
     int16_t D_factor;
+    uint8_t MotorA_Speed;
+    uint8_t MotorB_Speed;
 }PIDMOTOR;
-PIDMOTOR Get_Pid();
+PIDMOTOR * Get_Pid();
 void Pid_Init (float pid_p, float pid_i, float pid_d);
 int16_t Pid_controller (int16_t input);
 void DC_motor_controller (int16_t Value_PID);

@@ -25,8 +25,8 @@ void Pid_Init (float pid_p, float pid_i, float pid_d)
     pid.max_error_proportional = 90;				// Max error proportionnal
     pid.max_sum_error_integral = 200;				// To avoid wind up
 }
-PIDMOTOR Get_Pid(){
-    return pid;
+PIDMOTOR * Get_Pid(void){
+    return &pid;
 }
 // Compute value to send to DC motor in order to stabilized the base
 int16_t Pid_controller (int16_t input)
@@ -76,15 +76,19 @@ void DC_motor_controller(int16_t Value_PID)
     int16_t duty_cycle = 0;
 
     duty_cycle = (int16_t)(Value_PID/10+0.5); // take the ceiling
+    pid.MotorB_Speed = duty_cycle;
     if(duty_cycle > 1.2)
     {
         Motor_Forward();
+        pid.MotorA_Speed = duty_cycle;
         Direct_Speed_Control(duty_cycle + DEAD_ZONE_DC_MOTOR_F,duty_cycle + DEAD_ZONE_DC_MOTOR_F);   
     }
     else if (duty_cycle < -1.2)
     {
         Motor_Backward();
-        Direct_Speed_Control(duty_cycle + DEAD_ZONE_DC_MOTOR_R,duty_cycle + DEAD_ZONE_DC_MOTOR_R);   
+        pid.MotorA_Speed = duty_cycle;
+
+        Direct_Speed_Control(-duty_cycle + DEAD_ZONE_DC_MOTOR_R,-duty_cycle + DEAD_ZONE_DC_MOTOR_R);   
     }
     else
     {

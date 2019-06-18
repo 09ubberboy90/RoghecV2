@@ -102,18 +102,19 @@ void APP_DeviceCDCBasicDemoTasks()
         uint8_t numBytesRead = 0;
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        char tmp[150];
-        PIDMOTOR pid;
+        char tmp[50];
+        PIDMOTOR *pid;
         /* For every byte that was read... */
         if (numBytesRead != 0)
         {
             switch(readBuffer[0])
             {
-//            case 0x59: //Y
-//            case 0x79: //y
+            case 0x59: //Y
+            case 0x79: //y
+                Pid_Setup();
 //                sprintf(tmp,"Heading = %d\r\n",Magneto_GetHeading(offset_Mag));
 //                putrsUSBUSART(tmp);
-//                break;  
+                break;  
 
             case 0x4D: //M
             case 0x6D: //m
@@ -148,7 +149,7 @@ void APP_DeviceCDCBasicDemoTasks()
                 
                 //sprintf(tmp,"Offset of MPU set ");
                 pid = Get_Pid();
-                sprintf(tmp,"%d,%d,%d,%d,%d",pid.D_factor,pid.I_factor,pid.P_factor,pid.sum_error,pid.previous_measur_value);
+                sprintf(tmp,"%d,%d,%d,%d,%d,%u,%u\r\n",pid->P_factor,pid->I_factor,pid->D_factor,pid->sum_error,pid->previous_measur_value,pid->MotorA_Speed,pid->MotorB_Speed);
                 putrsUSBUSART(tmp);
 
                 break;
@@ -156,7 +157,6 @@ void APP_DeviceCDCBasicDemoTasks()
             case 0x47: //G 
             case 0x67: //g
                 
-                //PID(MPU_GetData());
                 MPU_Print_Raw_Value();
                 break;
 
@@ -170,3 +170,48 @@ void APP_DeviceCDCBasicDemoTasks()
     CDCTxService();
 }
 
+void Pid_Setup()
+{   
+    uint8_t readBuffer[50];
+    uint8_t numBytesRead = 0;
+    uint8_t input[10];
+    char mess[50];
+    uint16_t result;
+    
+    for (int i = 0; i < 3; i++)
+    {
+        do {
+            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+        }
+        while(numBytesRead==0);
+        input[i] = readBuffer[0];
+
+    }
+    PIDMOTOR *pid = Get_Pid();
+    result = ((input[0]-'0')*100+(input[1]-'0')*10+input[2]-'0');
+//    switch(input[0])
+//    {
+//        case 0x50:
+//        case 0x80:
+//            pid->P_factor = result;
+//            break;
+//        case 'I':
+//        case 'i':
+//            pid->I_factor = result;
+//            break;
+//        case 'D':
+//        case 'd':
+//            pid->D_factor = result;
+//            break;
+//        default:
+//            putrsUSBUSART("ERROR PID\n\r");
+//            break;
+//
+//    }
+    pid->P_factor = result;
+    sprintf(mess,"Pid : %d,%d,%d\r\n",pid->P_factor,pid->I_factor,pid->D_factor);
+    putrsUSBUSART(mess);
+
+
+    
+}
