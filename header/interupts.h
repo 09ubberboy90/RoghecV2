@@ -33,7 +33,6 @@ void __interrupt() ISR_Control(void);    //Low priority interrupt
 void Go_Straight(gyro_data *data);
 
 
-
 #ifdef	__cplusplus
 }
 #endif

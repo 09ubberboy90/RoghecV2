@@ -31,6 +31,7 @@
       <itemPath>D:/Personal/FinalTest/Final_Test.X/header/system.h</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/header/motor.h</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/header/app_led_usb_status.h</itemPath>
+      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/pid.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -60,6 +61,7 @@
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/motor.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/app_led_usb_status.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/interupts.c</itemPath>
+      <itemPath>D:/Personal/FinalTest/Final_Test.X/src/pid.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

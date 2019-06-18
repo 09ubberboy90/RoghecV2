@@ -22,7 +22,6 @@ gyro_data_offset data_offset;
 #define _XTAL_FREQ 48000000
 double zeroValue[3];
 
-
 void MPU_Init()		/* Gyro initialization function */
 {
 	//__delay_ms(150);		/* Power up time >100ms */
@@ -54,7 +53,7 @@ void MPU_Init()		/* Gyro initialization function */
 
 gyro_data * MPU_GetData()
 {
-    static gyro_data data = {0};
+    static gyro_data data;
 
     int Ax,Ay,Az,T,Gx,Gy,Gz;
 
@@ -72,10 +71,10 @@ gyro_data * MPU_GetData()
     I2C_Stop();
 
     
-    data.Xa = ((float)Ax/16384.0)*100-zeroValue[0]*100;	
+    data.Xa = ((float)Ax/16384.0)*100;	
     data.Ya = ((float)Ay/16384.0)*100;
-    data.Za = ((float)Az/16384.0)*100-zeroValue[1]*100;
-    data.Xg = ((float)Gx/131.0)*100-zeroValue[2]*100;
+    data.Za = ((float)Az/16384.0)*100;
+    data.Xg = ((float)Gx/131.0)*100;
     data.Yg = ((float)Gy/131.0)*100;
     data.Zg = ((float)Gz/131.0)*100;
     //data.Pitch = (int)(atan2(data.Xa,sqrt(data.Ya*data.Ya+data.Za*data.Za))*180/PI);
@@ -85,6 +84,11 @@ gyro_data * MPU_GetData()
     //Pitch = data.Pitch;
     return &data;
 
+}
+
+gyro_data * MPU_getPointer()
+{
+    return MPU_GetData();
 }
 
 void MPU_Setoffset()
@@ -126,9 +130,10 @@ void MPU_Print_Raw_Value()
             "Yg: %d,"
             "Zg: %d,"
             "Roll: %d,"
-            "Pitch: %d"
-            "Complementary Roll: %d\r\n",data->Xa,data->Ya,data->Za,data->Xg,data->Yg,data->Zg,
-            data->Roll,data->Pitch,data->ComplPitch);
+            "Pitch: %d,"
+            "Complementary Roll: %d,"
+            "PID: %d\r\n",data->Xa,data->Ya,data->Za,data->Xg,data->Yg,data->Zg,
+            data->Roll,data->Pitch,data->ComplPitch,data->PID*10000);
     UsbReady(tmp);
     Motor_Off(LED_D1);
 }

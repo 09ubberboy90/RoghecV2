@@ -79,7 +79,7 @@ MAIN_RETURN main(void)
             // instruction cycles) before it returns.
             USBDeviceTasks();
         #endif
-
+        //MPU_GetData();
         //Application specific tasks
         APP_DeviceCDCBasicDemoTasks();
         

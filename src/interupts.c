@@ -12,13 +12,10 @@
 #include "gyroscope.h"
 #include "motor.h"
 
-#include "usb.h"
-#include "usb_device_cdc.h"
-#include "usb_config.h"
 #include <stdio.h>
 #include <math.h>
 int TimerTime = 3000;
-extern uint16_t Pitch;
+
 void Interupt_Init()
 {
     INTCONbits.PEIE = 1; // enable peripheral interrupts
@@ -74,8 +71,8 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
         TMR0= -9523;	// set a 63 ms interupt for 
-        gyro_data *data = MPU_GetData(); //Only interested in roll
-        Go_Straight(data);
+        gyro_data *heading = MPU_GetData();
+        Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
     if (PIR1bits.TMR1IF == 1) {
@@ -95,14 +92,13 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 void Go_Straight(gyro_data *data)
 {
     data->Pitch = (int)(atan2(data->Xa,sqrt(data->Ya*data->Ya+data->Za*data->Za))*180/PI);
-    data->ComplPitch = (int)((0.98 * (data->Pitch - (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
-    
-    if (data->ComplPitch < -5.0)
+    data->ComplPitch = (int)((0.98 * (data->ComplPitch/100 + (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
+    if (data->ComplPitch < -800)
     {
         Motor_Forward();
         Speed_Control(75);   
     }
-    else if (data->ComplPitch > 5.0)
+    else if (data->ComplPitch > 800)
     {
         Motor_Backward();
         Speed_Control(75);   
@@ -112,5 +108,5 @@ void Go_Straight(gyro_data *data)
         Motor_Forward();
         Speed_Control(0);   
     }
-
 }
+
