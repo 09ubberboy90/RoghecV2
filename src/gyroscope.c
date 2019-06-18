@@ -21,7 +21,7 @@ char tmp[150];
 gyro_data_offset data_offset;
 #define _XTAL_FREQ 48000000
 double zeroValue[3];
-
+static gyro_data data;
 void MPU_Init()		/* Gyro initialization function */
 {
 	//__delay_ms(150);		/* Power up time >100ms */
@@ -53,8 +53,6 @@ void MPU_Init()		/* Gyro initialization function */
 
 gyro_data * MPU_GetData()
 {
-    static gyro_data data;
-
     int Ax,Ay,Az,T,Gx,Gy,Gz;
 
     I2C_Start_Wait(0xD0);	/* I2C start with device write address */
@@ -88,15 +86,15 @@ gyro_data * MPU_GetData()
 
 gyro_data * MPU_getPointer()
 {
-    return MPU_GetData();
+    return &data;
 }
 
 void MPU_Setoffset()
 {
-    gyro_data *data = {0};
+    gyro_data *data;
 
     for (uint8_t i = 0; i < 100; i++) { // Take the average of 100 readings
-        data = MPU_GetData();
+        data = MPU_getPointer();
         zeroValue[0] += data->Xa;
         zeroValue[1] += data->Za;
         zeroValue[2] += data->Xg;
@@ -117,7 +115,7 @@ void MPU_Setoffset()
 
 void MPU_Print_Raw_Value()
 {
-    gyro_data *data = MPU_GetData();
+    gyro_data *data = MPU_getPointer();
 
     // Whole Function takes 17ms
     Motor_On(LED_D1);
