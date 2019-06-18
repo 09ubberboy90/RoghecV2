@@ -33,7 +33,7 @@ please contact mla_licensing@microchip.com
 #include "motor.h"
 #include "gyroscope.h"
 #include "servo.h"
-
+#include "interupts.h"
 /** VARIABLES ******************************************************/
 
 static uint8_t readBuffer[CDC_DATA_OUT_EP_SIZE];
@@ -143,7 +143,8 @@ void APP_DeviceCDCBasicDemoTasks()
             case 0x43: //c 
             case 0x63: //c
                 //offset_Mag = Magneto_GetOffset();
-                MPU_Setoffset();
+                //MPU_Setoffset();
+                
                 sprintf(tmp,"Offset of MPU set ");
                 putrsUSBUSART(tmp);
 
@@ -151,6 +152,8 @@ void APP_DeviceCDCBasicDemoTasks()
                 
             case 0x47: //G 
             case 0x67: //g
+                
+                //PID(MPU_GetData());
                 MPU_Print_Raw_Value();
                 break;
 

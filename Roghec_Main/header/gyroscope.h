@@ -34,6 +34,7 @@ typedef struct gyro_data{
     int16_t Roll;
     int16_t Pitch;
     int16_t ComplPitch;
+    float PID;
 } gyro_data;
 
 typedef struct gyro_data_offset{
@@ -64,6 +65,7 @@ void MPU_Setoffset(void);
 void MPU_Print_Raw_Value(void);
 
 void UsbReady(char message[]);
+gyro_data * MPU_getPointer(void);
 
 #ifdef	__cplusplus
 }
