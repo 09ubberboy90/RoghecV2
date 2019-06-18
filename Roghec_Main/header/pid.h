@@ -11,24 +11,26 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+#include <xc.h>
+#include <stdint.h>
 
 #define ERROR_ANGLE_VALUE 30.0 // AVOID TO GET A ERROR HIGHER THAN 50°
 #define MAX_I_TERM 20.0 // AVOID WIND-UP
 
-//typedef struct
-//{
-//    float max_error_proportional;				//
-//    float max_sum_error_integral;
-//    float sum_error;
-//    float previous_measur_value;
-//    float P_factor;
-//    float I_factor;
-//    float D_factor;
-//}PIDMOTOR;
-//
-//void Pid_Init (PIDMOTOR *pid_start_value, double pid_p, double pid_i, double pid_d);
-//float Pid_controller (PIDMOTOR *pid_value, float error_input_pid);
-//void DC_motor_controller (float Value_PID);
+typedef struct
+{
+    int16_t max_error_proportional;				//
+    int16_t max_sum_error_integral;
+    int16_t sum_error;
+    int16_t previous_measur_value;
+    int16_t P_factor;
+    int16_t I_factor;
+    int16_t D_factor;
+}PIDMOTOR;
+PIDMOTOR Get_Pid();
+void Pid_Init (float pid_p, float pid_i, float pid_d);
+int16_t Pid_controller (int16_t input);
+void DC_motor_controller (int16_t Value_PID);
 
 
 #ifdef	__cplusplus

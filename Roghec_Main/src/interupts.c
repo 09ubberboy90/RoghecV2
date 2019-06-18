@@ -11,7 +11,7 @@
 #include "interupts.h"
 #include "gyroscope.h"
 #include "motor.h"
-
+#include "pid.h"
 #include <stdio.h>
 #include <math.h>
 int TimerTime = 3000;
@@ -71,8 +71,12 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
         TMR0= -9523;	// set a 63 ms interupt for 
-        gyro_data *heading = MPU_getPointer();
-        Go_Straight(heading);
+        gyro_data *data = MPU_getPointer();
+        data->Pitch = (int)(atan2(data->Xa,sqrt(data->Ya*data->Ya+data->Za*data->Za))*180/PI);
+        data->ComplPitch = (int)((0.98 * (data->ComplPitch/100 + (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
+        data->PID = Pid_controller(data->ComplPitch);
+        DC_motor_controller(data->PID/10);
+        //Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
     if (PIR1bits.TMR1IF == 1) {
@@ -91,8 +95,6 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 }
 void Go_Straight(gyro_data *data)
 {
-    data->Pitch = (int)(atan2(data->Xa,sqrt(data->Ya*data->Ya+data->Za*data->Za))*180/PI);
-    data->ComplPitch = (int)((0.98 * (data->ComplPitch/100 + (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
     if (data->ComplPitch < -800)
     {
         Motor_Forward();

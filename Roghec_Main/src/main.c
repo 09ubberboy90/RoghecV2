@@ -33,6 +33,8 @@ please contact mla_licensing@microchip.com
 #include "motor.h"
 #include "gyroscope.h"
 #include "interupts.h"
+#include "pid.h"
+extern PIDMOTOR pid;
 /********************************************************************
  * Function:        void main(void)
  *
@@ -59,6 +61,7 @@ MAIN_RETURN main(void)
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     USBDeviceInit();
     USBDeviceAttach();
+    Pid_Init(3.0,0.5,0.1);
     APP_DeviceCDCBasicDemoInitialize();
     while(1)
     {
@@ -79,7 +82,11 @@ MAIN_RETURN main(void)
             // instruction cycles) before it returns.
             USBDeviceTasks();
         #endif
-        MPU_GetData();
+        if (T0CONbits.TMR0ON)
+        {
+            MPU_GetData(); // only get data if on auto mode
+        }
+
         //Application specific tasks
         APP_DeviceCDCBasicDemoTasks();
         
