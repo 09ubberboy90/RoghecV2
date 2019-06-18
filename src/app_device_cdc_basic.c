@@ -34,13 +34,13 @@ please contact mla_licensing@microchip.com
 #include "gyroscope.h"
 #include "servo.h"
 #include "interupts.h"
+#include "pid.h"
 /** VARIABLES ******************************************************/
 
 static uint8_t readBuffer[CDC_DATA_OUT_EP_SIZE];
 uint16_t offset_Mag = 0;
 uint16_t offset_MPU = 0;
 bool autoMode = false;
-
 /*********************************************************************
 * Function: void APP_DeviceCDCBasicDemoInitialize(void);
 *
@@ -103,6 +103,7 @@ void APP_DeviceCDCBasicDemoTasks()
         //numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
         char tmp[150];
+        PIDMOTOR pid;
         /* For every byte that was read... */
         if (numBytesRead != 0)
         {
@@ -145,7 +146,9 @@ void APP_DeviceCDCBasicDemoTasks()
                 //offset_Mag = Magneto_GetOffset();
                 //MPU_Setoffset();
                 
-                sprintf(tmp,"Offset of MPU set ");
+                //sprintf(tmp,"Offset of MPU set ");
+                pid = Get_Pid();
+                sprintf(tmp,"%d,%d,%d,%d,%d",pid.D_factor,pid.I_factor,pid.P_factor,pid.sum_error,pid.previous_measur_value);
                 putrsUSBUSART(tmp);
 
                 break;

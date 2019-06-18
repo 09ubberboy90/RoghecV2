@@ -136,5 +136,10 @@ void Speed_Control(char speed)
     Motor_B_Speed(speed);    
 
 }
+void Direct_Speed_Control(int8_t motorA_speed, int8_t motorB_speed)
+{
+    Motor_A_Direct_Speed(motorA_speed);    
+    Motor_B_Direct_Speed(motorB_speed);    
 
+}
 

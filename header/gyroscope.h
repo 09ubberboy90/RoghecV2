@@ -34,7 +34,7 @@ typedef struct gyro_data{
     int16_t Roll;
     int16_t Pitch;
     int16_t ComplPitch;
-    float PID;
+    int16_t PID;
 } gyro_data;
 
 typedef struct gyro_data_offset{

@@ -131,7 +131,7 @@ void MPU_Print_Raw_Value()
             "Pitch: %d,"
             "Complementary Roll: %d,"
             "PID: %d\r\n",data->Xa,data->Ya,data->Za,data->Xg,data->Yg,data->Zg,
-            data->Roll,data->Pitch,data->ComplPitch,data->PID*10000);
+            data->Roll,data->Pitch,data->ComplPitch,data->PID);
     UsbReady(tmp);
     Motor_Off(LED_D1);
 }
