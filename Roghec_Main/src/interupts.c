@@ -71,7 +71,7 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) {
         TMR0= -9523;	// set a 63 ms interupt for 
-        gyro_data *heading = MPU_GetData();
+        gyro_data *heading = MPU_getPointer();
         Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
