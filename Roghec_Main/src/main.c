@@ -34,7 +34,7 @@ please contact mla_licensing@microchip.com
 #include "gyroscope.h"
 #include "interupts.h"
 #include "pid.h"
-extern PIDMOTOR pid;
+#include <math.h>
 /********************************************************************
  * Function:        void main(void)
  *
@@ -61,7 +61,7 @@ MAIN_RETURN main(void)
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     USBDeviceInit();
     USBDeviceAttach();
-    Pid_Init(3.0,0.5,0.1);
+    Pid_Init(0,0,0);
     APP_DeviceCDCBasicDemoInitialize();
     while(1)
     {
@@ -84,7 +84,9 @@ MAIN_RETURN main(void)
         #endif
         if (T0CONbits.TMR0ON)
         {
-            MPU_GetData(); // only get data if on auto mode
+            gyro_data *tmp_data = MPU_GetData(); // only get data if on auto mode
+            tmp_data->Pitch = (int)(atan2(tmp_data->Xa,sqrt(tmp_data->Ya*tmp_data->Ya+tmp_data->Za*tmp_data->Za))*180/PI);
+            tmp_data->ComplPitch = (int)((0.98 * (tmp_data->ComplPitch/100 + (tmp_data->Xg/100) * 0.012) + 0.02 * (tmp_data->Pitch))*100);
         }
 
         //Application specific tasks

@@ -12,8 +12,6 @@
 #include "gyroscope.h"
 #include "motor.h"
 #include "pid.h"
-#include <stdio.h>
-#include <math.h>
 int TimerTime = 3000;
 
 void Interupt_Init()
@@ -72,10 +70,8 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
     if (INTCONbits.TMR0IF == 1) {
         TMR0= -9523;	// set a 63 ms interupt for 
         gyro_data *data = MPU_getPointer();
-        data->Pitch = (int)(atan2(data->Xa,sqrt(data->Ya*data->Ya+data->Za*data->Za))*180/PI);
-        data->ComplPitch = (int)((0.98 * (data->ComplPitch/100 + (data->Xg/100) * 0.012) + 0.02 * (data->Pitch))*100);
         data->PID = Pid_controller(data->ComplPitch);
-        DC_motor_controller(data->PID/10);
+        DC_motor_controller(data->PID);
         //Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
@@ -93,22 +89,23 @@ void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
     }
 
 }
-void Go_Straight(gyro_data *data)
-{
-    if (data->ComplPitch < -800)
-    {
-        Motor_Forward();
-        Speed_Control(75);   
-    }
-    else if (data->ComplPitch > 800)
-    {
-        Motor_Backward();
-        Speed_Control(75);   
-    }
-    else
-    {
-        Motor_Forward();
-        Speed_Control(0);   
-    }
-}
+//Deprecated
+//void Go_Straight(gyro_data *data)
+//{
+//    if (data->ComplPitch < -800)
+//    {
+//        Motor_Forward();
+//        Speed_Control(75);   
+//    }
+//    else if (data->ComplPitch > 800)
+//    {
+//        Motor_Backward();
+//        Speed_Control(75);   
+//    }
+//    else
+//    {
+//        Motor_Forward();
+//        Speed_Control(0);   
+//    }
+//}
 
