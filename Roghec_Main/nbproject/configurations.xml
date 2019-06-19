@@ -11,25 +11,12 @@
         <itemPath>D:/Personal/FinalTest/Final_Test.X/header/gyroscope.h</itemPath>
         <itemPath>D:/Personal/FinalTest/Final_Test.X/header/interupts.h</itemPath>
         <itemPath>D:/Personal/FinalTest/Final_Test.X/header/servo.h</itemPath>
+        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usart.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="usb" displayName="usb" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_ch9.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_common.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_config.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_device.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_device_cdc.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_device_local.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_hal.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/header/usb/usb_hal_pic18.h</itemPath>
-      </logicalFolder>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/app_device_cdc_basic.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/fixed_address_memory.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/io_mapping.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/system.h</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/header/motor.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/app_led_usb_status.h</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/header/pid.h</itemPath>
+      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/io_controller.h</itemPath>
+      <itemPath>D:/Personal/FinalTest/Final_Test.X/header/system.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -44,20 +31,13 @@
         <itemPath>D:/Personal/FinalTest/Final_Test.X/src/io.c</itemPath>
         <itemPath>D:/Personal/FinalTest/Final_Test.X/src/gyroscope.c</itemPath>
         <itemPath>D:/Personal/FinalTest/Final_Test.X/src/servo.c</itemPath>
+        <itemPath>D:/Personal/FinalTest/Final_Test.X/src/usart.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="usb" displayName="usb" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/src/usb/usb_descriptors.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/src/usb/usb_device.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/src/usb/usb_device_cdc.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test.X/src/usb/usb_events.c</itemPath>
-      </logicalFolder>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/src/app_device_cdc_basic.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/main.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/src/system.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/motor.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test.X/src/app_led_usb_status.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/interupts.c</itemPath>
       <itemPath>D:/Personal/FinalTest/Final_Test.X/src/pid.c</itemPath>
+      <itemPath>D:/Personal/FinalTest/Final_Test.X/src/io_controller.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -201,6 +181,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

@@ -12,8 +12,9 @@
 #include "gyroscope.h"
 #include "motor.h"
 #include "pid.h"
+#include "usart.h"
 int TimerTime = 3000;
-
+static char out;
 void Interupt_Init()
 {
     INTCONbits.PEIE = 1; // enable peripheral interrupts
@@ -67,6 +68,7 @@ void Timer3_Init()
 
 void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
 {
+    
     if (INTCONbits.TMR0IF == 1) {
         TMR0= -9523;	// set a 63 ms interupt for 
         gyro_data *data = MPU_getPointer();
