@@ -9,35 +9,26 @@
 #include <xc.h>
 #include "servo.h"
 #include "interupts.h"
-#include "usb.h"
-#include "usb_device_cdc.h"
+#include "usart.h"
 #include <stdio.h>
 
 extern int TimerTime;
 
 void Servo_Control()
 {
-    uint8_t readBuffer[50];
-    uint8_t numBytesRead = 0;
     uint8_t input[10];
     char mess[50];
     char result;
     
     for (int i = 0; i < 2; i++)
     {
-        do {
-            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        }
-        while(numBytesRead==0);
-        input[i] = readBuffer[0];
-
+        input[i] = USART_ReceiveChar();
     }
     result = (input[0]*10+input[1])-16;
     TimerTime = ((result*0.02)/100)/0.000000667; // Set the ration based on a 20ms period and a 48mhz clock with a 32 prescaler
 
 
     sprintf(mess,"Rotor Set : %u,%d\r\n",result,TimerTime);
-    putrsUSBUSART(mess);
-
+    USART_SendString(mess);
 }
 

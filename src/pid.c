@@ -79,13 +79,13 @@ void DC_motor_controller(int16_t Value_PID)
     pid.MotorB_Speed = duty_cycle;
     if(duty_cycle > 1.2)
     {
-        Motor_Forward();
+        Motor_Backward();
         pid.MotorA_Speed = duty_cycle;
         Direct_Speed_Control(duty_cycle + DEAD_ZONE_DC_MOTOR_F,duty_cycle + DEAD_ZONE_DC_MOTOR_F);   
     }
     else if (duty_cycle < -1.2)
     {
-        Motor_Backward();
+        Motor_Forward();
         pid.MotorA_Speed = duty_cycle;
 
         Direct_Speed_Control(-duty_cycle + DEAD_ZONE_DC_MOTOR_R,-duty_cycle + DEAD_ZONE_DC_MOTOR_R);   

@@ -11,12 +11,12 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdbool.h>
-
+#include "usart.h"
 #include "motor.h"
 #include "io.h"
 #include "pwm.h"
-#include "usb.h"
-#include "usb_device_cdc.h"
+//#include "usb.h"
+//#include "usb_device_cdc.h"
 
 void Motor_Init(void)
 {
@@ -29,23 +29,15 @@ void Motor_Init(void)
 
 void Motor_Control(void)
 {   
-    uint8_t readBuffer[50];
     bool errorFlag = false;
-    uint8_t numBytesRead = 0;
     uint8_t input[10];
     char mess[50];
     char result;
     
     for (int i = 0; i < 3; i++)
     {
-        do {
-            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        }
-        while(numBytesRead==0);
-        input[i] = readBuffer[0];
-
+        input[i] = USART_ReceiveChar();
     }
-
     switch(input[0])
     {
     case 0x46://F
@@ -77,12 +69,13 @@ void Motor_Control(void)
         Speed_Control(result);   
 
         sprintf(mess,"Car is Moving : %u\r\n",result);
-        putrsUSBUSART(mess);
+//        putrsUSBUSART(mess);
     }
     else{
         sprintf(mess,"Erreur MOTOR\r\n");
-        putrsUSBUSART(mess);
+//        putrsUSBUSART(mess);
     }
+    USART_SendString(mess);
 
     
 }
