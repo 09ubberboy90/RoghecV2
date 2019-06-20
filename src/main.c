@@ -42,6 +42,18 @@ void main(void)
     Pid_Init(10,0,0);
     USART_Init(9600);
     Interupt_Init();
+    // SCS FOSC; IDLEN disabled; IRCF 16MHz; 
+    OSCCON = 0x70;
+    // INTSRC INTRC_31_25KHz; PLLEN disabled; PRISD disabled; SOSCGO disabled; 
+    OSCCON2 = 0x00;
+    // SPLLMULT 3xPLL; TUN 0; 
+    OSCTUNE = 0x80;
+    // ACTSRC SOSC; ACTUD enabled; ACTEN disabled; 
+    ACTCON = 0x00;
+    // Wait for PLL to stabilize
+    while(PLLRDY == 0)
+    {
+    }
 
     while(1)
     {
@@ -53,7 +65,7 @@ void main(void)
         }     
         //Application specific tasks
         Bluetooth_Controller();
-        
+        //Motor_Toggle(LED_D1);
     }//end while
 }//end main
 

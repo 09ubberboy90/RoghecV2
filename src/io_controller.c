@@ -98,9 +98,9 @@ void Bluetooth_Controller()
         break;
     default:
         USART_SendString("ERROR main\n\r");
-
         break;
     }
+    
 }
 
 void Pid_Setup(uint8_t choice)

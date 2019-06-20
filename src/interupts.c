@@ -13,6 +13,7 @@
 #include "motor.h"
 #include "pid.h"
 #include "usart.h"
+#include "io_controller.h"
 int TimerTime = 3000;
 static char out;
 void Interupt_Init()
