@@ -7,44 +7,56 @@
 /*****************************USART Initialization*******************************/
 void USART_Init(long baud_rate)
 {
-    float temp;
+    
+    //PIE1bits.RC1IE = 1;
+
     TRISC6=0;                       /*Make Tx pin as output*/
     TRISC7=1;                       /*Make Rx pin as input*/
-    temp=(((float)(F_CPU)/(float)baud_rate)-1);     
-    SPBRG=(int)temp;                /*baud rate=9600, SPBRG = (F_CPU /(64*9600))-1*/
-    TXSTA=0x20;                     /*Transmit Enable(TX) enable*/ 
-    PIE1bits.TXIE = 0; // Enable USART Transmitter interrupt
-    PIE1bits.RCIE = 1; // Enable USART Receive interrupt
+    //temp=(48000000 - baud_rate*64)/(baud_rate*64); 
+    
+    // ABDOVF no_overflow; CKTXP async_noninverted_sync_fallingedge; BRG16 16bit_generator; WUE disabled; ABDEN disabled; DTRXP not_inverted; 
+    BAUDCON1 = 0x08;
 
-    RCSTA=0x90;                     /*Receive Enable(RX) enable and serial port enable */
-    TXIF=RCIF=0;
+    // SPEN enabled; RX9 8-bit; CREN enabled; ADDEN disabled; SREN disabled; 
+    RCSTA1 = 0x90;
 
+    // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave_mode; 
+    TXSTA1 = 0x24;
+
+    // SPBRG1 225; 
+    SPBRG1 = 0xE1;
+
+    // SPBRGH1 4; 
+    SPBRGH1 = 0x04;
+ 
 }
 /******************TRANSMIT FUNCTION*****************************************/ 
 void USART_TransmitChar(char out)
 {        
-    while(!TXIF);            /*wait for transmit interrupt flag*/
+    while(!PIR1bits.TX1IF);            /*wait for transmit interrupt flag*/
     TXREG=out;                 /*wait for transmit interrupt flag to set which indicates TXREG is ready*/
 }
 /*******************RECEIVE FUNCTION*****************************************/
 char USART_ReceiveChar()
 {
-    while(!RCIF);                 /*wait for receive interrupt flag*/
-    return(RCREG);                  /*receive data is stored in RCREG register and return to main program */
+    while(!PIR1bits.RC1IF);                 /*wait for receive interrupt flag*/
+    return(RCREG1);                  /*receive data is stored in RCREG register and return to main program */
 }
 
 void USART_SendString(const char *out)
 {
-   while(*out!='\0')
-   {            
-        USART_TransmitChar(*out);
-        out++;
-   }
+    while(*out!='\0')
+    {            
+         USART_TransmitChar(*out);
+         out++;
+    }
 }
-/*********************************Delay Function********************************/
-void MSdelay(unsigned int val)
+bool EUSART1_is_tx_ready(void)
 {
-     unsigned int i,j;
-        for(i=0;i<=val;i++)
-            for(j=0;j<81;j++);      /*This count Provide delay of 1 ms for 8MHz Frequency */
+    return (bool)(PIR1bits.TX1IF && TXSTA1bits.TXEN);
+}
+
+bool EUSART1_is_rx_ready(void)
+{
+    return PIR1bits.RC1IF;
 }

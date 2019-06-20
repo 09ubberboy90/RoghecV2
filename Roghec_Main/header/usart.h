@@ -9,16 +9,15 @@
 #define	USART_HEADER_FILE_H
 
 #include <xc.h>
+#include <stdbool.h>
 
 void USART_Init(long);
 void USART_TransmitChar(char);
 void USART_SendString(const char *);
-void MSdelay(unsigned int val);
 char USART_ReceiveChar();
+bool EUSART1_is_tx_ready(void);
+bool EUSART1_is_rx_ready(void);
 
-#define F_CPU 48000000/64
-//#define Baud_value(baud_rate) (((float)(F_CPU)/(float)baud_rate)-1)
-#define Baud_value (((float)(F_CPU)/(float)baud_rate)-1)
 
 #endif	/* USART_HEADER_FILE_H */
 
