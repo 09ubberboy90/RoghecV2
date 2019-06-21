@@ -14,8 +14,12 @@
 #include "pid.h"
 #include "usart.h"
 #include "io_controller.h"
-int TimerTime = 3000;
+#include "servo.h"
+
 static char out;
+PIN actual_pin = LED_NONE;
+int state = 0;
+
 void Interupt_Init()
 {
     INTCONbits.PEIE = 1; // enable peripheral interrupts
@@ -41,6 +45,7 @@ void Timer0_Init()
     INTCONbits.GIE = 1; // enable interrupts globally
     //T0CONbits.TMR0ON = 1;
 }
+
 void Timer1_Init()
 {
     T1CONbits.TMR1ON = 0; // stop the timer
@@ -53,6 +58,7 @@ void Timer1_Init()
     PIE1bits.TMR1IE = 1; // enable timer interrupts
     //T1CONbits.TMR1ON = 1;
 }
+
 void Timer3_Init()
 {
     T3CONbits.TMR3ON = 0; // stop the timer
@@ -66,28 +72,44 @@ void Timer3_Init()
     //T0CONbits.TMR0ON = 1;
 }
 
-
-void __interrupt(low_priority) ISR_Control()    //Low priority interrupt
+void __interrupt(low_priority) ISR_Control() //Low priority interrupt
 {
-    
-    if (INTCONbits.TMR0IF == 1) {
-        TMR0= -9523;	// set a 63 ms interupt for 
+    Servo_Gesture *gesture = Get_Gesture();
+    if (INTCONbits.TMR0IF == 1)
+    {
+        TMR0 = -9523; // set a 63 ms interupt for 
         gyro_data *data = MPU_getPointer();
         data->PID = Pid_controller(data->ComplPitch);
         DC_motor_controller(data->PID);
         //Go_Straight(heading);
         INTCONbits.TMR0IF = 0;
     }
-    if (PIR1bits.TMR1IF == 1) {
-        TMR1= -30000;	// Set a 20ms interupt for total time of the interupt 
-        TMR3 = -TimerTime;  // set a variable time of on time for timer3
+    if (PIR1bits.TMR1IF == 1)
+    {
+        TMR1 = -30000; // Set a 20ms interupt for total time of the interupt 
+        TMR3 = -((gesture->pin_control.time[0]*0.02)/100)/0.000000667; // set a variable time of on time for timer3
         T3CONbits.TMR3ON = 1; //Enable third Timer;
-        Motor_On(LED_D1);
+        actual_pin = gesture->pin_control.pin[0];
+        Motor_On(actual_pin);
+        state = 1;
         PIR1bits.TMR1IF = 0;
     }
-    if (PIR2bits.TMR3IF == 1) {
-        Motor_Off(LED_D1);
-        T3CONbits.TMR3ON = 0; //Disable third Timer;
+    if (PIR2bits.TMR3IF == 1)
+    {
+        Motor_Off(actual_pin);
+        if (state <= gesture->pin_control.nb_servo)
+        {
+            TMR3 = -((gesture->pin_control.time[state]*0.02)/100)/0.000000667; // set a variable time of on time for timer3
+            actual_pin = gesture->pin_control.pin[state];
+            Motor_On(actual_pin);
+            state++;
+        }
+        else
+        {
+            actual_pin = LED_NONE;
+            T3CONbits.TMR3ON = 0; //Disable third Timer;
+            T1CONbits.TMR1ON = 0;
+        }
         PIR2bits.TMR3IF = 0;
     }
 
