@@ -83,7 +83,7 @@
 * Output: none
 *
 ********************************************************************/
-void Motor_On(MOTOR led)
+void Motor_On(PIN led)
 {
     switch(led)
     {
@@ -136,7 +136,7 @@ void Motor_On(MOTOR led)
 * Output: none
 *
 ********************************************************************/
-void Motor_Off(MOTOR led)
+void Motor_Off(PIN led)
 {
     switch(led)
     {
@@ -193,7 +193,7 @@ void Motor_Off(MOTOR led)
 * Output: none
 *
 ********************************************************************/
-void Motor_Toggle(MOTOR led)
+void Motor_Toggle(PIN led)
 {
     switch(led)
     {
@@ -248,7 +248,7 @@ void Motor_Toggle(MOTOR led)
 * Output: true if on, false if off
 *
 ********************************************************************/
-bool Motor_Get(MOTOR led)
+bool Motor_Get(PIN led)
 {
     switch(led)
     {
@@ -298,7 +298,7 @@ bool Motor_Get(MOTOR led)
 * Output: none
 *
 ********************************************************************/
-void Motor_Enable(MOTOR led)
+void Motor_Enable(PIN led)
 {
     switch(led)
     {
