@@ -118,7 +118,7 @@ void MPU_Print_Raw_Value()
     gyro_data *data = MPU_getPointer();
 
     // Whole Function takes 17ms
-    Motor_On(LED_D1);
+    Pin_On(LED_D1);
     //Getting the data takes 4 ms
     sprintf(tmp,"Gyroscope data : \r\n"
             "Xa: %d,"
@@ -134,7 +134,7 @@ void MPU_Print_Raw_Value()
             data->Roll,data->Pitch,data->ComplPitch,data->PID);
 //    UsbReady(tmp);
     USART_SendString(tmp);
-    Motor_Off(LED_D1);
+    Pin_Off(LED_D1);
 }
 
 //void UsbReady(char message[])

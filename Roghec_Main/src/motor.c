@@ -20,10 +20,10 @@
 
 void Motor_Init(void)
 {
-    Motor_Enable(MOTOR_A_F);
-    Motor_Enable(MOTOR_A_R);
-    Motor_Enable(MOTOR_B_F);
-    Motor_Enable(MOTOR_B_R);
+    Pin_Enable(MOTOR_A_F);
+    Pin_Enable(MOTOR_A_R);
+    Pin_Enable(MOTOR_B_F);
+    Pin_Enable(MOTOR_B_R);
 
 }
 
@@ -83,21 +83,21 @@ void Motor_Control(void)
 void Motor_Forward(void)
 {
     //Motor A forward
-    Motor_On(MOTOR_A_F);
-    Motor_Off(MOTOR_A_R);
+    Pin_On(MOTOR_A_F);
+    Pin_Off(MOTOR_A_R);
     //Motor b forward
-    Motor_On(MOTOR_B_F);
-    Motor_Off(MOTOR_B_R);
+    Pin_On(MOTOR_B_F);
+    Pin_Off(MOTOR_B_R);
 }
 
 void Motor_Backward(void)
 {
     //Motor A Backward
-    Motor_Off(MOTOR_A_F);
-    Motor_On(MOTOR_A_R);
+    Pin_Off(MOTOR_A_F);
+    Pin_On(MOTOR_A_R);
     //Motor b backward
-    Motor_Off(MOTOR_B_F);
-    Motor_On(MOTOR_B_R);
+    Pin_Off(MOTOR_B_F);
+    Pin_On(MOTOR_B_R);
 
 
 }
@@ -105,22 +105,22 @@ void Motor_Backward(void)
 void Motor_Turn_Left(void)
 {
     //Motor A forward
-    Motor_On(MOTOR_A_F);
-    Motor_Off(MOTOR_A_R);
+    Pin_On(MOTOR_A_F);
+    Pin_Off(MOTOR_A_R);
     //Motor b backward
-    Motor_Off(MOTOR_B_F);
-    Motor_On(MOTOR_B_R);
+    Pin_Off(MOTOR_B_F);
+    Pin_On(MOTOR_B_R);
 
 }
 
 void Motor_Turn_Right(void)
 {
     //Motor A Backward
-    Motor_Off(MOTOR_A_F);
-    Motor_On(MOTOR_A_R);
+    Pin_Off(MOTOR_A_F);
+    Pin_On(MOTOR_A_R);
     //Motor b forward
-    Motor_On(MOTOR_B_F);
-    Motor_Off(MOTOR_B_R);
+    Pin_On(MOTOR_B_F);
+    Pin_Off(MOTOR_B_R);
 
 }
 void Speed_Control(char speed)

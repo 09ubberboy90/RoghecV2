@@ -16,10 +16,10 @@
 extern "C" {
 #endif
     
-#define NUMBER_OF_GESTURE 2
+#define NUMBER_OF_GESTURE 4
 typedef struct {
     uint8_t nb_servo;
-    uint8_t time[10];
+    uint8_t time[10]; //MUST BE IN 0.1ms : 2ms is written as 20 ; 1.5ms is written as 15;
     PIN pin[10];
 }Servo_Pin_Control;
 
