@@ -86,8 +86,8 @@ void __interrupt(low_priority) ISR_Control() //Low priority interrupt
     }
     if (PIR1bits.TMR1IF == 1)
     {
-        TMR1 = -30000; // Set a 20ms interupt for total time of the interupt 
-        TMR3 = -((gesture->pin_control.time[0]*0.02)/100)/0.000000667; // set a variable time of on time for timer3
+        TMR1 = 30000; // Set a 20ms interupt for total time of the interupt 
+        TMR3 = -gesture->pin_control.time[0]*150; // set a variable time of on time for timer3
         T3CONbits.TMR3ON = 1; //Enable third Timer;
         actual_pin = gesture->pin_control.pin[0];
         Motor_On(actual_pin);
@@ -99,7 +99,7 @@ void __interrupt(low_priority) ISR_Control() //Low priority interrupt
         Motor_Off(actual_pin);
         if (state <= gesture->pin_control.nb_servo)
         {
-            TMR3 = -((gesture->pin_control.time[state]*0.02)/100)/0.000000667; // set a variable time of on time for timer3
+            TMR3 = -gesture->pin_control.time[0]*150; // set a variable time of on time for timer3
             actual_pin = gesture->pin_control.pin[state];
             Motor_On(actual_pin);
             state++;
