@@ -10,8 +10,12 @@ void USART_Init(long baud_rate)
     
     //PIE1bits.RC1IE = 1;
 
-    TRISC6=0;                       /*Make Tx pin as output*/
-    TRISC7=1;                       /*Make Rx pin as input*/
+    TRISCbits.RC6 = 0;                       /*Make Tx pin as output*/
+    TRISCbits.RC7 = 1;                       /*Make Rx pin as input*/
+    
+    LATCbits.LATC7 = 0;
+    ANSELCbits.ANSC7 = 0;
+
     //temp=(48000000 - baud_rate*64)/(baud_rate*64); 
     
     // ABDOVF no_overflow; CKTXP async_noninverted_sync_fallingedge; BRG16 16bit_generator; WUE disabled; ABDEN disabled; DTRXP not_inverted; 

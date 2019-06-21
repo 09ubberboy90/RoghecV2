@@ -34,8 +34,8 @@ please contact mla_licensing@microchip.com
 #include "servo.h"
 void main(void)
 {
-    Motor_Enable(LED_D1);
-    Motor_Enable(LED_D2);
+    Pin_Enable(LED_D1);
+    Pin_Enable(LED_D2);
     Servo_Init();
     I2C_Init(); 
     Motor_Init();

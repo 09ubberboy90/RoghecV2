@@ -15,13 +15,24 @@ extern "C" {
  * Initialize all the timer and enable interupts
  */
 #include "gyroscope.h"
+    typedef enum{
+    STATE_ON,
+    STATE_WAITING,
+    STATE_OFF
+}STATE_MACHINE;
+
+#define PWM_MIN_TIME 25 // 2.5ms
+#define PWM_PERIOD 200 // 20ms
+
 void Interupt_Init(void);
 void Timer0_Init(void);
 void Timer1_Init(void);
+//void Timer2_Init(void);
 void Timer3_Init(void);
+
 /*
  * Main interupt routine
- * Curently handle 3 timer;
+ * Curently handle 2 timer;
  */
 void __interrupt() ISR_Control(void);    //Low priority interrupt
 
