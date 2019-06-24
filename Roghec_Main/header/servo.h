@@ -23,14 +23,11 @@ typedef struct {
     PIN pin[10];
 }Servo_Pin_Control;
 
-typedef struct {
-    Servo_Pin_Control pin_control;
-    char name[20];
-}Servo_Gesture;
     
 void Servo_Init(void);
-Servo_Gesture * Get_Gesture(void);
+Servo_Pin_Control * Get_Gesture(void);
     
+void Servo_Value(void);
 void Servo_Control(void);
 
 

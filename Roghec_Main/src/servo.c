@@ -12,67 +12,100 @@
 #include "usart.h"
 #include <stdio.h>
 #include <string.h>
-
+#include "io.h"
+Servo_Pin_Control main_mvt;
 Servo_Pin_Control up_mvt;
 Servo_Pin_Control down_mvt;
 Servo_Pin_Control middle_mvt;
 Servo_Pin_Control test_mvt;
-Servo_Gesture gesture_list[NUMBER_OF_GESTURE]; 
-uint8_t gesture_head = 0;
+uint8_t servo_nb = 0;
 void Servo_Init()
 {
-    up_mvt.nb_servo = 2;
-    PIN tmp_pin[2] = {LED_D1,LED_D2};
-    memcpy(up_mvt.pin, tmp_pin,sizeof(tmp_pin));
-    uint8_t tmp_time[2] =  {10,10};
-    memcpy(up_mvt.time, tmp_time,sizeof(tmp_time));
-    sprintf(gesture_list[0].name, "Hand Up");
-    gesture_list[0].pin_control = up_mvt;
-
-    down_mvt.nb_servo = 2;
-    PIN tmp_pin1[2] =  {LED_D1,LED_D2};
-    memcpy(down_mvt.pin, tmp_pin1,sizeof(tmp_pin1));
-    uint8_t tmp_time1[2] =  {20,20};
-    memcpy(down_mvt.time, tmp_time1,sizeof(tmp_time1));
-    sprintf(gesture_list[1].name, "Hand Down");
-    gesture_list[1].pin_control = down_mvt;
-
-    middle_mvt.nb_servo = 2;
-    PIN tmp_pin2[2] =  {LED_D1,LED_D2};
-    memcpy(middle_mvt.pin, tmp_pin2,sizeof(tmp_pin2));
-    uint8_t tmp_time2[2] =  {15,15};
-    memcpy(middle_mvt.time, tmp_time2,sizeof(tmp_time2));
-    sprintf(gesture_list[2].name, "Hand Middle");
-    gesture_list[2].pin_control = middle_mvt;
-
-    test_mvt.nb_servo = 2;
-    PIN tmp_pin3[2] =  {LED_D1,LED_D2};
-    memcpy(test_mvt.pin, tmp_pin3,sizeof(tmp_pin3));
-    uint8_t tmp_time3[2] =  {5,25};
-    memcpy(test_mvt.time, tmp_time3,sizeof(tmp_time3));
-    sprintf(gesture_list[3].name, "Hand Test");
-    gesture_list[3].pin_control = test_mvt;
+    main_mvt.nb_servo = 6;
+    PIN tmp_pin[6] = {SERVO_1,SERVO_2,SERVO_3,SERVO_4,SERVO_5,SERVO_6};
+    memcpy(main_mvt.pin, tmp_pin,sizeof(tmp_pin));
+    uint8_t tmp_time[6] =  {15,15,15,15,15,15};
+    memcpy(main_mvt.time, tmp_time,sizeof(tmp_time));
 
 }
-void Servo_Control()
+void Servo_Value()
 {
-    uint8_t input;
+    uint8_t input[3];
+    uint8_t result;
     char mess[50];
-    input = USART_ReceiveChar();        
-    if(input >= '0' && input <= '9' )
+    bool error_flag = false;
+    for (int i = 0; i < 3; i++)
     {
-        gesture_head = (int)input-'0'-1;
+        input[i] = USART_ReceiveChar();
+    }
+    result = ((input[1]-'0')*10+(input[2]-'0'));
+    if(result< 9 || result > 21)
+    {
+        error_flag = true;
+    }
+    if(input[0] >= '0' && input[0] <= '9' && !error_flag)
+    {
         T1CONbits.TMR1ON = 1;
-        sprintf(mess,"Rotor Set with motion %s,%u\r\n",gesture_list[gesture_head].name,gesture_head);
+        input[0] = (int)input[0]-'0';
+        servo_nb = input[0]+8;
+
+        if (input[0] == 1 || input[0] == 2)
+        {
+            main_mvt.time[1] = result;
+            main_mvt.time[2] = result;
+            sprintf(mess,"SERVO_2 and SERVO_3 set with motion %u\r\n",result);
+
+        }
+        else
+        {
+            main_mvt.time[input[0]] = result;
+            sprintf(mess,"%s set with motion %u,%u,%u\r\n",pin_name[servo_nb],result,servo_nb,input[0]);
+
+        }
     }
     else{
+        error_flag = true;
+    }
+    if (error_flag)
+    {
         sprintf(mess,"Error Rotor\r\n");
     }
     USART_SendString(mess);
 
 }
 
-Servo_Gesture * Get_Gesture(void)
+Servo_Pin_Control * Get_Gesture(void)
 {
-    return &gesture_list[gesture_head];
+    return &main_mvt;
+}
+void Servo_Control(){
+    uint8_t input;
+    char mess[50];
+    input = USART_ReceiveChar();
+    switch(input)
+    {
+        case 0x47://G
+        case 0x67://G
+            for (int i = 0; i < 6; i++)
+            {
+                sprintf(mess,"%s is set at %u ms\r\n",pin_name[i+8],main_mvt.time[i]);
+                USART_SendString(mess);
+            }
+            break;
+        case 0x45://E
+        case 0x65://e
+            T1CONbits.TMR1ON = 1;
+            USART_SendString("Servo Enabled\r\n");
+            break;
+        case 0x44://D
+        case 0x64://d
+            T1CONbits.TMR1ON = 0;
+            USART_SendString("Servo Disabled\r\n");
+            break;
+
+        default:
+            USART_SendString("Error Rotor\r\n");
+            break;
+    }
+
 }

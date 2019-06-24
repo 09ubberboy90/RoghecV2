@@ -82,14 +82,14 @@
 #define PIN_ANALOG          1
 
 
-//void Pin_Init()
-//{
-//    for (int pin = PIN_FIRST; pin < PIN_LAST; ++pin)
-//    {
-//        Pin_Enable(pin);
-//    }
-//
-//}
+void Pin_Init()
+{
+    for (int pin = PIN_FIRST; pin < PIN_LAST; ++pin)
+    {
+        Pin_Enable(pin);
+    }
+
+}
 
 
 /*********************************************************************
