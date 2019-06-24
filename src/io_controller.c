@@ -76,6 +76,11 @@ void Bluetooth_Controller()
 
     case 0x52: //R 
     case 0x72: //r
+        Servo_Value();
+        break;
+        
+    case 0x53: //S 
+    case 0x73: //s
         Servo_Control();
         break;
 
@@ -85,14 +90,13 @@ void Bluetooth_Controller()
         pid = Get_Pid();
         sprintf(tmp,"%d,%d,%d,%d,%d,%u,%u\r\n",pid->P_factor/10,pid->I_factor/10,pid->D_factor/10,pid->sum_error,pid->previous_measur_value,pid->MotorA_Speed,pid->MotorB_Speed);
         USART_SendString(tmp);
-
         break;
-
+        
     case 0x47: //G 
     case 0x67: //g
-
         MPU_Print_Raw_Value();
         break;
+        
     case 0x0D:
     case 0x0A:
         break;
