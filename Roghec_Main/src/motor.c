@@ -37,12 +37,7 @@ void Motor_Control(void)
 
     for (int i = 0; i < 3; i++)
     {
-        do {
-            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-        }
-        while(numBytesRead==0);
-        input[i] = readBuffer[0];
-
+        input[i] = USART_ReceiveChar();
     }
 #endif
 #ifdef BLUETOOTH_MODE
