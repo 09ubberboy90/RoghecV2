@@ -221,6 +221,22 @@ ${OBJECTDIR}/_ext/2141126742/usart.p1: D:/Personal/FinalTest/Final_Test/RoghecV2
 	@-${MV} ${OBJECTDIR}/_ext/2141126742/usart.d ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/448146715/usart.p1: D:/Personal/FinalTest/Final_Test.X/src/usart.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/448146715" 
+	@${RM} ${OBJECTDIR}/_ext/448146715/usart.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/448146715/usart.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/448146715/usart.p1 D:/Personal/FinalTest/Final_Test.X/src/usart.c 
+	@-${MV} ${OBJECTDIR}/_ext/448146715/usart.d ${OBJECTDIR}/_ext/448146715/usart.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/448146715/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/448146715/io_controller.p1: D:/Personal/FinalTest/Final_Test.X/src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/448146715" 
+	@${RM} ${OBJECTDIR}/_ext/448146715/io_controller.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/448146715/io_controller.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/448146715/io_controller.p1 D:/Personal/FinalTest/Final_Test.X/src/io_controller.c 
+	@-${MV} ${OBJECTDIR}/_ext/448146715/io_controller.d ${OBJECTDIR}/_ext/448146715/io_controller.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/448146715/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/_ext/2141126742/pwm.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
@@ -349,6 +365,22 @@ ${OBJECTDIR}/_ext/2141126742/usart.p1: D:/Personal/FinalTest/Final_Test/RoghecV2
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/usart.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c 
 	@-${MV} ${OBJECTDIR}/_ext/2141126742/usart.d ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/448146715/usart.p1: D:/Personal/FinalTest/Final_Test.X/src/usart.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/448146715" 
+	@${RM} ${OBJECTDIR}/_ext/448146715/usart.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/448146715/usart.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/448146715/usart.p1 D:/Personal/FinalTest/Final_Test.X/src/usart.c 
+	@-${MV} ${OBJECTDIR}/_ext/448146715/usart.d ${OBJECTDIR}/_ext/448146715/usart.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/448146715/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/448146715/io_controller.p1: D:/Personal/FinalTest/Final_Test.X/src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/448146715" 
+	@${RM} ${OBJECTDIR}/_ext/448146715/io_controller.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/448146715/io_controller.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/448146715/io_controller.p1 D:/Personal/FinalTest/Final_Test.X/src/io_controller.c 
+	@-${MV} ${OBJECTDIR}/_ext/448146715/io_controller.d ${OBJECTDIR}/_ext/448146715/io_controller.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/448146715/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

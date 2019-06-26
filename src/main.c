@@ -39,6 +39,8 @@ void main(void)
     Motor_Init();
     MPU_Init();
     //Magneto_init(); 
+    Pid_Init(10,0,0);
+    USART_Init(9600);
     Interupt_Init();
     #ifdef USB_MODE
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
@@ -72,8 +74,7 @@ void main(void)
             gyro_data *tmp_data = MPU_GetData(); // only get data if on auto mode
             tmp_data->Pitch = (int)(atan2(tmp_data->Xa,sqrt(tmp_data->Ya*tmp_data->Ya+tmp_data->Za*tmp_data->Za))*180/PI);
             tmp_data->ComplPitch = (int)((0.98 * (tmp_data->ComplPitch/100 + (tmp_data->Xg/100) * 0.012) + 0.02 * (tmp_data->Pitch))*100);
-        }
-
+        }     
         //Application specific tasks
         Io_Listener();
         
