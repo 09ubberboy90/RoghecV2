@@ -40,7 +40,6 @@ void main(void)
     MPU_Init();
     //Magneto_init(); 
     Pid_Init(10,0,0);
-    USART_Init();
     Interupt_Init();
     #ifdef USB_MODE
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);

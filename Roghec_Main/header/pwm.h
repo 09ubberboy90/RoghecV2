@@ -16,17 +16,13 @@ extern "C" {
 
 void PWM_Init(unsigned char period,uint8_t channel);
 
-void PWM1_setDC(unsigned int dutycycle,uint8_t channel);
+void PWM_setDC(unsigned int dutycycle,uint8_t channel);
 
 void PWM_Start(uint8_t period,unsigned int dutycycle,uint8_t channel);
 
-void Motor_A_Speed(uint8_t value);
+void Motor_Speed(uint8_t value,uint8_t channel);
 
-void Motor_B_Speed(uint8_t value);
-
-void Motor_A_Direct_Speed(uint8_t value);
-
-void Motor_B_Direct_Speed(uint8_t value);
+void Motor_Direct_Speed(uint8_t value,uint8_t channel);
 #ifdef	__cplusplus
 }
 #endif

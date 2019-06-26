@@ -61,18 +61,18 @@
 #define SERVO_4_ANSEL ANSELAbits.ANSA3
 #define SERVO_6_ANSEL ANSELAbits.ANSA5
 
-#define MotorAF_LAT LATDbits.LATD4
-#define MotorAR_LAT LATDbits.LATD5
+#define MotorAF_LAT LATDbits.LATD2
+#define MotorAR_LAT LATDbits.LATD3
 #define MotorBF_LAT LATDbits.LATD6
 #define MotorBR_LAT LATDbits.LATD7
 
-#define MotorAF_TRIS TRISDbits.TRISD4
-#define MotorAR_TRIS TRISDbits.TRISD5
+#define MotorAF_TRIS TRISDbits.TRISD2
+#define MotorAR_TRIS TRISDbits.TRISD3
 #define MotorBF_TRIS TRISDbits.TRISD6
 #define MotorBR_TRIS TRISDbits.TRISD7
 
-#define MotorAF_ANSEL ANSELDbits.ANSD4
-#define MotorAR_ANSEL ANSELDbits.ANSD5
+#define MotorAF_ANSEL ANSELDbits.ANSD2
+#define MotorAR_ANSEL ANSELDbits.ANSD3
 #define MotorBF_ANSEL ANSELDbits.ANSD6
 #define MotorBR_ANSEL ANSELDbits.ANSD7
 
