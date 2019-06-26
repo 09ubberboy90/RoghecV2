@@ -22,9 +22,7 @@ void Motor_Init(void)
     Pin_Enable(MOTOR_A_R);
     Pin_Enable(MOTOR_B_F);
     Pin_Enable(MOTOR_B_R);
-
 }
-
 void Motor_Control(void)
 {   
     bool errorFlag = false;
@@ -69,13 +67,13 @@ void Motor_Control(void)
     case 0x31://1
         Motor_Forward();
         speedFlag = true;
-        Motor_A_Speed(result);    
+        Motor_Speed(result,1);    
 
         break;
     case 0x32://2
-        Motor_Backward();
+        Motor_Forward();
         speedFlag = true;
-        Motor_B_Speed(result);
+        Motor_Speed(result,2);
         break;
 
     
@@ -146,14 +144,13 @@ void Motor_Turn_Right(void)
 }
 void Speed_Control(char speed)
 {
-    Motor_A_Speed(speed);    
-    Motor_B_Speed(speed);    
-
+    Motor_Speed(speed,1);    
+    Motor_Speed(speed,2);    
 }
 void Direct_Speed_Control(int8_t motorA_speed, int8_t motorB_speed)
 {
-    Motor_A_Direct_Speed(motorA_speed);    
-    Motor_B_Direct_Speed(motorB_speed);    
+    Motor_Direct_Speed(motorA_speed,1);    
+    Motor_Direct_Speed(motorB_speed,2);    
 
 }
 

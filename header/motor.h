@@ -18,7 +18,7 @@ extern "C" {
 
 void Motor_Init(void);
 
-void Motor_Control();
+void Motor_Control(void);
 
 void Motor_Forward(void);
 
