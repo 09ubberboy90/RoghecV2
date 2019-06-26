@@ -50,40 +50,25 @@ void PWM_Start(uint8_t frequency,unsigned int dutycycle,uint8_t channel)
     PWM1_setDC(dutycycle,channel);
  }
 
-void Motor_A(uint8_t value)
+void Motor_A_Speed(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,1);
 }
 
-void MotorB(uint8_t value)
+void Motor_B_Speed(uint8_t value)
 {
     uint8_t frequency = 255; //2.9kHz
     PWM_Start(frequency,(value*frequency)/100,2);
 }
+void Motor_A_Direct_Speed(uint8_t value)
+{
+    uint8_t frequency = 255; //2.9kHz
+    PWM_Start(frequency,value,1);
+}
 
-uint16_t hex2int(char *hex) {
-    uint16_t tampon = 0;
-    uint16_t Value_out = 0;
-
-    for (int i = 0; i<2; i++)
-    {
-        tampon = hex[1 + i];
-        if (tampon <= '9' && tampon >= '0')
-        {
-            Value_out = (Value_out << 4) + (tampon - '0');
-        }
-        else
-        {
-            if(tampon >= 'A' && tampon <= 'F')
-            {
-                Value_out = (Value_out << 4) + (tampon - 'A' + 10);
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
-    return Value_out;
+void Motor_B_Direct_Speed(uint8_t value)
+{
+    uint8_t frequency = 255; //2.9kHz
+    PWM_Start(frequency,value,2);
 }
