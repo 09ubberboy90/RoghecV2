@@ -23,21 +23,6 @@ please contact mla_licensing@microchip.com
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "usb_device_cdc.h"
-
-/*********************************************************************
-* Function: void APP_DeviceCDCBasicDemoInitialize(void);
-*
-* Overview: Initializes the demo code
-*
-* PreCondition: None
-*
-* Input: None
-*
-* Output: None
-*
-********************************************************************/
-void APP_DeviceCDCBasicDemoInitialize(void);
 
 /*********************************************************************
 * Function: void APP_DeviceCDCBasicDemoTasks(void);
@@ -53,29 +38,7 @@ void APP_DeviceCDCBasicDemoInitialize(void);
 * Output: None
 *
 ********************************************************************/
-void APP_DeviceCDCBasicDemoTasks(void);
-
-/** 
-* Function: void Adc_Read_Send(void);
-*
-* Overview: Read the value from the adc and send it to serial.
-*
-* PreCondition: The adc should have been initialized and started
-*
-* Input: None
-*
-* Output: None
- */
-void Adc_Read_Send(void);
-/*
- */
-void Motor_Control(void);
-/*
- */
-void Pwm_Control(void);
-/*
- */
-
-int8_t Direction_Control(uint8_t input);
+void Bluetooth_Controller(void);
+void Pid_Setup(uint8_t choice);
 
 #endif

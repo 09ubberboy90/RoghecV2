@@ -28,20 +28,24 @@
 /** Type defintions *********************************/
 typedef enum
 {
+    PIN_FIRST, // DO NOT USE ONLY USED FOR LOOPING KEEP FIRST
     LED_NONE,
     LED_D1,
     LED_D2,
-    MOTOR_A,
-    MOTOR_B,
     MOTOR_A_F,
     MOTOR_A_R,
     MOTOR_B_F,
     MOTOR_B_R,
-//      D7 = Bus powered - hard wired to power supply
-//      D8 = Self powered - hard wired to power supply
-} MOTOR;
-
-#define LED_COUNT 4
+    SERVO_1,
+    SERVO_2,
+    SERVO_3,
+    SERVO_4,
+    SERVO_5,
+    SERVO_6,
+    PIN_LAST // DO NOT USE ONLY USED FOR LOOPING KEEP LAST  
+} PIN;
+const char* pin_name[] = {"PIN_FIRST","LED_NONE","LED_D1","LED_D2","MOTOR_A_F","MOTOR_A_R","MOTOR_B_F","MOTOR_B_R","SERVO_1","SERVO_2","SERVO_3","SERVO_4","SERVO_5","SERVO_6","PIN_LAST"};
+void Pin_Init(void);
 
 /*********************************************************************
 * Function: void LED_On(LED led);
@@ -59,7 +63,7 @@ typedef enum
 * Output: none
 *
 ********************************************************************/
-void Motor_On(MOTOR motor);
+void Pin_On(PIN motor);
 
 /*********************************************************************
 * Function: void LED_Off(LED led);
@@ -77,7 +81,7 @@ void Motor_On(MOTOR motor);
 * Output: none
 *
 ********************************************************************/
-void Motor_Off(MOTOR motor);
+void Pin_Off(PIN motor);
 
 /*********************************************************************
 * Function: void LED_Toggle(LED led);
@@ -95,7 +99,7 @@ void Motor_Off(MOTOR motor);
 * Output: none
 *
 ********************************************************************/
-void Motor_Toggle(MOTOR motor);
+void Pin_Toggle(PIN motor);
 
 /*********************************************************************
 * Function: bool LED_Get(LED led);
@@ -113,7 +117,7 @@ void Motor_Toggle(MOTOR motor);
 * Output: true if on, false if off
 *
 ********************************************************************/
-bool Motor_Get(MOTOR motor);
+bool Pin_Get(PIN motor);
 
 /*********************************************************************
 * Function: bool LED_Enable(LED led);
@@ -130,6 +134,6 @@ bool Motor_Get(MOTOR motor);
 * Output: none
 *
 ********************************************************************/
-void Motor_Enable(MOTOR motor);
+void Pin_Enable(PIN motor);
 
 #endif //LEDS_H
