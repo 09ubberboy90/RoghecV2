@@ -19,14 +19,8 @@ please contact mla_licensing@microchip.com
 
 /** INCLUDES *******************************************************/
 #include "system.h"
-
-#include "app_device_cdc_basic.h"
-#include "app_led_usb_status.h"
 #include <stdio.h>
 
-#include "usb.h"
-#include "usb_device.h"
-#include "usb_device_cdc.h"
 #include "pwm.h"
 #include "i2c.h"
 //#include "magnetometer.h"
@@ -34,52 +28,43 @@ please contact mla_licensing@microchip.com
 #include "gyroscope.h"
 #include "interupts.h"
 #include "pid.h"
+#include "servo.h"
 #include <math.h>
-/********************************************************************
- * Function:        void main(void)
- *
- * PreCondition:    None
- *
- * Input:           None
- *
- * Output:          None
- *
- * Side Effects:    None
- *
- * Overview:        Main program entry point.
- *
- * Note:            None
- *******************************************************************/
-MAIN_RETURN main(void)
+#include "io_controller.h"
+void main(void)
 {
-    Motor_Enable(LED_D1);
+    Pin_Init();
+    Servo_Init();
     I2C_Init(); 
     Motor_Init();
     MPU_Init();
     //Magneto_init(); 
     Interupt_Init();
+    #ifdef USB_MODE
     SYSTEM_Initialize(SYSTEM_STATE_USB_START);
     USBDeviceInit();
     USBDeviceAttach();
+    Io_Init();
+    #endif
+    #ifdef BLUETOOTH_MODE
+    // SPBRGH1 4; 
+    SPBRGH1 = 0x04;
+     // SCS FOSC; IDLEN disabled; IRCF 16MHz; 
+    OSCCON = 0x70;
+    // INTSRC INTRC_31_25KHz; PLLEN disabled; PRISD disabled; SOSCGO disabled; 
+    OSCCON2 = 0x00;
+    // SPLLMULT 3xPLL; TUN 0; 
+    OSCTUNE = 0x80;
+    // ACTSRC SOSC; ACTUD enabled; ACTEN disabled; 
+    ACTCON = 0x00;
+
+    USART_Init();
+    #endif
     Pid_Init(0,0,0);
-    APP_DeviceCDCBasicDemoInitialize();
     while(1)
     {
-        SYSTEM_Tasks();
-        
-        #if defined(USB_POLLING)
-            // Interrupt or polling method.  If using polling, must call
-            // this function periodically.  This function will take care
-            // of processing and responding to SETUP transactions
-            // (such as during the enumeration process when you first
-            // plug in).  USB hosts require that USB devices should accept
-            // and process SETUP packets in a timely fashion.  Therefore,
-            // when using polling, this function should be called
-            // regularly (such as once every 1.8ms or faster** [see
-            // inline code comments in usb_device.c for explanation when
-            // "or faster" applies])  In most cases, the USBDeviceTasks()
-            // function does not take very long to execute (ex: <100
-            // instruction cycles) before it returns.
+        #ifdef USB_MODE
+            SYSTEM_Tasks();
             USBDeviceTasks();
         #endif
         if (T0CONbits.TMR0ON)
@@ -90,7 +75,7 @@ MAIN_RETURN main(void)
         }
 
         //Application specific tasks
-        APP_DeviceCDCBasicDemoTasks();
+        Io_Listener();
         
     }//end while
 }//end main

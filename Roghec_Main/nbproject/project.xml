@@ -19,6 +19,12 @@
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/src/usb</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/header/elements</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/header/usb</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/elements</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/elements</sourceRootElem>
+                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

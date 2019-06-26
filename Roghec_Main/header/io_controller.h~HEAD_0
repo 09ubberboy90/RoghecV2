@@ -16,9 +16,28 @@ limitations under the License.
 To request to license the code under the MLA license (www.microchip.com/mla_license), 
 please contact mla_licensing@microchip.com
 *******************************************************************************/
-#include "leds.h"
-#include "buttons.h"
 
-#define LED_USB_DEVICE_STATE                    MOTOR_A
+#ifndef IO_CONTROLLER_H
+#define IO_CONTROLLER_H
 
-#define BUTTON_DEVICE_CDC_BASIC_DEMO             BUTTON_S3
+#include <stdbool.h>
+#include <stddef.h>
+
+#include <stdint.h>
+#include <stdio.h>
+#include "io.h"
+//#include "magnetometer.h"
+#include "gyroscope.h"
+#include "servo.h"
+#include "interupts.h"
+#include "pid.h"
+#include "system.h"
+/** VARIABLES ******************************************************/
+void Io_Init(void);
+
+
+void Io_Listener(void);
+
+void Pid_Setup(uint8_t choice);
+
+#endif

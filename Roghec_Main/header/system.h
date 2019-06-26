@@ -23,15 +23,16 @@ please contact mla_licensing@microchip.com
 #include <xc.h>
 #include <stdbool.h>
 
-#include "buttons.h"
-#include "leds.h"
-
-#include "io_mapping.h"
-#include "fixed_address_memory.h"
+#include "usb_device.h"
+#include "usb.h"
 #include "usb_config.h"
+#include "usb_device_cdc.h"
+#include "usart.h"
 
-#define MAIN_RETURN void
+#include "fixed_address_memory.h"
 
+//#define BLUETOOTH_MODE
+#define USB_MODE
 /*** System States **************************************************/
 typedef enum
 {
@@ -53,6 +54,7 @@ typedef enum
 *
 ********************************************************************/
 void SYSTEM_Initialize( SYSTEM_STATE state );
+void Send_Message(char mess[]);
 
 /*********************************************************************
 * Function: void SYSTEM_Tasks(void)

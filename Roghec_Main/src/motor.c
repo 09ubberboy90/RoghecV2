@@ -11,31 +11,30 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdbool.h>
-
 #include "motor.h"
 #include "io.h"
 #include "pwm.h"
-#include "usb.h"
-#include "usb_device_cdc.h"
+#include "system.h"
 
 void Motor_Init(void)
 {
-    Motor_Enable(MOTOR_A_F);
-    Motor_Enable(MOTOR_A_R);
-    Motor_Enable(MOTOR_B_F);
-    Motor_Enable(MOTOR_B_R);
+    Pin_Enable(MOTOR_A_F);
+    Pin_Enable(MOTOR_A_R);
+    Pin_Enable(MOTOR_B_F);
+    Pin_Enable(MOTOR_B_R);
 
 }
 
 void Motor_Control(void)
 {   
-    uint8_t readBuffer[50];
     bool errorFlag = false;
-    uint8_t numBytesRead = 0;
     uint8_t input[10];
     char mess[50];
     char result;
-    
+#ifdef USB_MODE
+    uint8_t numBytesRead = 0;
+    uint8_t readBuffer[50];
+
     for (int i = 0; i < 3; i++)
     {
         do {
@@ -45,7 +44,13 @@ void Motor_Control(void)
         input[i] = readBuffer[0];
 
     }
-
+#endif
+#ifdef BLUETOOTH_MODE
+    for (int i = 0; i < 3; i++)
+    {
+        input[i] = USART_ReceiveChar();
+    }
+#endif
     switch(input[0])
     {
     case 0x46://F
@@ -77,12 +82,13 @@ void Motor_Control(void)
         Speed_Control(result);   
 
         sprintf(mess,"Car is Moving : %u\r\n",result);
-        putrsUSBUSART(mess);
+//        putrsUSBUSART(mess);
     }
     else{
         sprintf(mess,"Erreur MOTOR\r\n");
-        putrsUSBUSART(mess);
+//        putrsUSBUSART(mess);
     }
+    Send_Message(mess);
 
     
 }
@@ -90,21 +96,21 @@ void Motor_Control(void)
 void Motor_Forward(void)
 {
     //Motor A forward
-    Motor_On(MOTOR_A_F);
-    Motor_Off(MOTOR_A_R);
+    Pin_On(MOTOR_A_F);
+    Pin_Off(MOTOR_A_R);
     //Motor b forward
-    Motor_On(MOTOR_B_F);
-    Motor_Off(MOTOR_B_R);
+    Pin_On(MOTOR_B_F);
+    Pin_Off(MOTOR_B_R);
 }
 
 void Motor_Backward(void)
 {
     //Motor A Backward
-    Motor_Off(MOTOR_A_F);
-    Motor_On(MOTOR_A_R);
+    Pin_Off(MOTOR_A_F);
+    Pin_On(MOTOR_A_R);
     //Motor b backward
-    Motor_Off(MOTOR_B_F);
-    Motor_On(MOTOR_B_R);
+    Pin_Off(MOTOR_B_F);
+    Pin_On(MOTOR_B_R);
 
 
 }
@@ -112,22 +118,22 @@ void Motor_Backward(void)
 void Motor_Turn_Left(void)
 {
     //Motor A forward
-    Motor_On(MOTOR_A_F);
-    Motor_Off(MOTOR_A_R);
+    Pin_On(MOTOR_A_F);
+    Pin_Off(MOTOR_A_R);
     //Motor b backward
-    Motor_Off(MOTOR_B_F);
-    Motor_On(MOTOR_B_R);
+    Pin_Off(MOTOR_B_F);
+    Pin_On(MOTOR_B_R);
 
 }
 
 void Motor_Turn_Right(void)
 {
     //Motor A Backward
-    Motor_Off(MOTOR_A_F);
-    Motor_On(MOTOR_A_R);
+    Pin_Off(MOTOR_A_F);
+    Pin_On(MOTOR_A_R);
     //Motor b forward
-    Motor_On(MOTOR_B_F);
-    Motor_Off(MOTOR_B_R);
+    Pin_On(MOTOR_B_F);
+    Pin_Off(MOTOR_B_R);
 
 }
 void Speed_Control(char speed)

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Final_Test.X
+PROJECTNAME=RoghecV2
 
 # Active Configuration
 DEFAULTCONF=default
