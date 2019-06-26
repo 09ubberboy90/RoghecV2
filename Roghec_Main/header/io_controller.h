@@ -17,43 +17,27 @@ To request to license the code under the MLA license (www.microchip.com/mla_lice
 please contact mla_licensing@microchip.com
 *******************************************************************************/
 
-#ifndef SYSTEM_H
-#define SYSTEM_H
+#ifndef IO_CONTROLLER_H
+#define IO_CONTROLLER_H
 
-#include <xc.h>
+#include <stdbool.h>
+#include <stddef.h>
 
-#include "usb_device.h"
-#include "usb.h"
-#include "usb_config.h"
-#include "usb_device_cdc.h"
-#include "usart.h"
-
-#include "fixed_address_memory.h"
-
-#define BLUETOOTH_MODE
-//#define USB_MODE
-/*** System States **************************************************/
-typedef enum
-{
-    SYSTEM_STATE_USB_START,
-    SYSTEM_STATE_USB_SUSPEND,
-    SYSTEM_STATE_USB_RESUME
-} SYSTEM_STATE;
-
-/*********************************************************************
-* Function: void SYSTEM_Initialize( SYSTEM_STATE state )
-*
-* Overview: Initializes the system.
-*
-* PreCondition: None
-*
-* Input:  SYSTEM_STATE - the state to initialize the system into
-*
-* Output: None
-*
-********************************************************************/
-void SYSTEM_Initialize( SYSTEM_STATE state );
-void Send_Message(char mess[]);
+#include <stdint.h>
+#include <stdio.h>
+#include "io.h"
+//#include "magnetometer.h"
+#include "gyroscope.h"
+#include "servo.h"
+#include "interupts.h"
+#include "pid.h"
+#include "system.h"
+/** VARIABLES ******************************************************/
+void Io_Init(void);
 
 
-#endif //SYSTEM_H
+void Io_Listener(void);
+
+void Pid_Setup(uint8_t choice);
+
+#endif

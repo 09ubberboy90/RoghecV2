@@ -28,6 +28,7 @@ void Motor_Init(void)
 void Motor_Control(void)
 {   
     bool errorFlag = false;
+    bool speedFlag = false;
     uint8_t input[10];
     char mess[50];
     char result;
@@ -46,6 +47,7 @@ void Motor_Control(void)
         input[i] = USART_ReceiveChar();
     }
 #endif
+    result = (input[1]*10+input[2])-16;
     switch(input[0])
     {
     case 0x46://F
@@ -64,6 +66,17 @@ void Motor_Control(void)
     case 0x72://r
         Motor_Turn_Right();
         break;
+    case 0x31://1
+        Motor_Forward();
+        speedFlag = true;
+        Motor_A_Speed(result);    
+
+        break;
+    case 0x32://2
+        Motor_Backward();
+        speedFlag = true;
+        Motor_B_Speed(result);
+        break;
 
     
     default:
@@ -72,10 +85,10 @@ void Motor_Control(void)
     }
     if (!errorFlag)
     {   
-        result = (input[1]*10+input[2])-16;
-
-        Speed_Control(result);   
-
+        if (!speedFlag)
+        {
+            Speed_Control(result);
+        }
         sprintf(mess,"Car is Moving : %u\r\n",result);
 //        putrsUSBUSART(mess);
     }
