@@ -19,27 +19,45 @@ please contact mla_licensing@microchip.com
 
 #include "system.h"
 #include "usb.h"
+#include "io.h"
+#include "usb_device.h"
+#include "usb.h"
+#include "usb_config.h"
+#include "usb_device_cdc.h"
 
 /** CONFIGURATION Bits **********************************************/
 #pragma config PLLSEL   = PLL3X     // PLL Selection (3x clock multiplier)
 #pragma config CFGPLLEN = OFF       // PLL Enable Configuration bit (PLL Disabled (firmware controlled))
+//#pragma config CFGPLLEN = ON       // PLL Enable Configuration bit (PLL Disabled (firmware controlled))
 #pragma config CPUDIV   = NOCLKDIV  // CPU System Clock Postscaler (CPU uses system clock (no divide))
 #pragma config LS48MHZ  = SYS48X8   // Low Speed USB mode with 48 MHz system clock (System clock at 48 MHz, USB clock divider is set to 8)
+
 #pragma config FOSC     = INTOSCIO  // Oscillator Selection (Internal oscillator)
 #pragma config PCLKEN   = OFF       // Primary Oscillator Shutdown (Primary oscillator shutdown firmware controlled)
+//#pragma config PCLKEN   = ON       // Primary Oscillator Shutdown (Primary oscillator shutdown firmware controlled)
 #pragma config FCMEN    = OFF       // Fail-Safe Clock Monitor (Fail-Safe Clock Monitor disabled)
 #pragma config IESO     = OFF       // Internal/External Oscillator Switchover (Oscillator Switchover mode disabled)
+
 #pragma config nPWRTEN  = OFF       // Power-up Timer Enable (Power up timer disabled)
 #pragma config BOREN    = SBORDIS   // Brown-out Reset Enable (BOR enabled in hardware (SBOREN is ignored))
 #pragma config BORV     = 190       // Brown-out Reset Voltage (BOR set to 1.9V nominal)
 #pragma config nLPBOR   = ON        // Low-Power Brown-out Reset (Low-Power Brown-out Reset enabled)
 #pragma config WDTEN    = SWON      // Watchdog Timer Enable bits (WDT controlled by firmware (SWDTEN enabled))
 #pragma config WDTPS    = 32768     // Watchdog Timer Postscaler (1:32768)
+
+//#pragma config nLPBOR   = OFF        // Low-Power Brown-out Reset (Low-Power Brown-out Reset enabled)
+//
+//#pragma config WDTEN = OFF          // Watchdog Timer Enable bits->WDT disabled in hardware (SWDTEN ignored)
+//#pragma config WDTPS = 32768        // Watchdog Timer Postscaler->1:32768
+
+
+
 #pragma config CCP2MX   = RC1       // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
 #pragma config PBADEN   = OFF       // PORTB A/D Enable bit (PORTB<5:0> pins are configured as digital I/O on Reset)
 #pragma config T3CMX    = RC0       // Timer3 Clock Input MUX bit (T3CKI function is on RC0)
-#pragma config SDOMX    = RC7       // SDO Output MUX bit (SDO function is on RC7)
+#pragma config SDOMX    = RB3       // SDO Output MUX bit->SDO function is on RB3
 #pragma config MCLRE    = ON        // Master Clear Reset Pin Enable (MCLR pin enabled; RE3 input disabled)
+
 #pragma config STVREN   = ON        // Stack Full/Underflow Reset (Stack full/underflow will cause Reset)
 #pragma config LVP      = OFF       // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
 #pragma config ICPRT    = OFF       // Dedicated In-Circuit Debug/Programming Port Enable (ICPORT disabled)
@@ -62,8 +80,6 @@ please contact mla_licensing@microchip.com
 #pragma config EBTR2    = OFF       // Block 2 Table Read Protect (Block 2 is not protected from table reads executed in other blocks)
 #pragma config EBTR3    = OFF       // Block 3 Table Read Protect (Block 3 is not protected from table reads executed in other blocks)
 #pragma config EBTRB    = OFF       // Boot Block Table Read Protect (Boot block is not protected from table reads executed in other blocks)
-
-
 
 /*********************************************************************
 * Function: void SYSTEM_Initialize( SYSTEM_STATE state )
@@ -92,9 +108,6 @@ void SYSTEM_Initialize( SYSTEM_STATE state )
                 while(OSCCON2bits.PLLRDY != 1);   //Wait for PLL lock
                 ACTCON = 0x90;  //Enable active clock tuning for USB operation
             #endif
-			
-            Motor_Enable(LED_USB_DEVICE_STATE);
-            BUTTON_Enable(BUTTON_DEVICE_CDC_BASIC_DEMO);
             break;
 			
         case SYSTEM_STATE_USB_SUSPEND: 
@@ -105,15 +118,14 @@ void SYSTEM_Initialize( SYSTEM_STATE state )
     }
 }
 
-#if(__XC8_VERSION < 2000)
-    #define INTERRUPT interrupt
-#else
-    #define INTERRUPT __interrupt()
-#endif
-
-void INTERRUPT SYS_InterruptHigh(void)
+void Send_Message(char mess[])
 {
-    #if defined(USB_INTERRUPT)
-        USBDeviceTasks();
+    #ifdef USB_MODE
+        putrsUSBUSART(mess);
+        CDCTxService();
     #endif
+    #ifdef BLUETOOTH_MODE
+        USART_SendString(mess);
+    #endif
+    return;
 }

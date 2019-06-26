@@ -9,9 +9,7 @@
 #include <xc.h>
 #include "i2c.h"
 #include "gyroscope.h"
-#include "usb.h"
-#include "usb_device_cdc.h"
-#include "usb_config.h"
+#include "system.h"
 #include "io.h"
 #include <stdio.h>
 
@@ -118,7 +116,6 @@ void MPU_Print_Raw_Value()
     gyro_data *data = MPU_getPointer();
 
     // Whole Function takes 17ms
-    Motor_On(LED_D1);
     //Getting the data takes 4 ms
     sprintf(tmp,"Gyroscope data : \r\n"
             "Xa: %d,"
@@ -132,31 +129,7 @@ void MPU_Print_Raw_Value()
             "Complementary Roll: %d,"
             "PID: %d\r\n",data->Xa,data->Ya,data->Za,data->Xg,data->Yg,data->Zg,
             data->Roll,data->Pitch,data->ComplPitch,data->PID);
-    UsbReady(tmp);
-    Motor_Off(LED_D1);
+    Send_Message(tmp);
 }
 
-void UsbReady(char message[])
-{
-    if( USBGetDeviceState() < CONFIGURED_STATE )
-    {
-        return;
-    }
 
-    /* If we are currently suspended, then we need to see if we need to
-     * issue a remote wakeup.  In either case, we shouldn't process any
-     * keyboard commands since we aren't currently communicating to the host
-     * thus just continue back to the start of the while loop. */
-    if(USBIsDeviceSuspended()== true )
-    {
-        return;
-    }
-    
-    if(mUSBUSARTIsTxTrfReady() == true)
-    {
-        //Sending takes 660us
-        putrsUSBUSART(message);
-    }
-    CDCTxService();
-
-}
