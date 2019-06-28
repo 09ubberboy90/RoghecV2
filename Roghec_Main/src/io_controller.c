@@ -168,7 +168,11 @@ void Io_Listener()
             case 0x67: //g
                 MPU_Print_Raw_Value();
                 break;
-
+                
+            case 0x4C:
+            case 0x6C:
+                Pin_Toggle(LED_D1);
+                break;
             case 0x0D:
             case 0x0A:
                 break;

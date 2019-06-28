@@ -65,7 +65,6 @@ void main(void)
     while(1)
     {
         #ifdef USB_MODE
-            SYSTEM_Tasks();
             USBDeviceTasks();
         #endif
         if (T0CONbits.TMR0ON)

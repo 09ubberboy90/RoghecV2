@@ -83,9 +83,6 @@ void Timer1_Init()
 //    PIE2bits.TMR3IE = 1; // enable timer interrupts
 //    //T0CONbits.TMR0ON = 1;
 //}
-void __interrupt() SYS_InterruptHigh(){
-        //USBDeviceTasks();
-}
 void __interrupt(low_priority) ISR_Control() //Low priority interrupt
 {
     if (INTCONbits.TMR0IF == 1) // Used for PID calculation and motor speed
