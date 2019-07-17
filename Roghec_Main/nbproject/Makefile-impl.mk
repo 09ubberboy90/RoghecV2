@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=RoghecV2
+PROJECTNAME=Roghec_Main
 
 # Active Configuration
 DEFAULTCONF=default
