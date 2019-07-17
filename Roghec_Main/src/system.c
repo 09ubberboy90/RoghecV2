@@ -51,10 +51,7 @@ please contact mla_licensing@microchip.com
 
 
 
-#pragma config CCP2MX   = RC1       // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
 #pragma config PBADEN   = OFF       // PORTB A/D Enable bit (PORTB<5:0> pins are configured as digital I/O on Reset)
-#pragma config T3CMX    = RC0       // Timer3 Clock Input MUX bit (T3CKI function is on RC0)
-#pragma config SDOMX    = RB3       // SDO Output MUX bit->SDO function is on RB3
 #pragma config MCLRE    = ON        // Master Clear Reset Pin Enable (MCLR pin enabled; RE3 input disabled)
 
 #pragma config STVREN   = ON        // Stack Full/Underflow Reset (Stack full/underflow will cause Reset)
@@ -119,6 +116,9 @@ void SYSTEM_Initialize( SYSTEM_STATE state )
 
 void Send_Message(char mess[])
 {
+    if (message_display)
+    {
+
     #ifdef USB_MODE
         putrsUSBUSART(mess);
         CDCTxService();
@@ -126,5 +126,6 @@ void Send_Message(char mess[])
     #ifdef BLUETOOTH_MODE
         USART_SendString(mess);
     #endif
+    }
     return;
 }

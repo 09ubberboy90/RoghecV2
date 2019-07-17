@@ -36,7 +36,12 @@ void Motor_Control(void)
 
     for (int i = 0; i < 3; i++)
     {
-        input[i] = USART_ReceiveChar();
+        do {
+            numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+        }
+        while(numBytesRead==0);
+        input[i] = readBuffer[0];
+
     }
 #endif
 #ifdef BLUETOOTH_MODE
@@ -124,22 +129,22 @@ void Motor_Backward(void)
 void Motor_Turn_Left(void)
 {
     //Motor A forward
-    Pin_On(MOTOR_A_F);
-    Pin_Off(MOTOR_A_R);
+    Pin_Off(MOTOR_A_F);
+    Pin_On(MOTOR_A_R);
     //Motor b backward
-    Pin_Off(MOTOR_B_F);
-    Pin_On(MOTOR_B_R);
+    Pin_On(MOTOR_B_F);
+    Pin_Off(MOTOR_B_R);
 
 }
 
 void Motor_Turn_Right(void)
 {
     //Motor A Backward
-    Pin_Off(MOTOR_A_F);
-    Pin_On(MOTOR_A_R);
+    Pin_On(MOTOR_A_F);
+    Pin_Off(MOTOR_A_R);
     //Motor b forward
-    Pin_On(MOTOR_B_F);
-    Pin_Off(MOTOR_B_R);
+    Pin_Off(MOTOR_B_F);
+    Pin_On(MOTOR_B_R);
 
 }
 void Speed_Control(char speed)

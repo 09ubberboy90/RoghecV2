@@ -25,56 +25,54 @@
 
 
 //MOTORA and MOTORB are useless since they are enable by pwm
-#define LED_D1_LAT LATDbits.LATD0
-#define LED_D2_LAT LATDbits.LATD1
+#define SERVO_1_TRIS TRISDbits.TRISD0
+#define SERVO_2_TRIS TRISDbits.TRISD1
+#define SERVO_3_TRIS TRISDbits.TRISD2
+#define SERVO_4_TRIS TRISDbits.TRISD3
+#define SERVO_5_TRIS TRISDbits.TRISD4
+#define SERVO_6_TRIS TRISDbits.TRISD5
+#define SERVO_7_TRIS TRISDbits.TRISD6
+#define SERVO_8_TRIS TRISDbits.TRISD7
+#define SERVO_9_TRIS TRISBbits.TRISB2
+#define SERVO_10_TRIS TRISBbits.TRISB3
+#define SERVO_11_TRIS TRISBbits.TRISB4
 
-#define LED_D1_TRIS TRISDbits.TRISD0
-#define LED_D2_TRIS TRISDbits.TRISD1
+#define SERVO_1_LAT LATDbits.LATD0
+#define SERVO_2_LAT LATDbits.LATD1
+#define SERVO_3_LAT LATDbits.LATD2
+#define SERVO_4_LAT LATDbits.LATD3
+#define SERVO_5_LAT LATDbits.LATD4
+#define SERVO_6_LAT LATDbits.LATD5
+#define SERVO_7_LAT LATDbits.LATD6
+#define SERVO_8_LAT LATDbits.LATD7
+#define SERVO_9_LAT LATBbits.LATB2
+#define SERVO_10_LAT LATBbits.LATB3
+#define SERVO_11_LAT LATBbits.LATB4
 
-#define LED_D1_ANSEL ANSELDbits.ANSD0
-#define LED_D2_ANSEL ANSELDbits.ANSD1
+#define SERVO_1_ANSEL ANSELDbits.ANSD0
+#define SERVO_2_ANSEL ANSELDbits.ANSD1
+#define SERVO_3_ANSEL ANSELDbits.ANSD2
+#define SERVO_4_ANSEL ANSELDbits.ANSD3
+#define SERVO_6_ANSEL ANSELDbits.ANSD5
+#define SERVO_7_ANSEL ANSELDbits.ANSD6
+#define SERVO_8_ANSEL ANSELDbits.ANSD7
+#define SERVO_9_ANSEL ANSELBbits.ANSB2
+#define SERVO_10_ANSEL ANSELBbits.ANSB3
+#define SERVO_11_ANSEL ANSELBbits.ANSB4
 
-#define SERVO_1_LAT LATAbits.LATA0
-#define SERVO_2_LAT LATAbits.LATA1
-#define SERVO_3_LAT LATAbits.LATA2
-#define SERVO_4_LAT LATAbits.LATA3
-#define SERVO_5_LAT LATAbits.LATA4
-#define SERVO_6_LAT LATAbits.LATA5
+#define MotorAF_LAT LATAbits.LATA2
+#define MotorAR_LAT LATAbits.LATA3
+#define MotorBF_LAT LATAbits.LATA4
+#define MotorBR_LAT LATAbits.LATA5
 
-#define SERVO_1_TRIS TRISAbits.TRISA0
-#define SERVO_2_TRIS TRISAbits.TRISA1
-#define SERVO_3_TRIS TRISAbits.TRISA2
-#define SERVO_4_TRIS TRISAbits.TRISA3
-#define SERVO_5_TRIS TRISAbits.TRISA4
-#define SERVO_6_TRIS TRISAbits.TRISA5
+#define MotorAF_TRIS TRISAbits.TRISA2
+#define MotorAR_TRIS TRISAbits.TRISA3
+#define MotorBF_TRIS TRISAbits.TRISA4
+#define MotorBR_TRIS TRISAbits.TRISA5
 
-#define SERVO_1_LAT LATAbits.LATA0
-#define SERVO_2_LAT LATAbits.LATA1
-#define SERVO_3_LAT LATAbits.LATA2
-#define SERVO_4_LAT LATAbits.LATA3
-#define SERVO_5_LAT LATAbits.LATA4
-#define SERVO_6_LAT LATAbits.LATA5
-
-#define SERVO_1_ANSEL ANSELAbits.ANSA0
-#define SERVO_2_ANSEL ANSELAbits.ANSA1
-#define SERVO_3_ANSEL ANSELAbits.ANSA2
-#define SERVO_4_ANSEL ANSELAbits.ANSA3
-#define SERVO_6_ANSEL ANSELAbits.ANSA5
-
-#define MotorAF_LAT LATDbits.LATD2
-#define MotorAR_LAT LATDbits.LATD3
-#define MotorBF_LAT LATDbits.LATD6
-#define MotorBR_LAT LATDbits.LATD7
-
-#define MotorAF_TRIS TRISDbits.TRISD2
-#define MotorAR_TRIS TRISDbits.TRISD3
-#define MotorBF_TRIS TRISDbits.TRISD6
-#define MotorBR_TRIS TRISDbits.TRISD7
-
-#define MotorAF_ANSEL ANSELDbits.ANSD2
-#define MotorAR_ANSEL ANSELDbits.ANSD3
-#define MotorBF_ANSEL ANSELDbits.ANSD6
-#define MotorBR_ANSEL ANSELDbits.ANSD7
+#define MotorAF_ANSEL ANSELAbits.ANSA2
+#define MotorAR_ANSEL ANSELAbits.ANSA3
+#define MotorBR_ANSEL ANSELAbits.ANSA5
 
 #define ON  1
 #define OFF 0
@@ -116,13 +114,6 @@ void Pin_On(PIN led)
 {
     switch(led)
     {
-        case LED_D1:
-            LED_D1_LAT = ON;
-            break;
-
-        case LED_D2:
-            LED_D2_LAT = ON;
-            break;
         case SERVO_1:
             SERVO_1_LAT = ON;
             break;
@@ -140,6 +131,21 @@ void Pin_On(PIN led)
             break;
         case SERVO_6:
             SERVO_6_LAT = ON;
+            break;
+        case SERVO_7:
+            SERVO_7_LAT = ON;
+            break;
+        case SERVO_8:
+            SERVO_8_LAT = ON;
+            break;
+        case SERVO_9:
+            SERVO_9_LAT = ON;
+            break;
+        case SERVO_10:
+            SERVO_10_LAT = ON;
+            break;
+        case SERVO_11:
+            SERVO_11_LAT = ON;
             break;
         case MOTOR_A_F:
             MotorAF_LAT = ON;
@@ -178,15 +184,7 @@ void Pin_On(PIN led)
 void Pin_Off(PIN led)
 {
     switch(led)
-    {
-        case LED_D1:
-            LED_D1_LAT = OFF;
-            break;
-
-        case LED_D2:
-            LED_D2_LAT = OFF;
-            break;
-			
+    {			
         case SERVO_1:
             SERVO_1_LAT = OFF;
             break;
@@ -204,6 +202,21 @@ void Pin_Off(PIN led)
             break;
         case SERVO_6:
             SERVO_6_LAT = OFF;
+            break;
+        case SERVO_7:
+            SERVO_7_LAT = OFF;
+            break;
+        case SERVO_8:
+            SERVO_8_LAT = OFF;
+            break;
+        case SERVO_9:
+            SERVO_9_LAT = OFF;
+            break;
+        case SERVO_10:
+            SERVO_10_LAT = OFF;
+            break;
+        case SERVO_11:
+            SERVO_11_LAT = OFF;
             break;
 
         case MOTOR_A_F:
@@ -247,14 +260,6 @@ void Pin_Toggle(PIN led)
 {
     switch(led)
     {
-        case LED_D1:
-            LED_D1_LAT ^= 1;
-            break;
-
-        case LED_D2:
-            LED_D2_LAT ^= 1;
-            break;
-            
         case SERVO_1:
             SERVO_1_LAT ^= 1;
             break;
@@ -274,6 +279,25 @@ void Pin_Toggle(PIN led)
             SERVO_6_LAT ^= 1;
             break;
 		
+        case SERVO_7:
+            SERVO_7_LAT ^= 1;
+            break;
+            
+        case SERVO_8:
+            SERVO_8_LAT ^= 1;
+            break;
+            
+        case SERVO_9:
+            SERVO_9_LAT ^= 1;
+            break;
+            
+        case SERVO_10:
+            SERVO_10_LAT ^= 1;
+            break;
+            
+        case SERVO_11:
+            SERVO_11_LAT ^= 1;
+            break;
             
         case MOTOR_A_F:
             MotorAF_LAT ^= 1;
@@ -296,70 +320,6 @@ void Pin_Toggle(PIN led)
 }
 
 /*********************************************************************
-* Function: bool LED_Get(LED led);
-*
-* Overview: Returns the current state of the requested LED
-*
-* PreCondition: LED configured via LEDConfigure()
-*
-* Input: LED led - enumeration of the LEDs available in this
-*        demo.  They should be meaningful names and not the names of
-*        the LEDs on the silkscreen on the board (as the demo code may
-*        be ported to other boards).
-*         i.e. - LED_Get(LED_CONNECTION_DETECTED);
-*
-* Output: true if on, false if off
-*
-********************************************************************/
-bool Pin_Get(PIN led)
-{
-    switch(led)
-    {
-        case LED_D1:
-            return ( (LED_D1_LAT == ON) ? true : false );
-
-        case LED_D2:
-            return ( (LED_D2_LAT == ON) ? true : false );
-			
-        case MOTOR_A_F:
-            return ( (MotorAF_LAT == ON) ? true : false );
-            
-        case MOTOR_A_R:
-            return ( (MotorAR_LAT == ON) ? true : false );
-            
-        case MOTOR_B_F:
-            return ( (MotorBF_LAT == ON) ? true : false );  
-            
-        case MOTOR_B_R:
-            return ( (MotorBR_LAT == ON) ? true : false );
-            
-        case SERVO_1:
-            return ( (SERVO_1_TRIS == ON) ? true : false );    
-            
-        case SERVO_2:
-            return ( (SERVO_2_TRIS == ON) ? true : false );    
-            
-        case SERVO_3:
-            return ( (SERVO_3_TRIS == ON) ? true : false );    
-            
-        case SERVO_4:
-            return ( (SERVO_4_TRIS == ON) ? true : false );    
-           
-        case SERVO_5:
-            return ( (SERVO_5_TRIS == ON) ? true : false );    
-            
-        case SERVO_6:
-            return ( (SERVO_6_TRIS == ON) ? true : false );    
-            
-        default:
-            return false;
-
-    }
-    
-    return false;
-}
-
-/*********************************************************************
 * Function: void LED_Enable(LED led);
 *
 * Overview: Configures the LED for use by the other LED API
@@ -378,16 +338,6 @@ void Pin_Enable(PIN led)
 {
     switch(led)
     {
-        case LED_D1:
-            LED_D1_TRIS = PIN_OUTPUT;
-            LED_D1_ANSEL = PIN_DIGITAL;
-            break;
-
-        case LED_D2:
-            LED_D2_TRIS = PIN_OUTPUT;
-            LED_D1_ANSEL = PIN_DIGITAL;
-            break;
-			        
         case MOTOR_A_F:
             MotorAF_TRIS = PIN_OUTPUT;
             MotorAF_ANSEL= PIN_DIGITAL;
@@ -399,7 +349,6 @@ void Pin_Enable(PIN led)
             
         case MOTOR_B_F:
             MotorBF_TRIS = PIN_OUTPUT;
-            MotorBF_ANSEL= PIN_DIGITAL;
             break;
             
         case MOTOR_B_R:
@@ -429,7 +378,26 @@ void Pin_Enable(PIN led)
             SERVO_6_TRIS = PIN_OUTPUT;
             SERVO_6_ANSEL = PIN_DIGITAL;
             break;
-
+        case SERVO_7:
+            SERVO_7_TRIS = PIN_OUTPUT;
+            SERVO_7_ANSEL = PIN_DIGITAL;
+            break;
+        case SERVO_8:
+            SERVO_8_TRIS = PIN_OUTPUT;
+            SERVO_8_ANSEL = PIN_DIGITAL;
+            break;
+        case SERVO_9:
+            SERVO_9_TRIS = PIN_OUTPUT;
+            SERVO_9_ANSEL = PIN_DIGITAL;
+            break;
+        case SERVO_10:
+            SERVO_10_TRIS = PIN_OUTPUT;
+            SERVO_10_ANSEL = PIN_DIGITAL;
+            break;
+        case SERVO_11:
+            SERVO_11_TRIS = PIN_OUTPUT;
+            SERVO_11_ANSEL = PIN_DIGITAL;
+            break;
         default:
             break;
     }

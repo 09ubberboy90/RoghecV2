@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Final_Test</name>
+            <name>RoghecV2</name>
             <creation-uuid>5ee45984-8f41-4c5b-af49-0dfa2e8e86af</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
@@ -13,18 +13,14 @@
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>D:\Personal\FinalTest\Final_Test.X\header</sourceRootElem>
-                <sourceRootElem>D:\Personal\FinalTest\Final_Test.X\src</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/src/elements</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/src/usb</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/header/elements</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test.X/header/usb</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/elements</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb</sourceRootElem>
-                <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/elements</sourceRootElem>
                 <sourceRootElem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb</sourceRootElem>
+                <sourceRootElem>header</sourceRootElem>
+                <sourceRootElem>src</sourceRootElem>
+                <sourceRootElem>src/usb</sourceRootElem>
+                <sourceRootElem>header/usb</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

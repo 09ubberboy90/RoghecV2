@@ -42,9 +42,14 @@ typedef enum
     SERVO_4,
     SERVO_5,
     SERVO_6,
+    SERVO_7,
+    SERVO_8,
+    SERVO_9,
+    SERVO_10,
+    SERVO_11,
     PIN_LAST // DO NOT USE ONLY USED FOR LOOPING KEEP LAST  
 } PIN;
-const char* pin_name[] = {"PIN_FIRST","LED_NONE","LED_D1","LED_D2","MOTOR_A_F","MOTOR_A_R","MOTOR_B_F","MOTOR_B_R","SERVO_1","SERVO_2","SERVO_3","SERVO_4","SERVO_5","SERVO_6","PIN_LAST"};
+const char* pin_name[] = {"PIN_FIRST","LED_NONE","MOTOR_A_F","MOTOR_A_R","MOTOR_B_F","MOTOR_B_R","SERVO_1","SERVO_2","SERVO_3","SERVO_4","SERVO_5","SERVO_6","SERVO_7","SERVO_8","SERVO_9","SERVO_10","SERVO_11","PIN_LAST"};
 void Pin_Init(void);
 
 /*********************************************************************

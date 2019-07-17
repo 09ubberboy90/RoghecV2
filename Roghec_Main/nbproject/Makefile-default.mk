@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c
+SOURCEFILES_QUOTED_IF_SPACED=src/pwm.c src/i2c.c src/io.c src/gyroscope.c src/servo.c src/usart.c src/usb/usb_descriptors.c src/usb/usb_device.c src/usb/usb_device_cdc.c src/usb/usb_events.c src/main.c src/system.c src/motor.c src/interupts.c src/pid.c src/io_controller.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/2141126742/pwm.p1 ${OBJECTDIR}/_ext/2141126742/i2c.p1 ${OBJECTDIR}/_ext/2141126742/io.p1 ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 ${OBJECTDIR}/_ext/2141126742/servo.p1 ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 ${OBJECTDIR}/_ext/1661859765/usb_device.p1 ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 ${OBJECTDIR}/_ext/1661859765/usb_events.p1 ${OBJECTDIR}/_ext/2141126742/main.p1 ${OBJECTDIR}/_ext/2141126742/system.p1 ${OBJECTDIR}/_ext/2141126742/motor.p1 ${OBJECTDIR}/_ext/2141126742/interupts.p1 ${OBJECTDIR}/_ext/2141126742/pid.p1 ${OBJECTDIR}/_ext/2141126742/io_controller.p1 ${OBJECTDIR}/_ext/2141126742/usart.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/2141126742/pwm.p1.d ${OBJECTDIR}/_ext/2141126742/i2c.p1.d ${OBJECTDIR}/_ext/2141126742/io.p1.d ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d ${OBJECTDIR}/_ext/2141126742/servo.p1.d ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d ${OBJECTDIR}/_ext/2141126742/main.p1.d ${OBJECTDIR}/_ext/2141126742/system.p1.d ${OBJECTDIR}/_ext/2141126742/motor.p1.d ${OBJECTDIR}/_ext/2141126742/interupts.p1.d ${OBJECTDIR}/_ext/2141126742/pid.p1.d ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d ${OBJECTDIR}/_ext/2141126742/usart.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/pwm.p1 ${OBJECTDIR}/src/i2c.p1 ${OBJECTDIR}/src/io.p1 ${OBJECTDIR}/src/gyroscope.p1 ${OBJECTDIR}/src/servo.p1 ${OBJECTDIR}/src/usart.p1 ${OBJECTDIR}/src/usb/usb_descriptors.p1 ${OBJECTDIR}/src/usb/usb_device.p1 ${OBJECTDIR}/src/usb/usb_device_cdc.p1 ${OBJECTDIR}/src/usb/usb_events.p1 ${OBJECTDIR}/src/main.p1 ${OBJECTDIR}/src/system.p1 ${OBJECTDIR}/src/motor.p1 ${OBJECTDIR}/src/interupts.p1 ${OBJECTDIR}/src/pid.p1 ${OBJECTDIR}/src/io_controller.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/pwm.p1.d ${OBJECTDIR}/src/i2c.p1.d ${OBJECTDIR}/src/io.p1.d ${OBJECTDIR}/src/gyroscope.p1.d ${OBJECTDIR}/src/servo.p1.d ${OBJECTDIR}/src/usart.p1.d ${OBJECTDIR}/src/usb/usb_descriptors.p1.d ${OBJECTDIR}/src/usb/usb_device.p1.d ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d ${OBJECTDIR}/src/usb/usb_events.p1.d ${OBJECTDIR}/src/main.p1.d ${OBJECTDIR}/src/system.p1.d ${OBJECTDIR}/src/motor.p1.d ${OBJECTDIR}/src/interupts.p1.d ${OBJECTDIR}/src/pid.p1.d ${OBJECTDIR}/src/io_controller.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/2141126742/pwm.p1 ${OBJECTDIR}/_ext/2141126742/i2c.p1 ${OBJECTDIR}/_ext/2141126742/io.p1 ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 ${OBJECTDIR}/_ext/2141126742/servo.p1 ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 ${OBJECTDIR}/_ext/1661859765/usb_device.p1 ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 ${OBJECTDIR}/_ext/1661859765/usb_events.p1 ${OBJECTDIR}/_ext/2141126742/main.p1 ${OBJECTDIR}/_ext/2141126742/system.p1 ${OBJECTDIR}/_ext/2141126742/motor.p1 ${OBJECTDIR}/_ext/2141126742/interupts.p1 ${OBJECTDIR}/_ext/2141126742/pid.p1 ${OBJECTDIR}/_ext/2141126742/io_controller.p1 ${OBJECTDIR}/_ext/2141126742/usart.p1
+OBJECTFILES=${OBJECTDIR}/src/pwm.p1 ${OBJECTDIR}/src/i2c.p1 ${OBJECTDIR}/src/io.p1 ${OBJECTDIR}/src/gyroscope.p1 ${OBJECTDIR}/src/servo.p1 ${OBJECTDIR}/src/usart.p1 ${OBJECTDIR}/src/usb/usb_descriptors.p1 ${OBJECTDIR}/src/usb/usb_device.p1 ${OBJECTDIR}/src/usb/usb_device_cdc.p1 ${OBJECTDIR}/src/usb/usb_events.p1 ${OBJECTDIR}/src/main.p1 ${OBJECTDIR}/src/system.p1 ${OBJECTDIR}/src/motor.p1 ${OBJECTDIR}/src/interupts.p1 ${OBJECTDIR}/src/pid.p1 ${OBJECTDIR}/src/io_controller.p1
 
 # Source Files
-SOURCEFILES=D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c
+SOURCEFILES=src/pwm.c src/i2c.c src/io.c src/gyroscope.c src/servo.c src/usart.c src/usb/usb_descriptors.c src/usb/usb_device.c src/usb/usb_device_cdc.c src/usb/usb_events.c src/main.c src/system.c src/motor.c src/interupts.c src/pid.c src/io_controller.c
 
 
 CFLAGS=
@@ -93,262 +93,262 @@ MP_PROCESSOR_OPTION=18F45K50
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/2141126742/pwm.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pwm.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/pwm.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/pwm.d ${OBJECTDIR}/_ext/2141126742/pwm.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/pwm.p1: src/pwm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/pwm.p1.d 
+	@${RM} ${OBJECTDIR}/src/pwm.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/pwm.p1 src/pwm.c 
+	@-${MV} ${OBJECTDIR}/src/pwm.d ${OBJECTDIR}/src/pwm.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/i2c.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/i2c.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/i2c.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/i2c.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/i2c.d ${OBJECTDIR}/_ext/2141126742/i2c.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/i2c.p1: src/i2c.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/i2c.p1.d 
+	@${RM} ${OBJECTDIR}/src/i2c.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/i2c.p1 src/i2c.c 
+	@-${MV} ${OBJECTDIR}/src/i2c.d ${OBJECTDIR}/src/i2c.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/io.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/io.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/io.d ${OBJECTDIR}/_ext/2141126742/io.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/io.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/io.p1: src/io.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/io.p1.d 
+	@${RM} ${OBJECTDIR}/src/io.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/io.p1 src/io.c 
+	@-${MV} ${OBJECTDIR}/src/io.d ${OBJECTDIR}/src/io.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/io.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/gyroscope.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/gyroscope.d ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/gyroscope.p1: src/gyroscope.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/gyroscope.p1.d 
+	@${RM} ${OBJECTDIR}/src/gyroscope.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/gyroscope.p1 src/gyroscope.c 
+	@-${MV} ${OBJECTDIR}/src/gyroscope.d ${OBJECTDIR}/src/gyroscope.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/gyroscope.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/servo.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/servo.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/servo.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/servo.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/servo.d ${OBJECTDIR}/_ext/2141126742/servo.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/servo.p1: src/servo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/servo.p1.d 
+	@${RM} ${OBJECTDIR}/src/servo.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/servo.p1 src/servo.c 
+	@-${MV} ${OBJECTDIR}/src/servo.d ${OBJECTDIR}/src/servo.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.d ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usart.p1: src/usart.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/usart.p1.d 
+	@${RM} ${OBJECTDIR}/src/usart.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usart.p1 src/usart.c 
+	@-${MV} ${OBJECTDIR}/src/usart.d ${OBJECTDIR}/src/usart.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_device.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_device.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_device.d ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_descriptors.p1: src/usb/usb_descriptors.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_descriptors.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_descriptors.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_descriptors.p1 src/usb/usb_descriptors.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_descriptors.d ${OBJECTDIR}/src/usb/usb_descriptors.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_descriptors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.d ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_device.p1: src/usb/usb_device.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_device.p1 src/usb/usb_device.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_device.d ${OBJECTDIR}/src/usb/usb_device.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_device.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_events.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_events.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_events.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_events.d ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_device_cdc.p1: src/usb/usb_device_cdc.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device_cdc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_device_cdc.p1 src/usb/usb_device_cdc.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_device_cdc.d ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/main.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/main.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/main.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/main.d ${OBJECTDIR}/_ext/2141126742/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_events.p1: src/usb/usb_events.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_events.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_events.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_events.p1 src/usb/usb_events.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_events.d ${OBJECTDIR}/src/usb/usb_events.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_events.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/system.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/system.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/system.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/system.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/system.d ${OBJECTDIR}/_ext/2141126742/system.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/main.p1: src/main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/main.p1.d 
+	@${RM} ${OBJECTDIR}/src/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/main.p1 src/main.c 
+	@-${MV} ${OBJECTDIR}/src/main.d ${OBJECTDIR}/src/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/motor.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/motor.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/motor.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/motor.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/motor.d ${OBJECTDIR}/_ext/2141126742/motor.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/motor.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/system.p1: src/system.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/system.p1.d 
+	@${RM} ${OBJECTDIR}/src/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/system.p1 src/system.c 
+	@-${MV} ${OBJECTDIR}/src/system.d ${OBJECTDIR}/src/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/interupts.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/interupts.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/interupts.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/interupts.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/interupts.d ${OBJECTDIR}/_ext/2141126742/interupts.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/interupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/motor.p1: src/motor.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/motor.p1.d 
+	@${RM} ${OBJECTDIR}/src/motor.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/motor.p1 src/motor.c 
+	@-${MV} ${OBJECTDIR}/src/motor.d ${OBJECTDIR}/src/motor.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/motor.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/pid.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pid.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pid.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/pid.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/pid.d ${OBJECTDIR}/_ext/2141126742/pid.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/pid.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/interupts.p1: src/interupts.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/interupts.p1.d 
+	@${RM} ${OBJECTDIR}/src/interupts.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/interupts.p1 src/interupts.c 
+	@-${MV} ${OBJECTDIR}/src/interupts.d ${OBJECTDIR}/src/interupts.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/interupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/io_controller.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io_controller.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/io_controller.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/io_controller.d ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/pid.p1: src/pid.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/pid.p1.d 
+	@${RM} ${OBJECTDIR}/src/pid.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/pid.p1 src/pid.c 
+	@-${MV} ${OBJECTDIR}/src/pid.d ${OBJECTDIR}/src/pid.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/pid.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/usart.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/usart.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/usart.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/usart.d ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/io_controller.p1: src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/io_controller.p1.d 
+	@${RM} ${OBJECTDIR}/src/io_controller.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/io_controller.p1 src/io_controller.c 
+	@-${MV} ${OBJECTDIR}/src/io_controller.d ${OBJECTDIR}/src/io_controller.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
-${OBJECTDIR}/_ext/2141126742/pwm.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pwm.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/pwm.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/pwm.d ${OBJECTDIR}/_ext/2141126742/pwm.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/pwm.p1: src/pwm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/pwm.p1.d 
+	@${RM} ${OBJECTDIR}/src/pwm.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/pwm.p1 src/pwm.c 
+	@-${MV} ${OBJECTDIR}/src/pwm.d ${OBJECTDIR}/src/pwm.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/pwm.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/i2c.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/i2c.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/i2c.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/i2c.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/i2c.d ${OBJECTDIR}/_ext/2141126742/i2c.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/i2c.p1: src/i2c.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/i2c.p1.d 
+	@${RM} ${OBJECTDIR}/src/i2c.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/i2c.p1 src/i2c.c 
+	@-${MV} ${OBJECTDIR}/src/i2c.d ${OBJECTDIR}/src/i2c.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/io.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/io.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/io.d ${OBJECTDIR}/_ext/2141126742/io.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/io.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/io.p1: src/io.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/io.p1.d 
+	@${RM} ${OBJECTDIR}/src/io.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/io.p1 src/io.c 
+	@-${MV} ${OBJECTDIR}/src/io.d ${OBJECTDIR}/src/io.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/io.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/gyroscope.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/gyroscope.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/gyroscope.d ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/gyroscope.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/gyroscope.p1: src/gyroscope.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/gyroscope.p1.d 
+	@${RM} ${OBJECTDIR}/src/gyroscope.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/gyroscope.p1 src/gyroscope.c 
+	@-${MV} ${OBJECTDIR}/src/gyroscope.d ${OBJECTDIR}/src/gyroscope.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/gyroscope.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/servo.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/servo.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/servo.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/servo.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/servo.d ${OBJECTDIR}/_ext/2141126742/servo.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/servo.p1: src/servo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/servo.p1.d 
+	@${RM} ${OBJECTDIR}/src/servo.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/servo.p1 src/servo.c 
+	@-${MV} ${OBJECTDIR}/src/servo.d ${OBJECTDIR}/src/servo.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.d ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_descriptors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usart.p1: src/usart.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/usart.p1.d 
+	@${RM} ${OBJECTDIR}/src/usart.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usart.p1 src/usart.c 
+	@-${MV} ${OBJECTDIR}/src/usart.d ${OBJECTDIR}/src/usart.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_device.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_device.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_device.d ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_device.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_descriptors.p1: src/usb/usb_descriptors.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_descriptors.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_descriptors.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_descriptors.p1 src/usb/usb_descriptors.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_descriptors.d ${OBJECTDIR}/src/usb/usb_descriptors.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_descriptors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.d ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_device_cdc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_device.p1: src/usb/usb_device.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_device.p1 src/usb/usb_device.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_device.d ${OBJECTDIR}/src/usb/usb_device.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_device.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1661859765/usb_events.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/1661859765" 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1661859765/usb_events.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1661859765/usb_events.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c 
-	@-${MV} ${OBJECTDIR}/_ext/1661859765/usb_events.d ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1661859765/usb_events.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_device_cdc.p1: src/usb/usb_device_cdc.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_device_cdc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_device_cdc.p1 src/usb/usb_device_cdc.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_device_cdc.d ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_device_cdc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/main.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/main.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/main.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/main.d ${OBJECTDIR}/_ext/2141126742/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/usb/usb_events.p1: src/usb/usb_events.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/usb" 
+	@${RM} ${OBJECTDIR}/src/usb/usb_events.p1.d 
+	@${RM} ${OBJECTDIR}/src/usb/usb_events.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/usb/usb_events.p1 src/usb/usb_events.c 
+	@-${MV} ${OBJECTDIR}/src/usb/usb_events.d ${OBJECTDIR}/src/usb/usb_events.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/usb/usb_events.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/system.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/system.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/system.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/system.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/system.d ${OBJECTDIR}/_ext/2141126742/system.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/main.p1: src/main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/main.p1.d 
+	@${RM} ${OBJECTDIR}/src/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/main.p1 src/main.c 
+	@-${MV} ${OBJECTDIR}/src/main.d ${OBJECTDIR}/src/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/motor.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/motor.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/motor.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/motor.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/motor.d ${OBJECTDIR}/_ext/2141126742/motor.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/motor.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/system.p1: src/system.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/system.p1.d 
+	@${RM} ${OBJECTDIR}/src/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/system.p1 src/system.c 
+	@-${MV} ${OBJECTDIR}/src/system.d ${OBJECTDIR}/src/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/interupts.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/interupts.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/interupts.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/interupts.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/interupts.d ${OBJECTDIR}/_ext/2141126742/interupts.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/interupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/motor.p1: src/motor.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/motor.p1.d 
+	@${RM} ${OBJECTDIR}/src/motor.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/motor.p1 src/motor.c 
+	@-${MV} ${OBJECTDIR}/src/motor.d ${OBJECTDIR}/src/motor.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/motor.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/pid.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pid.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/pid.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/pid.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/pid.d ${OBJECTDIR}/_ext/2141126742/pid.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/pid.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/interupts.p1: src/interupts.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/interupts.p1.d 
+	@${RM} ${OBJECTDIR}/src/interupts.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/interupts.p1 src/interupts.c 
+	@-${MV} ${OBJECTDIR}/src/interupts.d ${OBJECTDIR}/src/interupts.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/interupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/io_controller.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/io_controller.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/io_controller.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/io_controller.d ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/pid.p1: src/pid.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/pid.p1.d 
+	@${RM} ${OBJECTDIR}/src/pid.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/pid.p1 src/pid.c 
+	@-${MV} ${OBJECTDIR}/src/pid.d ${OBJECTDIR}/src/pid.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/pid.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/2141126742/usart.p1: D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/2141126742" 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/2141126742/usart.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/2141126742/usart.p1 D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c 
-	@-${MV} ${OBJECTDIR}/_ext/2141126742/usart.d ${OBJECTDIR}/_ext/2141126742/usart.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/2141126742/usart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/src/io_controller.p1: src/io_controller.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src" 
+	@${RM} ${OBJECTDIR}/src/io_controller.p1.d 
+	@${RM} ${OBJECTDIR}/src/io_controller.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"header" -I"header/usb" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/src/io_controller.p1 src/io_controller.c 
+	@-${MV} ${OBJECTDIR}/src/io_controller.d ${OBJECTDIR}/src/io_controller.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/src/io_controller.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

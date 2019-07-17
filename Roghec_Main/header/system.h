@@ -27,11 +27,11 @@ please contact mla_licensing@microchip.com
 #include "usb_config.h"
 #include "usb_device_cdc.h"
 #include "usart.h"
-
 #include "fixed_address_memory.h"
+bool message_display = true;
 
-#define BLUETOOTH_MODE
-//#define USB_MODE
+//#define BLUETOOTH_MODE
+#define USB_MODE
 /*** System States **************************************************/
 typedef enum
 {

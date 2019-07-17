@@ -5,30 +5,30 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="dev" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/pwm.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/i2c.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/io.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/gyroscope.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/interupts.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/servo.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usart.h</itemPath>
+        <itemPath>header/pwm.h</itemPath>
+        <itemPath>header/i2c.h</itemPath>
+        <itemPath>header/io.h</itemPath>
+        <itemPath>header/gyroscope.h</itemPath>
+        <itemPath>header/interupts.h</itemPath>
+        <itemPath>header/servo.h</itemPath>
+        <itemPath>header/usart.h</itemPath>
       </logicalFolder>
       <logicalFolder name="usb" displayName="usb" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_ch9.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_common.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_config.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_device.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_device_cdc.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_device_local.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_hal.h</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb/usb_hal_pic18.h</itemPath>
+        <itemPath>header/usb/usb.h</itemPath>
+        <itemPath>header/usb/usb_ch9.h</itemPath>
+        <itemPath>header/usb/usb_common.h</itemPath>
+        <itemPath>header/usb/usb_config.h</itemPath>
+        <itemPath>header/usb/usb_device.h</itemPath>
+        <itemPath>header/usb/usb_device_cdc.h</itemPath>
+        <itemPath>header/usb/usb_device_local.h</itemPath>
+        <itemPath>header/usb/usb_hal.h</itemPath>
+        <itemPath>header/usb/usb_hal_pic18.h</itemPath>
       </logicalFolder>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/fixed_address_memory.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/system.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/motor.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/pid.h</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/header/io_controller.h</itemPath>
+      <itemPath>header/fixed_address_memory.h</itemPath>
+      <itemPath>header/system.h</itemPath>
+      <itemPath>header/motor.h</itemPath>
+      <itemPath>header/pid.h</itemPath>
+      <itemPath>header/io_controller.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -38,25 +38,25 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="dev" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/pwm.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/i2c.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/io.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/gyroscope.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/servo.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usart.c</itemPath>
+        <itemPath>src/pwm.c</itemPath>
+        <itemPath>src/i2c.c</itemPath>
+        <itemPath>src/io.c</itemPath>
+        <itemPath>src/gyroscope.c</itemPath>
+        <itemPath>src/servo.c</itemPath>
+        <itemPath>src/usart.c</itemPath>
       </logicalFolder>
       <logicalFolder name="usb" displayName="usb" projectFiles="true">
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_descriptors.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_device_cdc.c</itemPath>
-        <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb/usb_events.c</itemPath>
+        <itemPath>src/usb/usb_descriptors.c</itemPath>
+        <itemPath>src/usb/usb_device.c</itemPath>
+        <itemPath>src/usb/usb_device_cdc.c</itemPath>
+        <itemPath>src/usb/usb_events.c</itemPath>
       </logicalFolder>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/main.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/system.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/motor.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/interupts.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/pid.c</itemPath>
-      <itemPath>D:/Personal/FinalTest/Final_Test/RoghecV2/src/io_controller.c</itemPath>
+      <itemPath>src/main.c</itemPath>
+      <itemPath>src/system.c</itemPath>
+      <itemPath>src/motor.c</itemPath>
+      <itemPath>src/interupts.c</itemPath>
+      <itemPath>src/pid.c</itemPath>
+      <itemPath>src/io_controller.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -66,18 +66,14 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>D:\Personal\FinalTest\Final_Test.X\header</Elem>
-    <Elem>D:\Personal\FinalTest\Final_Test.X\src</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test.X/src/elements</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test.X/src/usb</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test.X/header/elements</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test.X/header/usb</Elem>
     <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/header</Elem>
     <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/src</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/elements</Elem>
     <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/src/usb</Elem>
-    <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/elements</Elem>
     <Elem>D:/Personal/FinalTest/Final_Test/RoghecV2/header/usb</Elem>
+    <Elem>header</Elem>
+    <Elem>src</Elem>
+    <Elem>src/usb</Elem>
+    <Elem>header/usb</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
