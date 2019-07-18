@@ -31,10 +31,9 @@ SOFTWARE.
 #include "usart.h"
 uint8_t once = 0;
 //static int OFFSET = 112;
-char tmp[150];
+char tmp[100];
 gyro_data_offset data_offset;
 #define _XTAL_FREQ 48000000
-double zeroValue[3];
 static gyro_data data;
 void MPU_Init()		/* Gyro initialization function */
 {
@@ -67,21 +66,20 @@ void MPU_Init()		/* Gyro initialization function */
 
 gyro_data * MPU_GetData()
 {
-    int Ax,Ay,Az,T,Gx,Gy,Gz;
-
+    int16_t Ax,Ay,Az,T,Gx,Gy,Gz;
     I2C_Start_Wait(0xD0);	/* I2C start with device write address */
     I2C_Write(ACCEL_XOUT_H);/* Write start location address to read */ 
     I2C_Repeated_Start(0xD1);/* I2C start with device read address */
 
-    Ax = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    Ay = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    Az = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    T = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    Gx = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    Gy = (((int)I2C_Read(0)<<8) | (int)I2C_Read(0));
-    Gz = (((int)I2C_Read(0)<<8) | (int)I2C_Read(1));
+    Ax = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    Ay = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    Az = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    T = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    Gx = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    Gy = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(0));
+    Gz = (((int16_t)I2C_Read(0)<<8) | (int16_t)I2C_Read(1));
     I2C_Stop();
-
+    
     
     data.Xa = ((float)Ax/16384.0)*100;	
     data.Ya = ((float)Ay/16384.0)*100;
@@ -102,30 +100,6 @@ gyro_data * MPU_getPointer()
 {
     return &data;
 }
-
-void MPU_Setoffset()
-{
-    gyro_data *data;
-
-    for (uint8_t i = 0; i < 100; i++) { // Take the average of 100 readings
-        data = MPU_getPointer();
-        zeroValue[0] += data->Xa;
-        zeroValue[1] += data->Za;
-        zeroValue[2] += data->Xg;
-        uint8_t i;
-        volatile uint16_t waste = 0;
-        for (i = 0; i < 100; i++)
-        {
-            waste++;
-        }
-
-    }  
-    zeroValue[0] /= 100;
-    zeroValue[1] /= 100;
-    zeroValue[2] /= 100;
-
-}
-
 
 void MPU_Print_Raw_Value()
 {

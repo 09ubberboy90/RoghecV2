@@ -42,7 +42,7 @@ extern "C" {
 #define HARD_MULTIPLE 16.65
 #define HARD_SUM 750 //
 void Interupt_Init(void);
-//void Timer0_Init(void);
+void Timer0_Init(void);
 void Timer1_Init(void);
 //void Timer2_Init(void);
 void Timer3_Init(void);

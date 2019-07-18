@@ -22,6 +22,8 @@ SOFTWARE.
 */
 #include "usart.h"
 #include "interupts.h"
+
+#ifdef BLUETOOTH_MODE
 /*****************************USART Initialization*******************************/
 void USART_Init()
 {
@@ -80,3 +82,4 @@ bool EUSART1_is_rx_ready(void)
 {
     return PIR1bits.RC1IF;
 }
+#endif

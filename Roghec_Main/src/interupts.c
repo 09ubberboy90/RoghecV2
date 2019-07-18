@@ -30,7 +30,7 @@ SOFTWARE.
 
 static char out;
 STATE_MACHINE state_1 = STATE_OFF;
-STATE_MACHINE state_2 = STATE_ON;
+STATE_MACHINE state_2 = STATE_OFF;
 uint8_t servo_id_1 = 0;
 uint16_t tmp_time_1 = 0;
 uint8_t servo_id_2 = 0;
@@ -40,7 +40,7 @@ void Interupt_Init()
 {
     INTCONbits.PEIE = 1; // enable peripheral interrupts
     INTCONbits.GIE = 1; // enable interrupts globally
-    //Timer0_Init();
+//    Timer0_Init();
     Timer1_Init();
     //Timer2_Init();
     Timer3_Init();

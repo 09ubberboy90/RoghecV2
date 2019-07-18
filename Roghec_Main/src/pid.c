@@ -26,90 +26,67 @@ SOFTWARE.
 #include "motor.h"
 #include "pid.h"
 #include "gyroscope.h"
+#include "system.h"
+#include <stdio.h>
 
 #define DEAD_ZONE_DC_MOTOR_R 76          //125
 #define DEAD_ZONE_DC_MOTOR_F 102
-PIDMOTOR pid;
+static PID_VALUE value;
 
-void Pid_Init (float pid_p, float pid_i, float pid_d)
+void CorrecteurPID(float te,
+                   float P,
+                   float taui,
+                   float taud,
+                   float Nd)
 {
-    pid.P_factor = (int16_t)(pid_p*10);
-    pid.I_factor = (int16_t)(pid_i*10);
-    pid.D_factor = (int16_t)(pid_d*10);
-    pid.previous_measur_value = 0;
-    pid.sum_error = 0;
-    pid.max_error_proportional = 90;				// Max error proportionnal
-    pid.max_sum_error_integral = 200;				// To avoid wind up
-}
-PIDMOTOR * Get_Pid(void){
-    return &pid;
-}
-// Compute value to send to DC motor in order to stabilized the base
-int16_t Pid_controller (int16_t input)
-{
-    float p_term = 0;
-    float i_term = 0;
-    float d_term = 0;
-    int16_t output_PID = 0;
-
-    // Calculate proportional term and limit error overflow
-    if(input/10 > pid. max_error_proportional/10)
-    {
-    	p_term = pid.P_factor/10 * ERROR_ANGLE_VALUE;
-    }
-    else if (input/10 < -pid.max_error_proportional/10)
-    {
-        p_term = pid.P_factor/10 * (-ERROR_ANGLE_VALUE);
-    }
-    else
-        p_term = pid.P_factor/10 * input/10;
-
-    // Calculate integral term and limit integral wind-up
-    pid.sum_error += input;
-    if (pid.sum_error/10 > pid.max_sum_error_integral/10)
-    {
-    	i_term = pid.I_factor/10 * MAX_I_TERM;
-    }
-    else if (pid.sum_error/10 < -pid.max_sum_error_integral/10)
-    {
-    	i_term = pid.I_factor/10 * (-MAX_I_TERM);
-    }
-    else
-        i_term = pid.I_factor/10 * pid.sum_error/10;
-
-    // Calcul derivate term
-    d_term = pid.D_factor/10 * (pid.previous_measur_value/10 - input/10);
-    pid.previous_measur_value = input;
-
-    // Sum the values to get the PID controller
-    output_PID = p_term + i_term + d_term;
     
-    return (output_PID*10);
+    value.P = P;
+    value.taui = taui;
+    value.taud = taud;
+    float alpha = taud / (1 + taud + Nd * te);
+
+
+    numerateur[0] = P * (1.0 + taud / (Nd * te) + te / taui + taud / (Nd * taui) + taud / te);
+    numerateur[1] = P * (-1 - 2 * taud / (Nd * te) - taud / (Nd * taui) - 2 * taud / te);
+    numerateur[2] = P * (taud / (Nd * te) + taud / te);
+
+    denominateur[0] = 1.0 + taud / (Nd * te);
+    denominateur[1] = -1 - 2 * taud / (Nd * te);
+    denominateur[2] = taud / (Nd * te);
+
 }
 
-void DC_motor_controller(int16_t Value_PID)
+float compute(float input)
 {
-    int16_t duty_cycle = 0;
-
-    duty_cycle = (int16_t)(Value_PID/10+0.5); // take the ceiling
-    pid.MotorB_Speed = duty_cycle;
-    if(duty_cycle > 1.2)
+    for (int i = 2; i > 0; i--)
     {
-        Motor_Backward();
-        pid.MotorA_Speed = duty_cycle;
-        Direct_Speed_Control(duty_cycle + DEAD_ZONE_DC_MOTOR_F,duty_cycle + DEAD_ZONE_DC_MOTOR_F);   
+        mem_input[i] = mem_input[i - 1];   
     }
-    else if (duty_cycle < -1.2)
+     mem_input[0] = input;
+    
+    for (int i = sizeof(mem_output) - 1; i > 0; i--)
     {
-        Motor_Forward();
-        pid.MotorA_Speed = duty_cycle;
-
-        Direct_Speed_Control(-duty_cycle + DEAD_ZONE_DC_MOTOR_R,-duty_cycle + DEAD_ZONE_DC_MOTOR_R);   
+        mem_output[i] = mem_output[i - 1];
     }
-    else
-    {
-        Motor_Forward();
-        Speed_Control(0);   
+    float out = 0;
+    for (int i = 0; i < 2; i++)
+        out += numerateur[i] * mem_input[i];
+    for (int i = 1; i < 2; i++)
+        out -= denominateur[i] * mem_output[i];
 
-    }
+    /*    for (int i=0;i<numerateur.size();i++)  std::cout<<"numerateur["<<i<<"] = "<< numerateur[i]<<std::endl;
+    for (int i=0;i<denominateur.size();i++)  std::cout<<"denominateur["<<i<<"] = "<< denominateur[i]<<std::endl;
+
+    for (int i=0;i<mem_input.size();i++)  std::cout<<"mem_input["<<i<<"] = "<< mem_input[i]<<std::endl;
+    for (int i=0;i<mem_output.size();i++)  std::cout<<"mem_output["<<i<<"] = "<< mem_output[i]<<std::endl;  */
+
+    out /= denominateur[0];
+    mem_output[0] = out;
+    return out;
+
 }
+
+PID_VALUE * Get_PID(){
+    return &value;
+}
+

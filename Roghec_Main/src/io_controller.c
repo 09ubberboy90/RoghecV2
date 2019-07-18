@@ -83,7 +83,6 @@ void Io_Listener()
 {
     uint8_t input[10];
     char tmp[50];
-    PIDMOTOR *pid;
 
 #ifdef USB_MODE
     /* If the USB device isn't configured yet, we can't really do anything
@@ -163,14 +162,19 @@ void Io_Listener()
                 // Base the offset on the current angle
             case 0x43: //c 
             case 0x63: //c
-                pid = Get_Pid();
-                sprintf(tmp, "%d,%d,%d,%d,%d,%u,%u\r\n", pid->P_factor / 10, pid->I_factor / 10, pid->D_factor / 10, pid->sum_error, pid->previous_measur_value, pid->MotorA_Speed, pid->MotorB_Speed);
+            {
+                PID_VALUE *pid = Get_PID();
+                sprintf(tmp, "PID : %d,%d,%d\r\n", pid->P, pid->taui, pid->taud);
                 Send_Message(tmp);
                 break;
-
+            }
             case 0x47: //G 
             case 0x67: //g
                 MPU_Print_Raw_Value();
+                break;
+
+            case 0x56: //V
+            case 0x76: //v
                 break;
                 
             case 0x4C:
@@ -194,6 +198,8 @@ void Io_Listener()
 
 void Pid_Setup(uint8_t choice)
 {
+    PID_VALUE *pid;
+    pid = Get_PID();
     uint8_t input[10];
     char mess[50];
     uint16_t result;
@@ -219,7 +225,6 @@ void Pid_Setup(uint8_t choice)
         input[i] = USART_ReceiveChar();
     }
 #endif
-    PIDMOTOR *pid = Get_Pid();
     result = ((input[0]-'0')*10+(input[1]-'0'));
     //    switch(input[0])
     //    {
@@ -242,16 +247,16 @@ void Pid_Setup(uint8_t choice)
     //    }
     if (choice == 1)
     {
-        pid->P_factor = result*10;
+        CorrecteurPID(10,result*1000,pid->taui,pid->taud,10);
     }
     else if (choice == 2)
     {
-        pid->I_factor = result*10;
+        CorrecteurPID(10,pid->P,result*1000,pid->taud,10);
     }
     else if (choice == 3)
     {
-        pid->D_factor = result*10;
+        CorrecteurPID(10,pid->P,pid->taui,result*1000,10);
     }
-    sprintf(mess, "Pid : %d,%d,%d\r\n", pid->P_factor, pid->I_factor, pid->D_factor);
+    sprintf(mess, "PID : %d,%d,%d\r\n", pid->P, pid->taui, pid->taud);
     Send_Message(mess);
 }

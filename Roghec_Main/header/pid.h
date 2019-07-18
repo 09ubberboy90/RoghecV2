@@ -33,24 +33,27 @@ extern "C" {
 #define ERROR_ANGLE_VALUE 30.0 // AVOID TO GET A ERROR HIGHER THAN 50°
 #define MAX_I_TERM 20.0 // AVOID WIND-UP
 
-typedef struct
-{
-    int16_t max_error_proportional;				//
-    int16_t max_sum_error_integral;
-    int16_t sum_error;
-    int16_t previous_measur_value;
-    int16_t P_factor;
-    int16_t I_factor;
-    int16_t D_factor;
-    uint8_t MotorA_Speed;
-    uint8_t MotorB_Speed;
-}PIDMOTOR;
-PIDMOTOR * Get_Pid();
-void Pid_Init (float pid_p, float pid_i, float pid_d);
-int16_t Pid_controller (int16_t input);
-void DC_motor_controller (int16_t Value_PID);
 
 
+float numerateur[3];
+float denominateur[3];
+float mem_output[3];
+float mem_input[3];
+
+typedef struct{
+    float P;
+    float taui;
+    float taud;
+} PID_VALUE;
+    
+PID_VALUE * Get_PID(void);
+void CorrecteurPID(float te,
+              float P,
+              float taui,
+              float taud,
+              float Nd);
+float compute(float input);
+void Print_PID_Values();
 #ifdef	__cplusplus
 }
 #endif
