@@ -108,13 +108,11 @@ void Motor_Control(void)
             Speed_Control(result);
         }
         sprintf(mess,"Car is Moving : %u\r\n",result);
-//        putrsUSBUSART(mess);
     }
     else{
         sprintf(mess,"Erreur MOTOR\r\n");
-//        putrsUSBUSART(mess);
     }
-    //Send_Message(mess);
+    Send_Message(mess);
 
     
 }

@@ -1,6 +1,5 @@
 import snowboydecoder
 import sys
-import signal
 from assistant import Assistant
 
 # Demo code for listening two hotwords at the same time
@@ -17,23 +16,24 @@ def interrupt_callback():
     global interrupted
     return interrupted
 stop_id = None
-models = ["./RogHecVF.pmdl","./Roghec.pmdl"]
+models = ["/home/ubberboy/Documents/RoghecV2/snowboy/RogHecVF.pmdl","/home/ubberboy/Documents/RoghecV2/snowboy/Roghec.pmdl"]
 gen_canvas = None
-sensitivity = [0.5]*len(models)
+sensitivity = [0.49]*len(models)
 
 detector = None
 assist = None
 def detect_callback():
     detector.terminate()
     snowboydecoder.play_audio_file(snowboydecoder.DETECT_DING)
+    gen_canvas[4]["text"] = "LISTENING ...."
     assist.assist(gen_canvas)
+    gen_canvas[4]["text"] = "SAY ROGHEC"
     snowboydecoder.play_audio_file(snowboydecoder.DETECT_DONG)
     print(stop_id())
     if not stop_id():
         detector.start(detected_callback=detect_callback, interrupt_check=interrupt_callback, sleep_time=0.03)
 # main loop
 # make sure you have the same numbers of callbacks and models
-
 def init(canvas,stop):
     print('Listening... Press Ctrl+C to exit')
 

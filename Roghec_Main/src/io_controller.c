@@ -43,18 +43,6 @@ SOFTWARE.
 
 bool autoMode = false;
 
-/*********************************************************************
- * Function: void APP_DeviceCDCBasicDemoInitialize(void);
- *
- * Overview: Initializes the demo code
- *
- * PreCondition: None
- *
- * Input: None
- *
- * Output: None
- *
- ********************************************************************/
 void Io_Init()
 {
     line_coding.bCharFormat = 0;
@@ -65,20 +53,6 @@ void Io_Init()
 
 }
 
-/*********************************************************************
- * Function: void APP_DeviceCDCBasicDemoTasks(void);
- *
- * Overview: Keeps the demo running.
- *
- * PreCondition: The demo should have been initialized and started via
- *   the APP_DeviceCDCBasicDemoInitialize() and APP_DeviceCDCBasicDemoStart() demos
- *   respectively.
- *
- * Input: None
- *
- * Output: None
- *
- ********************************************************************/
 void Io_Listener()
 {
     uint8_t input[10];
@@ -226,25 +200,6 @@ void Pid_Setup(uint8_t choice)
     }
 #endif
     result = ((input[0]-'0')*10+(input[1]-'0'));
-    //    switch(input[0])
-    //    {
-    //        case 0x50:
-    //        case 0x80:
-    //            pid->P_factor = result;
-    //            break;
-    //        case 'I':
-    //        case 'i':
-    //            pid->I_factor = result;
-    //            break;
-    //        case 'D':
-    //        case 'd':
-    //            pid->D_factor = result;
-    //            break;
-    //        default:
-    //            putrsUSBUSART("ERROR PID\n\r");
-    //            break;
-    //
-    //    }
     if (choice == 1)
     {
         CorrecteurPID(10,result*1000,pid->taui,pid->taud,10);
@@ -258,5 +213,5 @@ void Pid_Setup(uint8_t choice)
         CorrecteurPID(10,pid->P,pid->taui,result*1000,10);
     }
     sprintf(mess, "PID : %d,%d,%d\r\n", pid->P, pid->taui, pid->taud);
-    //Send_Message(mess);
+    Send_Message(mess);
 }

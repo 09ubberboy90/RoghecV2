@@ -60,11 +60,10 @@ float compute(float input)
 {
     for (int i = 2; i > 0; i--)
     {
-        mem_input[i] = mem_input[i - 1];   
+        mem_input[i] = mem_input[i - 1];
+        mem_input[0] = input;
     }
-     mem_input[0] = input;
-    
-    for (int i = sizeof(mem_output) - 1; i > 0; i--)
+    for (int i = sizeof(mem_input) - 1; i > 0; i--)
     {
         mem_output[i] = mem_output[i - 1];
     }
@@ -73,12 +72,6 @@ float compute(float input)
         out += numerateur[i] * mem_input[i];
     for (int i = 1; i < 2; i++)
         out -= denominateur[i] * mem_output[i];
-
-    /*    for (int i=0;i<numerateur.size();i++)  std::cout<<"numerateur["<<i<<"] = "<< numerateur[i]<<std::endl;
-    for (int i=0;i<denominateur.size();i++)  std::cout<<"denominateur["<<i<<"] = "<< denominateur[i]<<std::endl;
-
-    for (int i=0;i<mem_input.size();i++)  std::cout<<"mem_input["<<i<<"] = "<< mem_input[i]<<std::endl;
-    for (int i=0;i<mem_output.size();i++)  std::cout<<"mem_output["<<i<<"] = "<< mem_output[i]<<std::endl;  */
 
     out /= denominateur[0];
     mem_output[0] = out;

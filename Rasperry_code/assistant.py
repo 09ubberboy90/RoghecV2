@@ -14,6 +14,7 @@
 
 """Sample that implements gRPC client for Google Assistant API."""
 from gtts import gTTS
+import struct
 import subprocess
 import json
 import logging
@@ -26,7 +27,7 @@ import google.auth.transport.grpc
 import google.auth.transport.requests
 import google.oauth2.credentials
 import google_control
-
+from lxml import html
 from google.assistant.embedded.v1alpha1 import embedded_assistant_pb2,embedded_assistant_pb2_grpc
 from google.assistant.embedded.v1alpha2 import (
     embedded_assistant_pb2,
@@ -110,28 +111,6 @@ class Assistant():
         self.volume_percentage = 50
         self.display = True
     
-    def custom_command_handler(self,mess):
-        print("The message was : " + mess)
-        hello_bool = False
-        command = [["hello","hey"],["salut","bonjour"]]
-        if any(mess.lower() in s for s in command):
-            if mess.lower() in command[0]:
-                print("the Arm said hello back")
-                tts = gTTS("I say Hello to you too",lang= "en")
-                hello_bool = True
-            if mess.lower() in command[1]:
-                print("Le bras dit Bonjour")
-                tts = gTTS("Bonjour a vous aussi",lang= "fr")
-                hello_bool = True
-            if hello_bool:
-                tts.save('tmp.mp3')
-                subprocess.Popen(['mpg123', '-q', "tmp.mp3"]).wait()
-                google_control.hello()
-            self.once = False
-            return True
-        else:
-            return False
-        
     def assist(self,canvas):
         device_actions_futures = []
 
@@ -188,10 +167,9 @@ class Assistant():
                     if resp.speech_results:
                         mess = ' '.join(r.transcript for r in resp.speech_results)
                         logging.info('Transcript of user request: "%s".',mess)
-                        canvas['text'] = mess
+                        canvas[1]['text'] = mess
                         if self.once :
-                            self.custom_command = self.custom_command_handler(mess)
-                    print(resp)
+                            self.custom_command = google_control.custom_command_handler(mess,canvas)
                     if len(resp.audio_out.audio_data) > 0 and not self.custom_command:
                         if not self.conversation_stream.playing:
                             self.conversation_stream.stop_recording()
@@ -218,9 +196,11 @@ class Assistant():
                         fs = self.device_handler(device_request)
                         if fs:
                             device_actions_futures.extend(fs)
-                    if self.display and resp.screen_out.data:
+                    if self.display and resp.screen_out.data and not self.custom_command:
                         system_browser = browser_helpers.system_browser
                         system_browser.display(resp.screen_out.data)
+                        self.scrapper(canvas)
+
                 self.logger.info('Finished playing assistant response.')
                 self.conversation_stream.stop_playback()
         except Exception as e:
@@ -237,7 +217,12 @@ class Assistant():
 
     device_handler = device_helpers.DeviceRequestHandler("roghecv2assistant-roghecv2-59lv9s")
 
-    
+    def scrapper(self,canvas):
+        tree = html.parse("/home/ubberboy/Documents/RoghecV2/snowboy/google-assistant-sdk-screen-out.html")
+        result = tree.xpath('/html/body/div/div[2]/div[3]/div[2]/div/div/text()')
+        final_text = '\n'.join(result)
+        print(final_text)
+        canvas[3]["text"] = ''.join(c if c <= '\uffff' else ''.join(chr(x) for x in struct.unpack('>2H', c.encode('utf-16be'))) for c in final_text)
     def _create_assistant(self):
         # Create gRPC channel
         grpc_channel = google.auth.transport.grpc.secure_authorized_channel(

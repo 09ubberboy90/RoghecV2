@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+
+
 import tkinter as tk
 import pygubu
 import webcam
@@ -9,38 +13,7 @@ import trace
 import time
 from PIL import Image
 from PIL import ImageTk
-
-class thread_with_trace(threading.Thread):
-    def __init__(self, *args, **keywords):
-        threading.Thread.__init__(self, *args, **keywords)
-        self.killed = False
-
-    def start(self):
-        self.__run_backup = self.run
-        self.run = self.__run
-        threading.Thread.start(self)
-
-    def __run(self):
-        sys.settrace(self.globaltrace)
-        self.__run_backup()
-        self.run = self.__run_backup
-
-    def globaltrace(self, frame, event, arg):
-        if event == 'call':
-            return self.localtrace
-        else:
-            return None
-
-    def localtrace(self, frame, event, arg):
-        if self.killed:
-            if event == 'line':
-                raise SystemExit()
-
-        return self.localtrace
-
-    def kill(self):
-        self.killed = True
-
+import custom_threads
 
 class Menu(pygubu.TkApplication):
     def _create_ui(self):
@@ -49,7 +22,7 @@ class Menu(pygubu.TkApplication):
         self.builder = builder = pygubu.Builder()
 
         # 2: Load an ui file
-        builder.add_from_file('gui.ui')
+        builder.add_from_file('/home/ubberboy/Documents/RoghecV2/snowboy/gui.ui')
 
         # 3: Create the widget using a master as parent
         self.main_window = builder.get_object('main_menu', self.master)
@@ -87,7 +60,7 @@ class Webcam(pygubu.TkApplication):
         self.builder = builder = pygubu.Builder()
         self.stop_thread = False
         # 2: Load an ui file
-        builder.add_from_file('gui.ui')
+        builder.add_from_file('/home/ubberboy/Documents/RoghecV2/snowboy/gui.ui')
 
         # 3: Create the widget using a master as parent
         self.webcam_window = builder.get_object('webcam', self.master)
@@ -98,7 +71,7 @@ class Webcam(pygubu.TkApplication):
         self.master.columnconfigure(0, weight=1)
         self.set_resizable()
 
-        self.x = threading.Thread(target=self.on_build)
+        self.x = custom_threads.thread_with_trace(target=self.on_build, daemon = True)
         self.x.start()
 
     def on_close_window(self, event=None):
@@ -109,6 +82,7 @@ class Webcam(pygubu.TkApplication):
         
     def stop(self):
         self.stop_thread = True
+        self.x.kill()
         self.x.join()
         self.webcam_window.master.destroy()
 
@@ -132,14 +106,20 @@ class Helper(pygubu.TkApplication):
         self.builder = builder = pygubu.Builder()
         self.stop_thread = False
         # 2: Load an ui file
-        builder.add_from_file('gui.ui')
+        builder.add_from_file('/home/ubberboy/Documents/RoghecV2/snowboy/gui.ui')
 
         # 3: Create the widget using a master as parent
         self.helper_window = builder.get_object('helper', self.master)
         self.master.protocol("WM_DELETE_WINDOW", self.on_close_window)
-        self.text = builder.get_object("Label_6")
+        self.text_1 = builder.get_object("me_said")
+        self.text_2 = builder.get_object("me_text")
+        self.text_3 = builder.get_object("you_said")
+        self.text_4 = builder.get_object("google_said")
+        self.text_5 = builder.get_object("state")
+
+        self.texts = [self.text_1,self.text_2,self.text_3,self.text_4,self.text_5]
         self.image = builder.get_object("Label_Google")
-        img = Image.open("logo.gif")
+        img = Image.open("/home/ubberboy/Documents/RoghecV2/snowboy/logo.gif")
         img = img.resize((100,100), Image.ANTIALIAS)
         photo =  ImageTk.PhotoImage(img)
         self.image.config(image = photo)
@@ -148,7 +128,7 @@ class Helper(pygubu.TkApplication):
         builder.connect_callbacks(self)
         self.set_resizable()
 
-        self.x = thread_with_trace(target=self.on_build)
+        self.x = custom_threads.thread_with_trace(target=self.on_build, daemon = True)
         self.x.start()
 
     def on_close_window(self, event=None):
@@ -170,7 +150,7 @@ class Helper(pygubu.TkApplication):
         root.mainloop()
 
     def on_build(self):
-        c = self.text
+        c = self.texts
         demo2.init(c, lambda: self.stop_thread)
 
 

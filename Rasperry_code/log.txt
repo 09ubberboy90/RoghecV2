@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/ubberboy/Documents/RoghecV2/snowboy/Gui.py", line 7, in <module>
+    import webcam
+  File "/home/ubberboy/Documents/RoghecV2/snowboy/webcam.py", line 8, in <module>
+    import google_control
+  File "/home/ubberboy/Documents/RoghecV2/snowboy/google_control.py", line 79
+    else if mess in command_forward:
+          ^
+SyntaxError: invalid syntax

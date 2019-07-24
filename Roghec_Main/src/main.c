@@ -72,12 +72,7 @@ void main(void)
             tmp_data->Pitch = (int)(atan2(tmp_data->Xa,sqrt(tmp_data->Ya*tmp_data->Ya+tmp_data->Za*tmp_data->Za))*180/PI);
             tmp_data->ComplPitch = (int)((0.98 * (tmp_data->ComplPitch/100 + (tmp_data->Xg/100) * 0.012) + 0.02 * (tmp_data->Pitch))*100);
         }     
-        //Application specific tasks
         Io_Listener();
-        //Motor_Forward();
-        //Speed_Control(99);
-        //Pin_Toggle(MOTOR_B_F);
-        //Pin_Toggle(MOTOR_B_R);
 
     }//end while
 }//end main

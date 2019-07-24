@@ -27,13 +27,11 @@ please contact mla_licensing@microchip.com
 
 /** CONFIGURATION Bits **********************************************/
 #pragma config PLLSEL   = PLL3X     // PLL Selection (3x clock multiplier)
-//#pragma config CFGPLLEN = OFF       // PLL Enable Configuration bit (PLL Disabled (firmware controlled))
 #pragma config CFGPLLEN = ON       // PLL Enable Configuration bit (PLL Disabled (firmware controlled))
 #pragma config CPUDIV   = NOCLKDIV  // CPU System Clock Postscaler (CPU uses system clock (no divide))
 #pragma config LS48MHZ  = SYS48X8   // Low Speed USB mode with 48 MHz system clock (System clock at 48 MHz, USB clock divider is set to 8)
 
 #pragma config FOSC     = INTOSCIO  // Oscillator Selection (Internal oscillator)
-//#pragma config PCLKEN   = OFF       // Primary Oscillator Shutdown (Primary oscillator shutdown firmware controlled)
 #pragma config PCLKEN   = ON       // Primary Oscillator Shutdown (Primary oscillator shutdown firmware controlled)
 #pragma config FCMEN    = OFF       // Fail-Safe Clock Monitor (Fail-Safe Clock Monitor disabled)
 #pragma config IESO     = OFF       // Internal/External Oscillator Switchover (Oscillator Switchover mode disabled)
@@ -41,13 +39,10 @@ please contact mla_licensing@microchip.com
 #pragma config nPWRTEN  = OFF       // Power-up Timer Enable (Power up timer disabled)
 #pragma config BOREN    = SBORDIS   // Brown-out Reset Enable (BOR enabled in hardware (SBOREN is ignored))
 #pragma config BORV     = 190       // Brown-out Reset Voltage (BOR set to 1.9V nominal)
-//#pragma config nLPBOR   = ON        // Low-Power Brown-out Reset (Low-Power Brown-out Reset enabled)
-//#pragma config WDTEN    = SWON      // Watchdog Timer Enable bits (WDT controlled by firmware (SWDTEN enabled))
-//#pragma config WDTPS    = 32768     // Watchdog Timer Postscaler (1:32768)
 
 #pragma config nLPBOR   = OFF        // Low-Power Brown-out Reset (Low-Power Brown-out Reset enabled)
-#pragma config WDTEN = OFF          // Watchdog Timer Enable bits->WDT disabled in hardware (SWDTEN ignored)
-#pragma config WDTPS = 32768        // Watchdog Timer Postscaler->1:32768
+#pragma config WDTEN    = OFF          // Watchdog Timer Enable bits->WDT disabled in hardware (SWDTEN ignored)
+#pragma config WDTPS    = 32768        // Watchdog Timer Postscaler->1:32768
 
 
 
