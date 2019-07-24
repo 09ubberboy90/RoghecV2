@@ -258,5 +258,5 @@ void Pid_Setup(uint8_t choice)
         CorrecteurPID(10,pid->P,pid->taui,result*1000,10);
     }
     sprintf(mess, "PID : %d,%d,%d\r\n", pid->P, pid->taui, pid->taud);
-    Send_Message(mess);
+    //Send_Message(mess);
 }

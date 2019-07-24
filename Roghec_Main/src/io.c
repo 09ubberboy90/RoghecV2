@@ -63,19 +63,19 @@ SOFTWARE.
 #define SERVO_10_ANSEL ANSELBbits.ANSB3
 #define SERVO_11_ANSEL ANSELBbits.ANSB4
 
-#define MotorAF_LAT LATAbits.LATA2
+#define MotorAF_LAT LATAbits.LATA5
 #define MotorAR_LAT LATAbits.LATA3
 #define MotorBF_LAT LATAbits.LATA4
-#define MotorBR_LAT LATAbits.LATA5
+#define MotorBR_LAT LATAbits.LATA2
 
-#define MotorAF_TRIS TRISAbits.TRISA2
+#define MotorAF_TRIS TRISAbits.TRISA5
 #define MotorAR_TRIS TRISAbits.TRISA3
 #define MotorBF_TRIS TRISAbits.TRISA4
-#define MotorBR_TRIS TRISAbits.TRISA5
+#define MotorBR_TRIS TRISAbits.TRISA2
 
-#define MotorAF_ANSEL ANSELAbits.ANSA2
+#define MotorAF_ANSEL ANSELAbits.ANSA5
 #define MotorAR_ANSEL ANSELAbits.ANSA3
-#define MotorBR_ANSEL ANSELAbits.ANSA5
+#define MotorBR_ANSEL ANSELAbits.ANSA2
 
 #define ON  1
 #define OFF 0

@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/header/io.h</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/main.c</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/motor.c</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/io.c</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/io_controller.c</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/servo.c</file>
+            <file>file:/D:/Personal/FinalTest/RoghecV2/Roghec_Main/src/pid.c</file>
+        </group>
     </open-files>
 </project-private>

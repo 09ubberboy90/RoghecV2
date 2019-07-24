@@ -114,7 +114,7 @@ void Motor_Control(void)
         sprintf(mess,"Erreur MOTOR\r\n");
 //        putrsUSBUSART(mess);
     }
-    Send_Message(mess);
+    //Send_Message(mess);
 
     
 }
